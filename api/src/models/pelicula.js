@@ -1,33 +1,40 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-    sequelize.define('ticket', {
+    sequelize.define('pelicula', {
         id: {
             type: DataTypes.UUID,
             default: DataTypes.UUIDV1,
             primarykey: true,
             allowNull: false
         },
-        numero: {
+        nombre: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        feche_hora: {
+        feche: {
+            type: DataTypes.DATE,
+            allowNull: false
+        },
+        duracion: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        precio: {
-            type: DataTypes.FLOAT,
-            allowNull: false
-        },
-        descuento: {
-            type: DataTypes.FLOAT,
-            allowNull: false
-        },
-        numero_sala: {
+        descripcion: {
             type: DataTypes.STRING,
             allowNull: false
-        }
-
+        },
+        trailer: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        estreno: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        puntuacion: {
+            type: DataTypes.STRING,
+            allowNull: false
+        }     
     })
 }

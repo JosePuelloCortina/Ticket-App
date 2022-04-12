@@ -1,33 +1,39 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-    sequelize.define('ticket', {
+    sequelize.define('user', {
         id: {
             type: DataTypes.UUID,
             default: DataTypes.UUIDV1,
             primarykey: true,
             allowNull: false
         },
-        numero: {
+        nombre: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        feche_hora: {
+        apellido: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        precio: {
-            type: DataTypes.FLOAT,
-            allowNull: false
-        },
-        descuento: {
-            type: DataTypes.FLOAT,
-            allowNull: false
-        },
-        numero_sala: {
+        email: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+        rol: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        password: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        estado: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false
+        },
+        imagen:{
+            type: DataTypes.STRING
         }
-
     })
 }

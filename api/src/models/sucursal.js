@@ -1,33 +1,28 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-    sequelize.define('ticket', {
+    sequelize.define('sucursal', {
         id: {
             type: DataTypes.UUID,
             default: DataTypes.UUIDV1,
             primarykey: true,
             allowNull: false
         },
-        numero: {
+        nombre: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        feche_hora: {
+        ciudad: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        precio: {
-            type: DataTypes.FLOAT,
+        contacto: {
+            type: DataTypes.STRING,
             allowNull: false
         },
-        descuento: {
-            type: DataTypes.FLOAT,
-            allowNull: false
-        },
-        numero_sala: {
+        direccion: {
             type: DataTypes.STRING,
             allowNull: false
         }
-
     })
 }
