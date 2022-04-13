@@ -1,0 +1,53 @@
+*{
+    margin: 0;
+    padding: 0;
+  }
+  
+  .wpLanding{
+    width:  100%;
+    height: 660px;
+   
+   background: url('https://englishlive.ef.com/es-mx/blog/wp-content/uploads/sites/8/2016/03/28.best-british-films-for-learning-english-fast.jpg') center center no-repeat;
+   background-size: 100% auto;
+  }
+  
+  .wpLanding .btb button{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(252, 248, 248, 0);
+  } 
+  
+  .text{
+    margin: 80px;    
+    color: rgb(41, 89, 233);    
+    text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.856);
+   
+    -webkit-transform: rotate(-8deg); 
+    -moz-transform: rotate(-8deg);
+    -o-transform: rotate(-8deg);
+    transform: rotate(-8deg);
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+  }
+  
+  .text p{
+    font-family: 'Indie Flower', cursive;
+    /* text-shadow: 5px 5px 10px rgb(81, 122, 81); */
+    font-size: 40px;
+    margin: 0 30% 0 30%;
+    
+  }
+  .text p:hover{
+    font-size: 70px;
+    margin: 0 10% 0 10%;
+  }
+  
+  .text h1{
+    font-family: 'Balsamiq Sans', cursive;
+    font-size: 100px;
+  }
+  .text h1:hover{
+    font-size: 130px;
+  }
+  .text h2{
+    margin: 40px;
+  }
