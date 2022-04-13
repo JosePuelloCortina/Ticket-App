@@ -32,7 +32,6 @@
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.17.0",
     "ts-node": "^10.7.0",
-    "ts-node-dev": "^1.1.8",
-    "typescript": "^4.6.2"
+    "ts-node-dev": "^1.1.8"
   }
 }
