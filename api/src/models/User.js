@@ -5,7 +5,8 @@ module.exports = (sequelize) => {
         id: {
             type: DataTypes.UUID,
             default: DataTypes.UUIDV1,
-            primarykey: true,
+            unique: true,
+            primaryKey: true,
             allowNull: false
         },
         nombre: {
@@ -18,6 +19,7 @@ module.exports = (sequelize) => {
         },
         email: {
             type: DataTypes.STRING,
+            unique: true,
             allowNull: false
         },
         rol: {
