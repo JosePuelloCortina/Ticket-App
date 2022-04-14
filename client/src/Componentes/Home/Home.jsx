@@ -1,6 +1,6 @@
 import React from "react";
 import CardTicket from "../Cards Tickets/CardsTicket";
-
+import {Link} from 'react-router-dom'
 
 export default function Home(){
 
@@ -20,6 +20,9 @@ export default function Home(){
         <div>
             <div>
             <h1>TICKET APP</h1>
+            <div className='lala'>
+                   <Link to='/register'> <button className='bt'>REGISTRARSE</button></Link>
+                    </div>
             <br/>
             <div>
             <select onChange={e => handleSort(e)}>
@@ -28,7 +31,7 @@ export default function Home(){
                                 <option value="desc">Z - A</option>
                             </select>
             
-           
+                            <br/>
             
             <select onChange={e => handleRating(e)}>
                                 <option value="default">Order by Rating</option>
@@ -36,7 +39,7 @@ export default function Home(){
                                 <option value="desc">menos</option>
                             </select>
            
-           
+                            <br/>
             
             <select onChange={e => handleSala(e)}>
                                 <option value="default">Selecciona tu sala</option>
