@@ -5,18 +5,18 @@ import uno from '../Image/uno.jpg'
 import dos from '../Image/dos.jpg'
 //import tres from '../image/tres.webp';
 
-const initialLogin = {
-    contrasena: '',
-    email: ''
-  }
+// const initialLogin = {
+//     contrasena: '',
+//     email: ''
+//   }
   
   export default function Login() {
   
-     const [formlogin, setFormLogin] = useState(initialLogin)
-     const [error, setError] = useState()
+     //const [formlogin, setFormLogin] = useState()
+    /// const [error, setError] = useState()
     // const navigate = useNavigate()
   
-    const dispatch= useDispatch()
+    //const dispatch= useDispatch()
   
     const handleChange = (e) => {
   
@@ -33,12 +33,12 @@ const initialLogin = {
     //   console.log(e.target.value)
      }
     const handleSubmit = (e) => {
-      e.preventDefault()
-       const errors = {
+      //e.preventDefault()
+       //const errors = {
     //     ...error,
-         contrasena: '',
-         email: '',
-      }
+        // contrasena: '',
+        // email: '',
+     // }
      // setError(errors)
   
   
@@ -88,12 +88,12 @@ const initialLogin = {
             <form onSubmit={handleSubmit} >
               <div className="form-group"> {/* CORREO */}
                 <label htmlFor="exampleInputEmail1">Correo</label>
-                <input type="email" className="form-control" placeholder="Ingresar Correo" name='email' onChange={handleChange} value={formlogin.email} />
+                <input type="email" className="form-control" placeholder="Ingresar Correo" name='email' onChange={handleChange} value={''} />
                 {/* Contraseña  */}
               </div>
               <div className="form-group">
                 <label htmlFor="exampleInputPassword1">Contraseña</label>
-                <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" name='contrasena' onChange={handleChange} value={formlogin.contrasena} />
+                <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" name='contrasena' onChange={handleChange} value={''} />
                 <small >El equipo de Ticket - App bajo ninguna circunstancia pedira su correo o contraseña. </small>
               </div>
               {/* <div className="form-group form-check">
