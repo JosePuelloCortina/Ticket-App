@@ -4,15 +4,14 @@ module.exports = (sequelize) => {
     sequelize.define('pelicula', {
         id: {
             type: DataTypes.UUID,
-            default: DataTypes.UUIDV1,
-            primarykey: true,
-            allowNull: false
+            defaultValue: DataTypes.UUIDV4,
+            primaryKey: true,
         },
         nombre: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        feche: {
+        fecha: {
             type: DataTypes.DATE,
             allowNull: false
         },
@@ -35,6 +34,6 @@ module.exports = (sequelize) => {
         puntuacion: {
             type: DataTypes.STRING,
             allowNull: false
-        }     
-    })
+        }
+    }, { timestamps: false })
 }
