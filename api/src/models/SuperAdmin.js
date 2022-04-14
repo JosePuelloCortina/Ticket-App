@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-    sequelize.define('user', {
+    sequelize.define('superadmin', {
         id: {
             type: DataTypes.UUID,
             default: DataTypes.UUIDV1,
@@ -25,9 +25,6 @@ module.exports = (sequelize) => {
         password: {
             type: DataTypes.STRING,
             allowNull: false
-        },
-        estado: {
-            type: DataTypes.BOOLEAN,
         },
         imagen:{
             type: DataTypes.STRING
