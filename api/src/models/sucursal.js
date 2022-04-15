@@ -4,14 +4,14 @@ module.exports = (sequelize) => {
     sequelize.define('sucursal', {
         id: {
             type: DataTypes.UUID,
-            default: DataTypes.UUIDV1,
+            defaultValue: DataTypes.UUIDV1,
             primaryKey: true,
             allowNull: false
         },
         nombre: {
             type: DataTypes.STRING,
             allowNull: false
-        },
+        }, 
         ciudad: {
             type: DataTypes.STRING,
             allowNull: false
