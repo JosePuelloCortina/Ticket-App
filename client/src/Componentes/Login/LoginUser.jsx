@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from "react-router-dom";
 import uno from '../Image/uno.jpg'
 import dos from '../Image/dos.jpg'
-//import tres from '../image/tres.webp';
+import tres from '../Image/tres.jpg';
 
 // const initialLogin = {
 //     contrasena: '',
@@ -66,7 +66,7 @@ import dos from '../Image/dos.jpg'
                 <img className="tamaño" src={dos} alt="Second slide" />
               </div>
               <div className="carousel-item">
-                {/* <img className="tamaño" src={tres} alt="Third slide" /> */}
+                <img className="tamaño" src={tres} alt="Third slide" />
               </div>
             </div>
             <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -106,7 +106,7 @@ import dos from '../Image/dos.jpg'
   
               <div className='text-center '>
                 <span>¿No tienes cuenta?</span>
-                <Link to='/registro' style={{
+                <Link to='/register' style={{
                   color: '#0066ff',
                   textDecoration: 'none',
                   margin: '5px',
