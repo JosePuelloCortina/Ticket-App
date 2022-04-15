@@ -5,11 +5,13 @@ const router = Router();
 const user = require("./User")
 const movies = require("./movie");
 const admin = require("./Admin");
+const ticket = require("./Ticket");
 
+/////////////////////////////
 
 router.use("/user", user);
 router.use("/movies", movies);
 router.use("/admin", admin);
-
+router.use("/ticket", ticket);
 
 module.exports = router;
