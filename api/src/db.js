@@ -31,7 +31,13 @@ sequelize.models = Object.fromEntries(capsEntries);
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
 
+<<<<<<< HEAD
 const { Ticket, Pelicula, Categoria, Sucursal, User, Admin, SuperAdmin } = sequelize.models; 
+=======
+
+const { Ticket, Pelicula, Categoria, Sucursal, User, Admin, SuperAdmin } = sequelize.models; 
+
+>>>>>>> 7a33813ea26768049d648afe64ebf06734b0f9f8
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
@@ -39,7 +45,7 @@ const { Ticket, Pelicula, Categoria, Sucursal, User, Admin, SuperAdmin } = seque
 Pelicula.hasMany(Ticket);
 Sucursal.hasMany(Ticket);
 User.hasMany(Ticket);
-Pelicula.belongsTo(Categoria);
+Pelicula.belongsTo(Categoria); 
 
 
 
