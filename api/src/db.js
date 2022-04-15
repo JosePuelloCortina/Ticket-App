@@ -41,7 +41,7 @@ const { Ticket, Pelicula, Categoria, Sucursal, User, Admin, SuperAdmin } = seque
 Pelicula.hasMany(Ticket);
 Sucursal.hasMany(Ticket);
 User.hasMany(Ticket);
-Pelicula.belongsTo(Categoria);
+Pelicula.belongsTo(Categoria); 
 
 
 
