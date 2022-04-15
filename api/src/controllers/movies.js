@@ -1,10 +1,12 @@
 const { response } = require('express');
-const { Pelicula, Categoria, Op } = require('../db');
+const { Pelicula, Categoria, Ticket, Op } = require('../db');
 
 const getAllMovies = async (req, res = response) => {
     try {
         const movies = await Pelicula.findAll({
-            include: Categoria
+            include: {
+                model: Ticket, Categoria
+            }
         });
         res.json({ success: true, data: movies });
     } catch (error) {
