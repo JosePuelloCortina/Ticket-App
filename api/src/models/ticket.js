@@ -4,6 +4,7 @@ module.exports = (sequelize) => {
     sequelize.define('ticket', {
         id: {
             type: DataTypes.UUID,
+            defaultValue: DataTypes.UUIDV1,
             primaryKey: true,
             unique: true,
             allowNull: false

@@ -4,7 +4,7 @@ module.exports = (sequelize) => {
     sequelize.define('superadmin', {
         id: {
             type: DataTypes.UUID,
-            default: DataTypes.UUIDV1,
+            defaultValue: DataTypes.UUIDV1,
             unique: true,
             primaryKey: true,
             allowNull: false
