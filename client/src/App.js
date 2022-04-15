@@ -13,7 +13,7 @@ function App() {
       <div>
         <BrowserRouter>
           <Routes>
-            <Route exact path = '/' element={<Landing />} />
+            <Route exact path = '/landing' element={<Landing />} />
             <Route path = '/home' element={<Home />} />
             <Route path = '/detail' element={<Detail />} />
             <Route path = '/login' element={<LoginUser />} />

@@ -5,6 +5,7 @@ import uno from '../Image/uno.jpg'
 import dos from '../Image/dos.jpg'
 import tres from '../Image/tres.jpg';
 
+
 // const initialLogin = {
 //     contrasena: '',
 //     email: ''

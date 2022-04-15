@@ -30,13 +30,13 @@ export default function Home(){
                                 <option value="asc">A - Z</option>
                                 <option value="desc">Z - A</option>
                             </select>
-            
+
             <select onChange={e => handleRating(e)}>
                                 <option value="default">Order by Rating</option>
                                 <option value="asc">mas</option>
                                 <option value="desc">menos</option>
                             </select>
-    
+
             <select onChange={e => handleSala(e)}>
                                 <option value="default">Selecciona tu sala</option>
                                 <option value="asc">VIP</option>
