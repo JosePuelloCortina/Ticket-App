@@ -1,98 +1,94 @@
 const { Router } = require("express");
-const { User } = require("../db");
+const { Admin } = require("../db");
 const { v4: uuidv4 } = require('uuid');
 
-const user = Router();
+const admin = Router();
 
 
-user.get("/", async (req, res) => {
+admin.get("/", async (req, res) => {
     const { id } = req.query;
     if(id){
         try {
-            const user = await User.findByPk(id);
-            res.status(200).send(user);
+            const admin = await Admin.findByPk(id);
+            res.status(200).send(admin);
         } catch (error) {
             res.status(404).json('ocurrio un error: '+ error);
         }
     }
     else{
         try {
-            const users = await User.findAll();
-            res.status(200).send(users);
+            const admins = await Admin.findAll();
+            res.status(200).send(admins);
         } catch (error) {
             res.status(404).json('ocurrio un error: '+ error);
         }
     }
 });
 
-user.post("/", async (req, res) => {
+admin.post("/", async (req, res) => {
     try {
         const {
             nombre,
             apellido,
             email,
-            password,
-            estado, 
+            password, 
             imagen
         } = req.body;
-        const findEmail = await User.findOne({
+        const findEmail = await Admin.findOne({
             where: {
                 email
             }
         });
         if(findEmail) throw Error("El email ya se encuentra en uso");
-        const user = await User.create({
+        const admin = await Admin.create({
             id: uuidv4(),
             nombre,
             apellido,
             email,
             password,
-            estado, 
             imagen
         });
-        res.status(200).send(user)
+        res.status(200).send(admin)
     } catch (error) {
       res.status(404).json('ocurrio un error: '+ error);
     }
 });
 
-user.put("/", async (req, res) => {
+admin.put("/", async (req, res) => {
     const { id } = req.query;
     const {
         nombre,
         apellido,
         email,
         password,
-        estado, 
         imagen
     } = req.body;
     try {
-        const user = await User.findByPk(id);
-        await user.update({
-            nombre: nombre ? nombre : user.nombre,
-            apellido: apellido ? apellido : user.apellido,
-            email: email? email : user.email,
-            password: password ? password : user.password,
-            estado: estado ? estado : user.estado, 
-            imagen: imagen ? imagen : user.imagen
+        const admin = await Admin.findByPk(id);
+        await admin.update({
+            nombre: nombre ? nombre : admin.nombre,
+            apellido: apellido ? apellido : admin.apellido,
+            email: email? email : admin.email,
+            password: password ? password : admin.password,
+            imagen: imagen ? imagen : admin.imagen
         })
-        res.status(200).send(user);
+        res.status(200).send(admin);
     } catch (error) {
         res.status(404).json('ocurrio un error: '+ error);
     }
    
 });
 
-user.delete("/", async (req, res) => {
+admin.delete("/", async (req, res) => {
     const { id } = req.query;
     try {
-        const user = await User.findByPk(id);
-        if(!user) throw Error("Id incorrecto o usuario inexistente")
-        await user.destroy();
-        res.status(200).send("Usuario eliminado exitosamente!");
+        const admin = await Admin.findByPk(id);
+        if(!admin) throw Error("Id incorrecto o admin inexistente")
+        await admin.destroy();
+        res.status(200).send("Admin eliminado exitosamente!");
     } catch (error) {
         res.status(404).json('ocurrio un error: '+ error);
     }
 });
 
-module.exports = user;
+module.exports = admin;

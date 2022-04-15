@@ -1,10 +1,15 @@
-const {Router} = require("express");
+const { Router } = require("express");
 
 
 const router = Router();
 const user = require("./User")
-// router.use("/tiket", ticket);
+const movies = require("./movie");
+const admin = require("./Admin");
+
 
 router.use("/user", user);
+router.use("/movies", movies);
+router.use("/admin", admin);
+
 
 module.exports = router;
