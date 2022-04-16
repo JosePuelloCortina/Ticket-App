@@ -1,8 +1,7 @@
-const {Router} = require("express");
-
+const { Router } = require("express");
 
 const router = Router();
-const user = require("./User")
+const user = require("./User");
 // router.use("/tiket", ticket);
 
 router.use("/user", user);
