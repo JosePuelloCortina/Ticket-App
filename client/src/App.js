@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import './App.css';
-import Landing from './Componentes/Landing/Landing';
-import Home from './Componentes/Home/Home';
-import Detail from './Componentes/Detail/Detail'
-import LoginUser from './Componentes/Login/LoginUser';
-import RegUsuarios from './Componentes/RegUsuarios/regUsuarios'
+import "./App.css";
+import Landing from "./Componentes/Landing/Landing";
+import Home from "./Componentes/Home/Home";
+import Detail from "./Componentes/Detail/Detail";
+import LoginUser from "./Componentes/Login/LoginUser";
+import RegUsuarios from "./Componentes/RegUsuarios/regUsuarios";
 
 function App() {
   return (
