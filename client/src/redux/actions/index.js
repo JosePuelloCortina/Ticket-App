@@ -69,13 +69,15 @@ export function postUser(payload){
 export function moviesDetail(id){
     return async function (dispach){
         try{
-            const detail = await axios.get(`http://localhost:3001/movies/${id}`)
+            const detail = await axios.get(`http://localhost:3001/movies/id/${id}`)
+            console.log(detail)
             return dispach({
                 type:'MOVIES_DETAIL',
                 payload: detail.data
             })
         }catch(error){
             console.log(error)
+            
         }
     }
 }

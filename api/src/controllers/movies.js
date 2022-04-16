@@ -34,7 +34,7 @@ const getMovieById = async (req, res = response) => {
         })
     } catch (error) {
         console.log(error);
-        res.status(500).json({
+        res.status(500).send({
             success: false,
             message: 'Talk to admin'
         });
