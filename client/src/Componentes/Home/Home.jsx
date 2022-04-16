@@ -22,6 +22,7 @@ export default function Home(){
             <h1>TICKET APP</h1>
             <div className='lala'>
                    <Link to='/register'> <button className='bt'>REGISTRARSE</button></Link>
+                   <Link to='/login'> <button className='bt'>LOGIN</button></Link>
                     </div>
             <br/>
             <div>

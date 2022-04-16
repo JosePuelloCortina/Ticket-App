@@ -220,8 +220,7 @@ export default function CreateConductora(){
                     
                     <button className="btn btn-primary" type='submit' 
                     
-                     disabled={user.nombre&&user.apellido&&user.password&&user.email&&
-                        user.rol&&user.estado&&user.imagen ? false : true}>Registrarse</button>
+                     disabled={user.nombre&&user.apellido&&user.password&&user.email&&user.imagen ? false : true}>Registrarse</button>
                    
                     
 

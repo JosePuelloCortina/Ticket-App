@@ -1,52 +1,52 @@
 import React, { useEffect, useState} from 'react'
 import { useDispatch } from 'react-redux';
+import {login } from '../../redux/actions';
 import { Link, useNavigate } from "react-router-dom";
 import uno from '../Image/uno.jpg'
 import dos from '../Image/dos.jpg'
 import tres from '../Image/tres.jpg';
 
 
-// const initialLogin = {
-//     contrasena: '',
-//     email: ''
-//   }
+const userInfo = {
+    password:'',
+    email: ''
+  }
   
   export default function Login() {
   
-     //const [formlogin, setFormLogin] = useState()
-    /// const [error, setError] = useState()
-    // const navigate = useNavigate()
+    const [formlogin, setFormLogin] = useState(userInfo)
+    const [error, setError] = useState()
+    const navigate = useNavigate()
   
-    //const dispatch= useDispatch()
+    const dispatch= useDispatch()
   
     const handleChange = (e) => {
   
-    //   setFormLogin({
-    //     ...formlogin,
-    //     [e.target.name]: e.target.value
-    //   })
-    //   const errors = {
-    //     ...error,
-    //     [e.target.name]: ''
-    //   }
-    //   setError(errors)
+      setFormLogin({
+        ...formlogin,
+        [e.target.name]: e.target.value
+      })
+      const errors = {
+        ...error,
+        [e.target.name]: ''
+      }
+      setError(errors)
   
-    //   console.log(e.target.value)
+      console.log(e.target.value)
      }
     const handleSubmit = (e) => {
-      //e.preventDefault()
-       //const errors = {
-    //     ...error,
-        // contrasena: '',
-        // email: '',
-     // }
-     // setError(errors)
+      e.preventDefault()
+       const errors = {
+        ...error,
+        password:'',
+        email: '',
+     }
+     setError(errors)
   
   
-      //dispatch (login(formlogin))
-  
-      //console.log(formlogin)
-     // navigate()
+      dispatch (login(formlogin))
+      console.log(formlogin)
+      navigate('/home')
     }
   
     // useEffect(()=>{
@@ -89,12 +89,23 @@ import tres from '../Image/tres.jpg';
             <form onSubmit={handleSubmit} >
               <div className="form-group"> {/* CORREO */}
                 <label htmlFor="exampleInputEmail1">Correo</label>
-                <input type="email" className="form-control" placeholder="Ingresar Correo" name='email' onChange={handleChange} value={''} />
+                <input type="email" 
+                className="form-control" 
+                placeholder="Ingresar Correo" 
+                name='email' 
+                onChange={handleChange} 
+                value={formlogin.email} />
                 {/* Contraseña  */}
               </div>
               <div className="form-group">
                 <label htmlFor="exampleInputPassword1">Contraseña</label>
-                <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" name='contrasena' onChange={handleChange} value={''} />
+                <input type="password" 
+                className="form-control" 
+                id="exampleInputPassword1" 
+                placeholder="Password" 
+                name='password'
+                onChange={handleChange} 
+                value={formlogin.password}/>
                 <small >El equipo de Ticket - App bajo ninguna circunstancia pedira su correo o contraseña. </small>
               </div>
               {/* <div className="form-group form-check">
