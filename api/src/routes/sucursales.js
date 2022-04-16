@@ -83,6 +83,20 @@ server.put("/:id", function(req, res, next){
     
 })
 
+server.delete('/:id', async function(req, res, next){
+    const { id } = req.params;
+    try {
+        const sucursal = await Sucursal.findByPk(id)
+        if(!sucursal) throw Error("Id incorrecto o sucursal inexistente")
+        await sucursal.destroy() ;
+        res.status(200).send("Sucursal eliminada exitozamente!")
+        
+    } catch (error) {
+        console.log(error)
+        
+    }
+    
+})
 
 
 
