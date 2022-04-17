@@ -1,17 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-<<<<<<< HEAD
 import GoogleLogin from "react-google-login";
-import uno from "../Image/uno.jpg";
-import dos from "../Image/dos.jpg";
-//import tres from '../image/tres.webp';
-=======
 import uno from '../Image/uno.jpg'
 import dos from '../Image/dos.jpg'
 import tres from '../Image/tres.jpg';
 
->>>>>>> main
 
 // const initialLogin = {
 //     contrasena: '',
@@ -59,24 +53,6 @@ export default function Login() {
   };
 
   return (
-<<<<<<< HEAD
-    <div className="row conteiner p-4">
-      <div className="col-md-8">
-        <div
-          id="carouselExampleControls"
-          className="carousel slide"
-          data-bs-ride="carousel"
-        >
-          <div className="carousel-inner">
-            <div className="carousel-item active">
-              <img className="tamaño" src={uno} alt="First slide" />
-            </div>
-            <div className="carousel-item">
-              <img className="tamaño" src={dos} alt="Second slide" />
-            </div>
-            <div className="carousel-item">
-              {/* <img className="tamaño" src={tres} alt="Third slide" /> */}
-=======
       <div className='row conteiner p-4' >
         <div className='col-md-8'>
   
@@ -91,7 +67,6 @@ export default function Login() {
               <div className="carousel-item">
                 <img className="tamaño" src={tres} alt="Third slide" />
               </div>
->>>>>>> main
             </div>
           </div>
           <button
@@ -178,6 +153,13 @@ export default function Login() {
               </div>
   
             </form>
+            <GoogleLogin
+            clientId="533216406102-cnhnnd2b69dvbkt69reehsd2e7stn4t4.apps.googleusercontent.com"
+            buttonText="Login with Google"
+            onSuccess={responseGoogle}
+            onFailure={responseGoogle}
+            cookiePolicy={"single_host_origin"}
+          />
   
             {/* <div className='text-center '>
   
