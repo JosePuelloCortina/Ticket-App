@@ -1,6 +1,7 @@
-import React, { useEffect, useState} from 'react'
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import GoogleLogin from "react-google-login";
 import uno from '../Image/uno.jpg'
 import dos from '../Image/dos.jpg'
 import tres from '../Image/tres.jpg';
@@ -10,17 +11,15 @@ import tres from '../Image/tres.jpg';
 //     contrasena: '',
 //     email: ''
 //   }
-  
-  export default function Login() {
-  
-     //const [formlogin, setFormLogin] = useState()
-    /// const [error, setError] = useState()
-    // const navigate = useNavigate()
-  
-    //const dispatch= useDispatch()
-  
-    const handleChange = (e) => {
-  
+
+export default function Login() {
+  //const [formlogin, setFormLogin] = useState()
+  /// const [error, setError] = useState()
+  // const navigate = useNavigate()
+
+  //const dispatch= useDispatch()
+
+  const handleChange = (e) => {
     //   setFormLogin({
     //     ...formlogin,
     //     [e.target.name]: e.target.value
@@ -30,30 +29,29 @@ import tres from '../Image/tres.jpg';
     //     [e.target.name]: ''
     //   }
     //   setError(errors)
-  
     //   console.log(e.target.value)
-     }
-    const handleSubmit = (e) => {
-      //e.preventDefault()
-       //const errors = {
+  };
+  const handleSubmit = (e) => {
+    //e.preventDefault()
+    //const errors = {
     //     ...error,
-        // contrasena: '',
-        // email: '',
-     // }
-     // setError(errors)
-  
-  
-      //dispatch (login(formlogin))
-  
-      //console.log(formlogin)
-     // navigate()
-    }
-  
-    // useEffect(()=>{
-    //   dispatch()
-    // }, [])
-  
-    
+    // contrasena: '',
+    // email: '',
+    // }
+    // setError(errors)
+    //dispatch (login(formlogin))
+    //console.log(formlogin)
+    // navigate()
+  };
+
+  // useEffect(()=>{
+  //   dispatch()
+  // }, [])
+
+  const responseGoogle = (response) => {
+    console.log(response);
+  };
+
   return (
       <div className='row conteiner p-4' >
         <div className='col-md-8'>
@@ -70,34 +68,70 @@ import tres from '../Image/tres.jpg';
                 <img className="tamaño" src={tres} alt="Third slide" />
               </div>
             </div>
-            <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-              <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span className="visually-hidden">Previous</span>
-            </button>
-            <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-              <span className="carousel-control-next-icon" aria-hidden="true"></span>
-              <span className="visually-hidden">Next</span>
-            </button>
           </div>
-  
+          <button
+            className="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleControls"
+            data-bs-slide="prev"
+          >
+            <span
+              className="carousel-control-prev-icon"
+              aria-hidden="true"
+            ></span>
+            <span className="visually-hidden">Previous</span>
+          </button>
+          <button
+            className="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleControls"
+            data-bs-slide="next"
+          >
+            <span
+              className="carousel-control-next-icon"
+              aria-hidden="true"
+            ></span>
+            <span className="visually-hidden">Next</span>
+          </button>
         </div>
-  
-        {/* FORM LOGIN */}
-        <div className='col-md-4'>
-          <div className='mt-5 ms-5'>
-            <h1 className='text-center'>Login</h1>
-            <form onSubmit={handleSubmit} >
-              <div className="form-group"> {/* CORREO */}
-                <label htmlFor="exampleInputEmail1">Correo</label>
-                <input type="email" className="form-control" placeholder="Ingresar Correo" name='email' onChange={handleChange} value={''} />
-                {/* Contraseña  */}
-              </div>
-              <div className="form-group">
-                <label htmlFor="exampleInputPassword1">Contraseña</label>
-                <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" name='contrasena' onChange={handleChange} value={''} />
-                <small >El equipo de Ticket - App bajo ninguna circunstancia pedira su correo o contraseña. </small>
-              </div>
-              {/* <div className="form-group form-check">
+      </div>
+
+      {/* FORM LOGIN */}
+      <div className="col-md-4">
+        <div className="mt-5 ms-5">
+          <h1 className="text-center">Login</h1>
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              {" "}
+              {/* CORREO */}
+              <label htmlFor="exampleInputEmail1">Correo</label>
+              <input
+                type="email"
+                className="form-control"
+                placeholder="Ingresar Correo"
+                name="email"
+                onChange={handleChange}
+                value={""}
+              />
+              {/* Contraseña  */}
+            </div>
+            <div className="form-group">
+              <label htmlFor="exampleInputPassword1">Contraseña</label>
+              <input
+                type="password"
+                className="form-control"
+                id="exampleInputPassword1"
+                placeholder="Password"
+                name="contrasena"
+                onChange={handleChange}
+                value={""}
+              />
+              <small>
+                El equipo de Ticket - App bajo ninguna circunstancia pedira su
+                correo o contraseña.{" "}
+              </small>
+            </div>
+            {/* <div className="form-group form-check">
                 <input type="checkbox" className="form-check-input" id="exampleCheck1" />
                 <label className="form-check-label" htmlFor="exampleCheck1">Comprendo</label>
               </div> */}
@@ -119,6 +153,13 @@ import tres from '../Image/tres.jpg';
               </div>
   
             </form>
+            <GoogleLogin
+            clientId="533216406102-cnhnnd2b69dvbkt69reehsd2e7stn4t4.apps.googleusercontent.com"
+            buttonText="Login with Google"
+            onSuccess={responseGoogle}
+            onFailure={responseGoogle}
+            cookiePolicy={"single_host_origin"}
+          />
   
             {/* <div className='text-center '>
   
@@ -132,11 +173,8 @@ import tres from '../Image/tres.jpg';
                 ¿ Olvidaste tu contraseña ?
               </Link>
               </div>               */}
-  
-          </div>
         </div>
-  
-      </div>  
-      
-    )
-  }
+      </div>
+    </div>
+  );
+}
