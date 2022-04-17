@@ -1,8 +1,16 @@
-import React from "react";
-import CardTicket from "../Cards Tickets/CardsTicket";
+import React, {useEffect} from "react";
+import {useDispatch, useState, useSelector} from 'react-redux';
+import {allMovies} from '../../redux/actions/index';
+import CardsTickets from "../Cards Tickets/Cards";
 import {Link} from 'react-router-dom'
 
 export default function Home(){
+    const dispatch = useDispatch()
+    const movies = useSelector((state)=>state.movies.data)
+
+    useEffect(()=>{
+        dispatch(allMovies())
+    },[])
 
     function handleSort(e){
         e.preventDefault();
@@ -22,6 +30,7 @@ export default function Home(){
             <h1>TICKET APP</h1>
             <div className='lala'>
                    <Link to='/register'> <button className='bt'>REGISTRARSE</button></Link>
+                   <Link to='/login'> <button className='bt'>LOGIN</button></Link>
                     </div>
             <br/>
             <div>
@@ -44,7 +53,15 @@ export default function Home(){
                             </select>
             </div>
             <br/>
-        <CardTicket />
+            <div>
+            
+        <CardsTickets
+                allMovies={movies}
+        />
+            
+
+
+            </div>
             </div>
         </div>
     )
