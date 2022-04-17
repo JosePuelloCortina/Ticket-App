@@ -1,8 +1,8 @@
 import React, { useEffect, useState} from 'react'
 import { useDispatch } from 'react-redux';
-import {login } from '../../redux/actions';
+import {login } from '../../redux/actions/index';
 import { Link, useNavigate } from "react-router-dom";
-import GoogleLogin from "react-google-login";
+//import GoogleLogin from "react-google-login";
 import uno from '../Image/uno.jpg'
 import dos from '../Image/dos.jpg'
 import tres from '../Image/tres.jpg';
@@ -53,7 +53,9 @@ const userInfo = {
     // useEffect(()=>{
     //   dispatch()
     // }, [])
-  
+  // const responseGoogle =(response)=>{
+  //   console.log(response)
+  // }
     
   return (
       <div className='row conteiner p-4' >
@@ -146,26 +148,15 @@ const userInfo = {
               </div>
   
             </form>
-            <GoogleLogin
+            {/* <GoogleLogin
             clientId="533216406102-cnhnnd2b69dvbkt69reehsd2e7stn4t4.apps.googleusercontent.com"
             buttonText="Login with Google"
             onSuccess={responseGoogle}
             onFailure={responseGoogle}
             cookiePolicy={"single_host_origin"}
-          />
+          /> */}
   
-            {/* <div className='text-center '>
-  
-              <Link to='/resetPassword' style={{
-                color: '#0066ff',
-                textDecoration: 'none',
-                margin: '5px',
-                fontWeight: 'bold'
-  
-              }} >
-                ¿ Olvidaste tu contraseña ?
-              </Link>
-              </div>               */}
+           
         </div>
       </div>
     </div>
