@@ -160,36 +160,6 @@ export default function Login() {
                 <input type="checkbox" className="form-check-input" id="exampleCheck1" />
                 <label className="form-check-label" htmlFor="exampleCheck1">Comprendo</label>
               </div> */}
-<<<<<<< HEAD
-
-            <button type="submit" className="btn btn-primary">
-              Entrar
-            </button>
-
-            <div className="text-center ">
-              <span>¿No tienes cuenta?</span>
-              <Link
-                to="/register"
-                style={{
-                  color: "#0066ff",
-                  textDecoration: "none",
-                  margin: "5px",
-                  fontWeight: "bold",
-                }}
-              >
-                Registrarse
-              </Link>
-            </div>
-          </form>
-          <GoogleLogin
-            clientId="533216406102-cnhnnd2b69dvbkt69reehsd2e7stn4t4.apps.googleusercontent.com"
-            buttonText="Login with Google"
-            onSuccess={responseGoogle}
-            onFailure={responseGoogle}
-            cookiePolicy={"single_host_origin"}
-          />
-          {/* <div className='text-center '>
-=======
               
                 <button type="submit" className="btn btn-primary">Entrar</button>
               
@@ -210,7 +180,6 @@ export default function Login() {
             </form>
   
             {/* <div className='text-center '>
->>>>>>> main
   
               <Link to='/resetPassword' style={{
                 color: '#0066ff',
