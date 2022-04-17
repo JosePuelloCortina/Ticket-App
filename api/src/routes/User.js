@@ -23,7 +23,7 @@ user.get("/login", async (req, res) => {
     } catch (error) {
         res.status(404).json('ocurrio un error: '+ error);
     }
-});
+}); 
 
 user.get("/", async (req, res) => {
     const { id, nombre } = req.query;
