@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+<<<<<<< HEAD
 import GoogleLogin from "react-google-login";
 import uno from "../Image/uno.jpg";
 import dos from "../Image/dos.jpg";
 //import tres from '../image/tres.webp';
+=======
+import uno from '../Image/uno.jpg'
+import dos from '../Image/dos.jpg'
+import tres from '../Image/tres.jpg';
+
+>>>>>>> main
 
 // const initialLogin = {
 //     contrasena: '',
@@ -52,6 +59,7 @@ export default function Login() {
   };
 
   return (
+<<<<<<< HEAD
     <div className="row conteiner p-4">
       <div className="col-md-8">
         <div
@@ -68,6 +76,22 @@ export default function Login() {
             </div>
             <div className="carousel-item">
               {/* <img className="tamaño" src={tres} alt="Third slide" /> */}
+=======
+      <div className='row conteiner p-4' >
+        <div className='col-md-8'>
+  
+          <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
+            <div className="carousel-inner">
+              <div className="carousel-item active">
+                <img className="tamaño" src={uno} alt="First slide" />
+              </div>
+              <div className="carousel-item">
+                <img className="tamaño" src={dos} alt="Second slide" />
+              </div>
+              <div className="carousel-item">
+                <img className="tamaño" src={tres} alt="Third slide" />
+              </div>
+>>>>>>> main
             </div>
           </div>
           <button
@@ -136,6 +160,7 @@ export default function Login() {
                 <input type="checkbox" className="form-check-input" id="exampleCheck1" />
                 <label className="form-check-label" htmlFor="exampleCheck1">Comprendo</label>
               </div> */}
+<<<<<<< HEAD
 
             <button type="submit" className="btn btn-primary">
               Entrar
@@ -164,6 +189,28 @@ export default function Login() {
             cookiePolicy={"single_host_origin"}
           />
           {/* <div className='text-center '>
+=======
+              
+                <button type="submit" className="btn btn-primary">Entrar</button>
+              
+  
+              <div className='text-center '>
+                <span>¿No tienes cuenta?</span>
+                <Link to='/register' style={{
+                  color: '#0066ff',
+                  textDecoration: 'none',
+                  margin: '5px',
+                  fontWeight: 'bold'
+  
+                }} >
+                  Registrarse
+                </Link>
+              </div>
+  
+            </form>
+  
+            {/* <div className='text-center '>
+>>>>>>> main
   
               <Link to='/resetPassword' style={{
                 color: '#0066ff',

@@ -4,7 +4,7 @@ module.exports = (sequelize) => {
     sequelize.define('user', {
         id: {
             type: DataTypes.UUID,
-            default: DataTypes.UUIDV1,
+            defaultValue: DataTypes.UUIDV1,
             unique: true,
             primaryKey: true,
             allowNull: false
@@ -22,17 +22,12 @@ module.exports = (sequelize) => {
             unique: true,
             allowNull: false
         },
-        rol: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
         password: {
             type: DataTypes.STRING,
             allowNull: false
         },
         estado: {
             type: DataTypes.BOOLEAN,
-            allowNull: false
         },
         imagen:{
             type: DataTypes.STRING

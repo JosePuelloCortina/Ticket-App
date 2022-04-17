@@ -1,23 +1,67 @@
 const { Router } = require("express");
-const { User } = require("../db");
+const { User, Ticket} = require("../db");
 const { v4: uuidv4 } = require('uuid');
+const {Op} = require('sequelize');
 
 const user = Router();
 
 
+user.get("/login", async (req, res) => {
+    const { email, password } = req.body;
+    try {
+        const user = await User.findOne({
+            where: {
+                email,
+                password
+            },
+            include: {
+                model: Ticket
+            }
+        });
+        if(!user) throw Error("Contraseña o correo inválidos");
+        res.send(user);
+    } catch (error) {
+        res.status(404).json('ocurrio un error: '+ error);
+    }
+});
+
 user.get("/", async (req, res) => {
-    const { id } = req.query;
-    if(id){
+    const { id, nombre } = req.query;
+    if(id && !nombre){
         try {
-            const user = await User.findByPk(id);
+            const user = await User.findByPk(id, {
+                include: {
+                    model: Ticket
+                }
+            });
             res.status(200).send(user);
         } catch (error) {
             res.status(404).json('ocurrio un error: '+ error);
         }
-    }
-    else{
+    }else if(nombre && !id){
         try {
-            const users = await User.findAll();
+            const users = await User.findAll({
+                where: {
+                    nombre: {
+                        [Op.iLike]: `%${nombre}%`,
+                    }
+                },
+                include: {
+                    model: Ticket
+                }
+            });
+            if(users.length < 1) throw Error("No se encuentran coincidencias");
+            res.status(200).send(users);
+        } catch (error) {
+            res.status(404).json('ocurrio un error: '+ error);
+        }
+    }else{
+        try {
+            const users = await User.findAll({
+                include: {
+                    model: Ticket
+                }
+            });
             res.status(200).send(users);
         } catch (error) {
             res.status(404).json('ocurrio un error: '+ error);
@@ -31,7 +75,6 @@ user.post("/", async (req, res) => {
             nombre,
             apellido,
             email,
-            rol,
             password,
             estado, 
             imagen
@@ -47,7 +90,6 @@ user.post("/", async (req, res) => {
             nombre,
             apellido,
             email,
-            rol,
             password,
             estado, 
             imagen
@@ -64,7 +106,6 @@ user.put("/", async (req, res) => {
         nombre,
         apellido,
         email,
-        rol,
         password,
         estado, 
         imagen
@@ -75,7 +116,6 @@ user.put("/", async (req, res) => {
             nombre: nombre ? nombre : user.nombre,
             apellido: apellido ? apellido : user.apellido,
             email: email? email : user.email,
-            rol: rol ? rol : user.rol,
             password: password ? password : user.password,
             estado: estado ? estado : user.estado, 
             imagen: imagen ? imagen : user.imagen

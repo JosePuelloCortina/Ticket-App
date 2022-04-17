@@ -1,28 +1,33 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-    sequelize.define('sucursal', {
+    sequelize.define('superadmin', {
         id: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV1,
+            unique: true,
             primaryKey: true,
             allowNull: false
         },
         nombre: {
             type: DataTypes.STRING,
             allowNull: false
-        }, 
-        ciudad: {
+        },
+        apellido: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        contacto: {
+        email: {
+            type: DataTypes.STRING,
+            unique: true,
+            allowNull: false
+        },
+        password: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        direccion: {
-            type: DataTypes.STRING,
-            allowNull: false
+        imagen:{
+            type: DataTypes.STRING
         }
     })
 }
