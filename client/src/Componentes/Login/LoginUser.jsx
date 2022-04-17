@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useEffect, useState} from 'react'
 import { useDispatch } from 'react-redux';
 import {login } from '../../redux/actions';
@@ -70,78 +69,6 @@ const userInfo = {
               <div className="carousel-item">
                 <img className="tamaño" src={tres} alt="Third slide" />
               </div>
-=======
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import GoogleLogin from "react-google-login";
-import uno from "../Image/uno.jpg";
-import dos from "../Image/dos.jpg";
-//import tres from '../image/tres.webp';
-
-// const initialLogin = {
-//     contrasena: '',
-//     email: ''
-//   }
-
-export default function Login() {
-  //const [formlogin, setFormLogin] = useState()
-  /// const [error, setError] = useState()
-  // const navigate = useNavigate()
-
-  //const dispatch= useDispatch()
-
-  const handleChange = (e) => {
-    //   setFormLogin({
-    //     ...formlogin,
-    //     [e.target.name]: e.target.value
-    //   })
-    //   const errors = {
-    //     ...error,
-    //     [e.target.name]: ''
-    //   }
-    //   setError(errors)
-    //   console.log(e.target.value)
-  };
-  const handleSubmit = (e) => {
-    //e.preventDefault()
-    //const errors = {
-    //     ...error,
-    // contrasena: '',
-    // email: '',
-    // }
-    // setError(errors)
-    //dispatch (login(formlogin))
-    //console.log(formlogin)
-    // navigate()
-  };
-
-  // useEffect(()=>{
-  //   dispatch()
-  // }, [])
-
-  const responseGoogle = (response) => {
-    console.log(response);
-  };
-
-  return (
-    <div className="row conteiner p-4">
-      <div className="col-md-8">
-        <div
-          id="carouselExampleControls"
-          className="carousel slide"
-          data-bs-ride="carousel"
-        >
-          <div className="carousel-inner">
-            <div className="carousel-item active">
-              <img className="tamaño" src={uno} alt="First slide" />
-            </div>
-            <div className="carousel-item">
-              <img className="tamaño" src={dos} alt="Second slide" />
-            </div>
-            <div className="carousel-item">
-              {/* <img className="tamaño" src={tres} alt="Third slide" /> */}
->>>>>>> refs/remotes/origin/gabriel_login
             </div>
           </div>
           <button
@@ -169,7 +96,6 @@ export default function Login() {
             <span className="visually-hidden">Next</span>
           </button>
         </div>
-<<<<<<< HEAD
   
         {/* FORM LOGIN */}
         <div className='col-md-4'>
@@ -221,77 +147,6 @@ export default function Login() {
             </form>
   
             {/* <div className='text-center '>
-=======
-      </div>
-
-      {/* FORM LOGIN */}
-      <div className="col-md-4">
-        <div className="mt-5 ms-5">
-          <h1 className="text-center">Login</h1>
-          <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              {" "}
-              {/* CORREO */}
-              <label htmlFor="exampleInputEmail1">Correo</label>
-              <input
-                type="email"
-                className="form-control"
-                placeholder="Ingresar Correo"
-                name="email"
-                onChange={handleChange}
-                value={""}
-              />
-              {/* Contraseña  */}
-            </div>
-            <div className="form-group">
-              <label htmlFor="exampleInputPassword1">Contraseña</label>
-              <input
-                type="password"
-                className="form-control"
-                id="exampleInputPassword1"
-                placeholder="Password"
-                name="contrasena"
-                onChange={handleChange}
-                value={""}
-              />
-              <small>
-                El equipo de Ticket - App bajo ninguna circunstancia pedira su
-                correo o contraseña.{" "}
-              </small>
-            </div>
-            {/* <div className="form-group form-check">
-                <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                <label className="form-check-label" htmlFor="exampleCheck1">Comprendo</label>
-              </div> */}
-
-            <button type="submit" className="btn btn-primary">
-              Entrar
-            </button>
-
-            <div className="text-center ">
-              <span>¿No tienes cuenta?</span>
-              <Link
-                to="/register"
-                style={{
-                  color: "#0066ff",
-                  textDecoration: "none",
-                  margin: "5px",
-                  fontWeight: "bold",
-                }}
-              >
-                Registrarse
-              </Link>
-            </div>
-          </form>
-          <GoogleLogin
-            clientId="533216406102-cnhnnd2b69dvbkt69reehsd2e7stn4t4.apps.googleusercontent.com"
-            buttonText="Login with Google"
-            onSuccess={responseGoogle}
-            onFailure={responseGoogle}
-            cookiePolicy={"single_host_origin"}
-          />
-          {/* <div className='text-center '>
->>>>>>> refs/remotes/origin/gabriel_login
   
               <Link to='/resetPassword' style={{
                 color: '#0066ff',

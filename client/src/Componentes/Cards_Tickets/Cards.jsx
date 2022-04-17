@@ -1,7 +1,7 @@
 import React from 'react';
 import CardsTicket from './CardsTicket';
 
-export function CardsTickets({allMovies}){
+export default function CardsTickets({allMovies}){
     return(
         <>
             <section>

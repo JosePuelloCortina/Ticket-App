@@ -13,7 +13,7 @@ export default function Detail(){
         dispatch(moviesDetail(id))
     },[id]);
 
-    const detail = useSelector((state)=>state.detail)
+    const detail = useSelector((state)=>state.detail.data)
 
 return(
     <div>

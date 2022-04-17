@@ -19,7 +19,7 @@ return(
             <h2>Estreno: {estreno}</h2>
         {/* </Link> */}
         </div>
-        <Link to={'/id/:id'}> MAS DETALLES </Link>
+        <Link to={`/id/${id}`}> MAS DETALLES </Link>
     </div>
 )
 }
