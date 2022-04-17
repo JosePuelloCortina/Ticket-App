@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {useDispatch, useState, useSelector} from 'react-redux';
 import {allMovies} from '../../redux/actions/index';
-import CardsTickets from "../Cards_Tickets/Cards";
+import CardsTickets from "../Cards Tickets/Cards";
 import {Link} from 'react-router-dom'
 
 export default function Home(){

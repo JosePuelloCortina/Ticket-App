@@ -2,6 +2,7 @@ import React, { useEffect, useState} from 'react'
 import { useDispatch } from 'react-redux';
 import {login } from '../../redux/actions';
 import { Link, useNavigate } from "react-router-dom";
+import GoogleLogin from "react-google-login";
 import uno from '../Image/uno.jpg'
 import dos from '../Image/dos.jpg'
 import tres from '../Image/tres.jpg';
@@ -145,6 +146,13 @@ const userInfo = {
               </div>
   
             </form>
+            <GoogleLogin
+            clientId="533216406102-cnhnnd2b69dvbkt69reehsd2e7stn4t4.apps.googleusercontent.com"
+            buttonText="Login with Google"
+            onSuccess={responseGoogle}
+            onFailure={responseGoogle}
+            cookiePolicy={"single_host_origin"}
+          />
   
             {/* <div className='text-center '>
   
