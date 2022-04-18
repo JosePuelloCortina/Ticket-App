@@ -21,7 +21,11 @@ export default function rootReducer(state = initialState, action) {
                     ...state,
                     userInfo: action.payload
                 }
-            case 'LOGIN_USER_ERROR':
+            case 'FILL_USER_GOOGLE':
+                return {
+                    ...state,
+                    userInfo: action.payload
+                }
             case 'MOVIES_DETAIL':
                 return{
                     ...state,

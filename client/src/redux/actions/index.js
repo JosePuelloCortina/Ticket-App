@@ -21,30 +21,30 @@ export function logout() {
     return { type: 'LOGOUT_USER' }
 }
 
-export function login ( {email, password} ){
-    return async (dispach) => {
-        console.log('action')
+export function login ( email, password ){
+    return async function(dispatch){
         try{
-            // const config = {
-            //     headers: {
-            //         "Content-Type": "application/json"
-            //     }
-            // }
-            const body = {email, password}
+            const json = await axios.get(`http://localhost:3001/user/login?email=${email}&&password=${password}`)
             
-            const {data} = await axios.get(`http://localhost:3001/user/login`, body )
-            const infoUser = data.user
-            dispach({
+            return dispatch({
                 type: 'LOGIN_USER_SUCCESS',
-                payload: infoUser
-            })
-            console.log(data)
-           
+                payload: json.data
+            })   
         } catch (error) {
-            console.log(error)
-            return dispach({
-                type: 'LOGIN_USER_ERROR',
-            })
+            alert(error)
+        }
+    }    
+}
+
+export function loginGoogleFill ( payload ){
+    return async function(dispatch){
+        try{
+            return dispatch({
+                type: 'FILL_USER_GOOGLE',
+                payload
+            })   
+        } catch (error) {
+            alert(error)
         }
     }    
     

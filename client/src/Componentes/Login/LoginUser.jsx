@@ -1,21 +1,23 @@
 import React, { useEffect, useState} from 'react'
-import { useDispatch } from 'react-redux';
-import {login } from '../../redux/actions/index';
+import { useDispatch, useSelector } from 'react-redux';
+import {login, loginGoogleFill } from '../../redux/actions/index';
 import { Link, useNavigate } from "react-router-dom";
-//import GoogleLogin from "react-google-login";
+import GoogleLogin from "react-google-login";
+import { postUser } from '../../redux/actions/index';
 import uno from '../Image/uno.jpg'
 import dos from '../Image/dos.jpg'
 import tres from '../Image/tres.jpg';
 
 
-const userInfo = {
-    password:'',
-    email: ''
-  }
   
   export default function Login() {
   
-    const [formlogin, setFormLogin] = useState(userInfo)
+    const user = useSelector(state => state.userInfo);
+
+    const [input, setInput] = useState({
+      password:'',
+      email: ''
+    })
     const [error, setError] = useState()
     const navigate = useNavigate()
   
@@ -23,8 +25,8 @@ const userInfo = {
   
     const handleChange = (e) => {
   
-      setFormLogin({
-        ...formlogin,
+      setInput({
+        ...input,
         [e.target.name]: e.target.value
       })
       const errors = {
@@ -32,31 +34,43 @@ const userInfo = {
         [e.target.name]: ''
       }
       setError(errors)
-  
-      console.log(e.target.value)
      }
     const handleSubmit = (e) => {
       e.preventDefault()
        const errors = {
         ...error,
-        password:'',
         email: '',
+        password:''
      }
      setError(errors)
   
-  
-      dispatch (login(formlogin))
-      console.log(formlogin)
+      dispatch(login(input.email, input.password))
+      console.log(user)
       navigate('/home')
     }
   
     // useEffect(()=>{
     //   dispatch()
     // }, [])
-  // const responseGoogle =(response)=>{
-  //   console.log(response)
-  // }
-    
+  const onGoogleSucces = (response)=>{
+    console.log(response);
+    const usuario = response.profileObj;
+    const newUserFromGoogle = {
+      nombre: usuario.familyName,
+      apellido: usuario.familyName,
+      email: usuario.email,
+      password: usuario.googleId,
+      estado: true,
+      imagen: usuario.imageUrl 
+    }
+    dispatch(postUser(newUserFromGoogle));
+    dispatch(loginGoogleFill(newUserFromGoogle));
+    navigate('/home')
+  }
+  
+  const onFailGoogle = () => {
+    alert("Algo salió mal")
+  }
   return (
       <div className='row conteiner p-4' >
         <div className='col-md-8'>
@@ -112,7 +126,7 @@ const userInfo = {
                 placeholder="Ingresar Correo" 
                 name='email' 
                 onChange={handleChange} 
-                value={formlogin.email} />
+                value={input.email} />
                 {/* Contraseña  */}
               </div>
               <div className="form-group">
@@ -123,13 +137,13 @@ const userInfo = {
                 placeholder="Password" 
                 name='password'
                 onChange={handleChange} 
-                value={formlogin.password}/>
+                value={input.password}/>
                 <small >El equipo de Ticket - App bajo ninguna circunstancia pedira su correo o contraseña. </small>
               </div>
-              {/* <div className="form-group form-check">
+              <div className="form-group form-check">
                 <input type="checkbox" className="form-check-input" id="exampleCheck1" />
                 <label className="form-check-label" htmlFor="exampleCheck1">Comprendo</label>
-              </div> */}
+              </div>
               
                 <button type="submit" className="btn btn-primary">Entrar</button>
               
@@ -148,13 +162,13 @@ const userInfo = {
               </div>
   
             </form>
-            {/* <GoogleLogin
+            <GoogleLogin
             clientId="533216406102-cnhnnd2b69dvbkt69reehsd2e7stn4t4.apps.googleusercontent.com"
             buttonText="Login with Google"
-            onSuccess={responseGoogle}
-            onFailure={responseGoogle}
+            onSuccess={onGoogleSucces}
+            onFailure={onFailGoogle}
             cookiePolicy={"single_host_origin"}
-          /> */}
+          />
   
            
         </div>
