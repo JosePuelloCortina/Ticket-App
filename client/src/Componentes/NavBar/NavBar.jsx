@@ -18,6 +18,10 @@ import { moviesByName } from '../../redux/actions';
 import { useDispatch } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
+    root:{
+      backgroundColor: '#373E47',
+      color: '#fff',
+    },
     grow: {
       flexGrow: 1,
     },
@@ -177,7 +181,7 @@ function NavBar() {
   );
   return (
     <div className={classes.grow}>
-      <AppBar position="static" color='secondary'>
+      <AppBar position="static" className={classes.root}>
         <Toolbar>
           <IconButton
             edge="start"
@@ -188,7 +192,7 @@ function NavBar() {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            Cinema
+            Cinem<span style={{'color':'#5ED5A8'}}>App</span>
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>

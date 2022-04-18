@@ -11,8 +11,14 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
     card: {
-        maxWidth: '345px',
+        width: '280px',
+        height: '470px',
       },
+    formatImg:{
+      width: '280px',
+      objectFit: 'fill',
+      backgroundColor: '#373E47',
+    }
 });
 
 export default function CardTicket({poster_path, original_title, release_date, id}){
@@ -22,7 +28,7 @@ export default function CardTicket({poster_path, original_title, release_date, i
   return (
     <Card className={classes.card}>
       <CardActionArea>
-        <CardMedia 
+        <CardMedia className={classes.formatImg}
           component={`img`}
           height="280"
           image={poster_path}
