@@ -7,7 +7,7 @@ const user = Router();
 
 
 user.get("/login", async (req, res) => {
-    const { email, password } = req.body;
+    const { email, password } = req.query;
     try {
         const user = await User.findOne({
             where: {
