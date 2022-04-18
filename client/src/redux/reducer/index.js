@@ -1,7 +1,7 @@
 const initialState = {
     // token: localStorage.getItem("token"),
     // isAuth: null,
-    userInfo:[],
+    userInfo: null,
     create:[],
     movies:[],
     detail: [],
@@ -16,12 +16,16 @@ export default function rootReducer(state = initialState, action) {
                 //create: action.payload
             }
             case 'LOGIN_USER_SUCCESS':
-                console.log(action.payload)
                 return {
                     ...state,
                     userInfo: action.payload
                 }
-            case 'FILL_USER_GOOGLE':
+            case 'USER_LOGOUT':
+            return {
+                ...state,
+                userInfo: null
+            }
+            case 'LOGIN_FILL_STATE':
                 return {
                     ...state,
                     userInfo: action.payload
