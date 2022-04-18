@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { alpha, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -14,6 +14,8 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import { moviesByName } from '../../redux/actions';
+import { useDispatch } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
     grow: {
@@ -80,9 +82,11 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 function NavBar() {
+  const dispatch = useDispatch();
     const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const [search, setSearch] = useState('')
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -103,6 +107,17 @@ function NavBar() {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
+
+  const handleChangeSearch = (e) => {
+    e.preventDefault();
+    setSearch(e.target.value);
+    console.log(search)
+  }
+
+  const handleSubmitSearch = (e) => {
+    e.preventDefault();
+    dispatch(moviesByName(search));
+  }
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -177,7 +192,6 @@ function NavBar() {
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
-              <SearchIcon />
             </div>
             <InputBase
               placeholder="Buscar Película…"
@@ -186,8 +200,13 @@ function NavBar() {
                 input: classes.inputInput,
               }}
               inputProps={{ 'aria-label': 'search' }}
+              onChange={handleChangeSearch}
             />
           </div>
+          <div onClick={handleSubmitSearch}>
+            <SearchIcon />
+          </div>
+
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton

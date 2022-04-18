@@ -15,8 +15,9 @@ const useStyles = makeStyles({
       },
 });
 
-export default function CardTicket({poster_path, original_title, release_date}){
+export default function CardTicket({poster_path, original_title, release_date, id}){
   const classes = useStyles();
+  
 
   return (
     <Card className={classes.card}>
@@ -24,7 +25,7 @@ export default function CardTicket({poster_path, original_title, release_date}){
         <CardMedia 
           component={`img`}
           height="280"
-          image={`https://image.tmdb.org/t/p/w185_and_h278_bestv2`+poster_path}
+          image={poster_path}
           title={original_title}
         />
         <CardContent>
@@ -40,7 +41,7 @@ export default function CardTicket({poster_path, original_title, release_date}){
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Link to='/detail' style={{'textDecoration':'none'}}>
+        <Link to={'/'+id} style={{'textDecoration':'none'}}>
             <Button variant='contained' size="small" disableElevation color="primary">
                 Mas detalles
             </Button>
