@@ -40,17 +40,17 @@ const Perfil = () => {
                     </Grid>
                     <Grid item xs={12} sm={3}>
                         <Typography component="h5" variant="h5" color="primary">
-                            {'nombre'}
+                            {user?.nombre}
                         </Typography>
                     </Grid>
                     <Grid item xs={12} sm={3}>
                         <Typography component='h5' variant="subtitle1" color="secondary">
-                            {'Apellido'}
+                            {user?.apellido}
                         </Typography>
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <Typography component='h5' variant="subtitle1" color="secondary">
-                            {'Email'}
+                            {user?.email}
                         </Typography>
                     </Grid>
                     <Grid item xs={12} sm={6}>
@@ -59,6 +59,23 @@ const Perfil = () => {
                     <Grid item xs={12} >
                         <Typography component='h4' color="primary">Tikets</Typography>
                     </Grid>
+                    {
+                        user?.tikets?.map(tiket => {
+                            return (
+                                <>
+                                    <Grid item xs={12} sm={4} >
+                                        <Typography component='h4' color="primary">{tiket.numero}</Typography>
+                                    </Grid>
+                                    <Grid item xs={12} sm={4} >
+                                        <Typography component='h4' color="primary">{tiket.numero_sala}</Typography>
+                                    </Grid>
+                                    <Grid item xs={12} sm={4} >
+                                        <Typography component='h4' color="primary">{tiket.fecha_hora}</Typography>
+                                    </Grid>
+                                </>
+                            )
+                        })}
+
                 </Grid>
 
             </Container>
