@@ -8,10 +8,12 @@ import RegUsuarios from './Componentes/RegUsuarios/regUsuarios';
 import { useDispatch } from 'react-redux';
 import Stripe from './Componentes/Stripe/stripe';
 
-import {ThemeProvider} from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
 import theme from './theme-config';
+import Perfil from './Componentes/Perfil/Perfil';
 import { useSelector } from 'react-redux';
 import { loginFillState } from './redux/actions';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -42,6 +44,9 @@ function App() {
 
             <Route path = '/register' element={(isLogged === false) ? <RegUsuarios/> : <Navigate to="/home"/>} />
             <Route path = '/stripe' element={<Stripe />} />
+
+            <Route path='/perfil' element={<Perfil/>} />
+            
           </Routes>
         </BrowserRouter>
       </ThemeProvider>
