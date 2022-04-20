@@ -1,5 +1,6 @@
 const initialState = {
-    allElements: []
+    allElements: [],
+    detail: []
 };
 
 
@@ -8,6 +9,12 @@ export default function rootReducer(state = initialState, action){
         return{
             ...state,
             allElements: action.payload
+        }
+    }
+    if(action.type === "ELEMENT_DETAIL"){
+        return{
+            ...state,
+            detail: action.payload
         }
     }
     else{

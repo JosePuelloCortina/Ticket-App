@@ -3,7 +3,7 @@ import NavBar from './../NavBar/navbar';
 import { useDispatch } from 'react-redux';
 import { getMovies } from './../../redux/actions';
 import RenderForEachEl from "../RendElementos/renderEachEl";
-
+import { Link } from "react-router-dom";
 
 export default function Peliculas(){
 
@@ -16,6 +16,9 @@ export default function Peliculas(){
     return(
         <div>
             <NavBar/>
+            <Link to="/movies/add">
+            <button>Agregar Pelicula</button>
+            </Link>
             <RenderForEachEl path='movies'/>
         </div>
     )

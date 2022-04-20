@@ -16,7 +16,7 @@ export default function Admins(){
     return(
         <div>
             <NavBar/>
-            <RenderForEachEl/>
+            <RenderForEachEl path="admin"/>
         </div>
     )
 }

@@ -1,11 +1,9 @@
 import React from "react";
 
-
-
-export default function UserDetail(){
+export default function AddCategoria(){
     return(
         <div>
-            
+            a
         </div>
     )
 }

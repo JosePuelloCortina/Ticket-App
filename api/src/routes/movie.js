@@ -19,12 +19,11 @@ router.get('/id/:id', getMovieById);
 router.post('/',
     [//middlewares
         check('nombre', 'name is required').not().isEmpty(),
-        check('fecha', 'fecha is required').custom(isDate),
         check('duracion', 'duracion is required').not().isEmpty(),
         check('descripcion', 'descripcion is required').not().isEmpty(),
         check('trailer', 'trailer is required').not().isEmpty(),
         check('estreno', 'estreno is required').not().isEmpty(),
-        check('puntuacion', 'puntuacion is required').not().isEmpty(),
+
         fieldValidators
     ],
     addMovie
