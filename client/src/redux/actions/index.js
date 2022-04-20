@@ -18,14 +18,23 @@ export function getuserDetails(id) {
 
 
 export function logout() {
-    return { type: 'LOGOUT_USER' }
+    return async function(dispatch){
+        try {
+            window.localStorage.removeItem("userLogged");
+            return dispatch({
+                type: "USER_LOGOUT"
+            });
+        } catch (error) {
+            alert(error)
+        }
+    }
 }
 
 export function login ( email, password ){
     return async function(dispatch){
         try{
             const json = await axios.get(`http://localhost:3001/user/login?email=${email}&&password=${password}`)
-            
+            window.localStorage.setItem("userLogged", JSON.stringify(json.data))      
             return dispatch({
                 type: 'LOGIN_USER_SUCCESS',
                 payload: json.data
@@ -36,12 +45,14 @@ export function login ( email, password ){
     }    
 }
 
-export function loginGoogleFill ( payload ){
+export function loginFillState (){
     return async function(dispatch){
         try{
+            const user = window.localStorage.getItem("userLogged");
+            const json = JSON.parse(user);
             return dispatch({
-                type: 'FILL_USER_GOOGLE',
-                payload
+                type: 'LOGIN_FILL_STATE',
+                payload: json
             })   
         } catch (error) {
             alert(error)

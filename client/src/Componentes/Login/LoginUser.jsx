@@ -1,6 +1,6 @@
 import React, { useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import {login, loginGoogleFill } from '../../redux/actions/index';
+import { login } from '../../redux/actions/index';
 import { Link, useNavigate } from "react-router-dom";
 import GoogleLogin from "react-google-login";
 import { postUser } from '../../redux/actions/index';
@@ -64,8 +64,8 @@ import tres from '../Image/tres.jpg';
       imagen: usuario.imageUrl 
     }
     dispatch(postUser(newUserFromGoogle));
-    dispatch(loginGoogleFill(newUserFromGoogle));
-    navigate('/home')
+    dispatch(login(usuario.email, usuario.googleId));
+    navigate('/home');
   }
   
   const onFailGoogle = () => {
