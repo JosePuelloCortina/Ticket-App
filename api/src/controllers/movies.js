@@ -73,11 +73,10 @@ const getMoviesByName = async (req, res = response) => {
 
 const addMovie = async (req, res = response) => {
   const movie = req.body;
-  console.log("ESTO ME LLEGA POR BODY", movie);
+
   try {
     let savedMovie = await Pelicula.create(movie);
-    // await movie.addCategoria(categoria);
-    console.log("ESTO SE HA CREADO EN LA BASE DE DATOS", savedMovie);
+
     for (const categoria of movie.categorias) {
       await pelicula_categoria.create({
         peliculaId: savedMovie.id,
