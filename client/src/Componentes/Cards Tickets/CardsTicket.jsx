@@ -23,8 +23,6 @@ const useStyles = makeStyles({
 
 export default function CardTicket({poster_path, original_title, release_date, id}){
   const classes = useStyles();
-  
-
   return (
     <Card className={classes.card}>
       <CardActionArea>
