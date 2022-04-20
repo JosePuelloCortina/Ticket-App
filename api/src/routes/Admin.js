@@ -2,7 +2,7 @@ const { Router } = require("express");
 const { Admin } = require("../db");
 const { v4: uuidv4 } = require('uuid');
 
-const admin = Router();
+const admin = Router(); 
 
 
 admin.get("/", async (req, res) => {

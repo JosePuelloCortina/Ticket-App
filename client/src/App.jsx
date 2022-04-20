@@ -6,6 +6,7 @@ import Detail from './Componentes/Detail/Detail'
 import LoginUser from './Componentes/Login/LoginUser';
 import RegUsuarios from './Componentes/RegUsuarios/regUsuarios';
 import { useDispatch } from 'react-redux';
+import Stripe from './Componentes/Stripe/stripe';
 
 import { ThemeProvider } from '@material-ui/core/styles';
 import theme from './theme-config';
@@ -42,6 +43,7 @@ function App() {
             <Route path = '/login' element={(isLogged === false) ? <LoginUser/> : <Navigate to="/home"/>} />
 
             <Route path = '/register' element={(isLogged === false) ? <RegUsuarios/> : <Navigate to="/home"/>} />
+            <Route path = '/stripe' element={<Stripe />} />
 
             <Route path='/perfil' element={<Perfil/>} />
             

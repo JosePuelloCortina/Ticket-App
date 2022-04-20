@@ -219,8 +219,7 @@ export default function CreateConductora() {
                             )}
                         </div>
                         <Button variant='contained' color="primary" disableElevation type='submit'
-                            disabled={user.nombre && user.apellido && user.password && user.email &&
-                                user.rol && user.estado && user.imagen ? false : true}>Registrarse</Button>
+                            disabled={user.nombre && user.apellido && user.password && user.email && user.imagen ? false : true}>Registrarse</Button>
                         <Button variant='contained' color='secondary' href='/home' disableElevation
                             startIcon={<ExitToAppSharpIcon />}>Volver</Button>
                     </form>
