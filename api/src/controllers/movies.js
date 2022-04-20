@@ -109,7 +109,7 @@ const updateMovie = async (req, res = response) => {
     }
 };
 const removeMovie = async (req, res = response) => {
-    const { id } = req.params;
+    const { id } = req.query;
     try {
         const movie = await Pelicula.findByPk(id);
         if (!movie) {

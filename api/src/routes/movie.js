@@ -43,7 +43,7 @@ router.put('/:id',
     ],
     updateMovie);
 
-router.delete('/:id', removeMovie);
+router.delete('/', removeMovie);
 
 
 module.exports = router;

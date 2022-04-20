@@ -43,7 +43,7 @@ function App() {
 
             <Route path = '/register' element={(isLogged === false) ? <RegUsuarios/> : <Navigate to="/home"/>} />
 
-            <Route path='/perfil' element={(isLogged === true) ? <Perfil/> : <Navigate to="/login"/>} />
+            <Route path='/perfil' element={<Perfil/>} />
             
           </Routes>
         </BrowserRouter>
