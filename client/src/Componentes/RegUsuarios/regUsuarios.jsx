@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { postUser } from '../../redux/actions/index';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { Button, CssBaseline, FormControl, FormHelperText, Input, InputLabel, Typography } from '@material-ui/core';
 import ExitToAppSharpIcon from '@material-ui/icons/ExitToAppSharp';
 import Transition from '../image_transition/Transition';
@@ -86,7 +86,7 @@ const useStyles = makeStyles((theme)=>({
 
 export default function CreateConductora() {
     const classes = useStyles();
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
     const dispatch = useDispatch();
     const [user, setUser] = useState({   //este es mi input
         nombre: "",
