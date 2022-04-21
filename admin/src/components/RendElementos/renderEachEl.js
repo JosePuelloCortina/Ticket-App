@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from "react-router-dom";
-import { deleteElement } from "../../redux/actions";
+import { deleteElement, makeAdmin } from "../../redux/actions";
 
 
 
@@ -16,6 +16,17 @@ export default function RenderForEachEl(path){
         dispatch(deleteElement(path.path, id));
         console.log(path)
     }
+
+    function handleMakeAdmin(e, nombre, apellido, email, password){
+        e.preventDefault();
+        const user = {
+            nombre,
+            apellido,
+            email,
+            password
+        }
+        dispatch(makeAdmin(user));
+    }
     
     return(
         <div>
@@ -28,10 +39,17 @@ export default function RenderForEachEl(path){
                                 <button>Editar</button>
                             </Link>
                             <button onClick={e => handleDelete(e, el.id)}>Eliminar</button>
+                            {
+                                path.path === "user" ?
+                                <button onClick={e => handleMakeAdmin(e, el.nombre, el.apellido, el.email, el.password)}>Hacer admin</button> 
+                                :
+                                <></>
+                            }
                         </div>
                     )
                 })
             }
+           
         </div>
     )
 }
