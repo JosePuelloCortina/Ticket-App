@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsnd  --respawn index.js"
+    "start": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
@@ -30,6 +30,7 @@
     "morgan": "^1.10.0",
     "multer": "^1.4.4",
     "nodemailer": "^6.7.3",
+    "nodemon": "^2.0.15",
     "pg": "^8.7.3",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.17.0",
