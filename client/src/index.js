@@ -5,6 +5,7 @@ import App from "./App.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Provider } from "react-redux";
 import store from "./redux/store/index";
+import * as serviceWorker from "./serviceWorker";
 import axios from "axios";
 import dotenv from "dotenv";
 dotenv.config();
@@ -19,3 +20,5 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById("root")
 );
+
+serviceWorker.unregister();
