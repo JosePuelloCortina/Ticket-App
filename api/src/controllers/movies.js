@@ -1,5 +1,6 @@
 const { response } = require("express");
 const { Pelicula, Categoria, Ticket, Op } = require("../db");
+const { v4 } = require("uuid");
 
 const getAllMovies = async (req, res = response) => {
   try {
@@ -31,7 +32,6 @@ const getMovieById = async (req, res = response) => {
         },
       ],
     });
-    console.log(movie);
     if (!movie) {
       return res.status(404).json({
         success: false,
@@ -74,12 +74,32 @@ const getMoviesByName = async (req, res = response) => {
 };
 
 const addMovie = async (req, res = response) => {
-  const movie = req.body;
-
+  const {
+    nombre,
+    fecha,
+    image,
+    duracion,
+    descripcion,
+    trailer,
+    estreno,
+    puntuacion,
+    generos,
+  } = req.body;
   try {
-    const savedMovie = await Pelicula.create(movie);
+    const savedMovie = await Pelicula.create({
+      id: v4(),
+      nombre,
+      fecha,
+      image,
+      duracion,
+      descripcion,
+      trailer,
+      estreno,
+      puntuacion,
+    });
     // await movie.addCategoria(categoria);
-    res.json({
+    //await savedMovie.setCategorias(generos);
+    res.status(201).json({
       success: true,
       data: savedMovie,
     });
