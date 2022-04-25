@@ -5,10 +5,11 @@ const { v4 } = require("uuid");
 const getAllMovies = async (req, res = response) => {
   try {
     const movies = await Pelicula.findAll({
-      include: {
-        model: Ticket,
-        Categoria,
-      },
+      include: [
+        {
+          model: Categoria,
+        },
+      ],
     });
     res.json({ success: true, data: movies });
   } catch (error) {
@@ -23,7 +24,14 @@ const getAllMovies = async (req, res = response) => {
 const getMovieById = async (req, res = response) => {
   const { id } = req.params;
   try {
-    const movie = await Pelicula.findByPk(id);
+    const movie = await Pelicula.findByPk(id, {
+      raw: true,
+      include: [
+        {
+          model: Ticket,
+        },
+      ],
+    });
     if (!movie) {
       return res.status(404).json({
         success: false,

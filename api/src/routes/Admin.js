@@ -1,9 +1,35 @@
 const { Router } = require("express");
-const { Admin } = require("../db");
+const { Admin, SuperAdmin } = require("../db");
 const { v4: uuidv4 } = require('uuid');
 
 const admin = Router(); 
 
+
+admin.get("/login", async (req, res) => {
+    const { email, password } = req.query;
+    if(id){
+        try {
+            const admin = await Admin.findOne({
+                where: {
+                    email,
+                    password
+                }
+            });
+            if(!admin) throw Error("Usuario o mail incorrectos.")
+            res.status(200).send(admin);
+        } catch (error) {
+            res.status(404).json('ocurrio un error: '+ error);
+        }
+    }
+    else{
+        try {
+            const admins = await Admin.findAll();
+            res.status(200).send(admins);
+        } catch (error) {
+            res.status(404).json('ocurrio un error: '+ error);
+        }
+    }
+});
 
 admin.get("/", async (req, res) => {
     const { id } = req.query;
@@ -31,7 +57,8 @@ admin.post("/", async (req, res) => {
             nombre,
             apellido,
             email,
-            password, 
+            password,
+            isSuper, 
             imagen
         } = req.body;
         const findEmail = await Admin.findOne({
@@ -46,6 +73,7 @@ admin.post("/", async (req, res) => {
             apellido,
             email,
             password,
+            isSuper,
             imagen
         });
         res.status(200).send(admin)

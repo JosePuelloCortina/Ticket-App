@@ -11,27 +11,47 @@ import MovieDetail from './components/Peliculas/MovieDetail';
 import CategoriaDetail from './components/Categorias/categoryDetail';
 import AddMovie from './components/Peliculas/AddMovie';
 import AddCategoria from './components/Categorias/AddCategoria';
+import Login from './components/Login/Login';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useMemo } from 'react';
+import { fillUserAdmin } from './redux/actions';
 
 function App() {
+
+  const dispatch = useDispatch();
+
+  const admin = useSelector(state => state.adminInfo);
+
+  const isLogged = useMemo(() => {
+    if(admin === null) return false;
+    if(admin !== null) return true;
+  });
+  console.log(isLogged)
+
+  useEffect(() => {
+    dispatch(fillUserAdmin());
+  }, [])
 
   //<Route path='/' element={</>}/>
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/home' element={<Home/>}/>
-        <Route path='/users' element={<Usuarios/>}/>
-        <Route path='/user/:id' element={<UserDetail/>}/>
+        <Route exact path='/' element={(isLogged === false) ? <Login/> : <Navigate to="/home"/>}/>
 
-        <Route path='/admins' element={<Admins/>}/>
-        <Route path='/admin/:id' element={<AdminDetail/>}/>
+        <Route path='/home' element={(isLogged === true) ? <Home/> : <Navigate to="/"/>}/>
+        <Route path='/users' element={(isLogged === true) ? <Usuarios/> : <Navigate to="/"/>}/>
+        <Route path='/user/:id' element={(isLogged === true) ? <UserDetail/> : <Navigate to="/"/>}/>
+
+        <Route path='/admins' element={(isLogged === true ) ? <Admins/> : <Navigate to="/"/>}/>
+        <Route path='/admin/:id' element={(isLogged === true) ? <AdminDetail/> : <Navigate to="/"/>}/>
         
-        <Route path='/peliculas' element={<Peliculas/>}/>
-        <Route path='/movies/:id' element={<MovieDetail/>}/>
-        <Route path='/movies/add' element={<AddMovie/>}/>
+        <Route path='/peliculas' element={(isLogged === true) ? <Peliculas/> : <Navigate to="/"/>}/>
+        <Route path='/movies/:id' element={(isLogged === true) ? <MovieDetail/> : <Navigate to="/"/>}/>
+        <Route path='/movies/add' element={(isLogged === true) ? <AddMovie/> : <Navigate to="/"/>}/>
 
-        <Route path='/categorias' element={<Categorias/>}/>
-        <Route path='/categoria/:id' element={<CategoriaDetail/>}/>
-        <Route path='/categoria/add' element={<AddCategoria/>}/>
+        <Route path='/categorias' element={(isLogged === true) ? <Categorias/> : <Navigate to="/"/>}/>
+        <Route path='/categoria/:id' element={(isLogged === true) ? <CategoriaDetail/> : <Navigate to="/"/>}/>
+        <Route path='/categoria/add' element={(isLogged === true) ? <AddCategoria/> : <Navigate to="/"/>}/>
       </Routes>
     </BrowserRouter>
   );
