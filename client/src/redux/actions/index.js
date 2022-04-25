@@ -1,10 +1,10 @@
 import axios from "axios";
-const REACT_APP_API = 'https://ticket-app-cine.herokuapp.com'
+const herokuUrl = 'https://ticket-app-cine.herokuapp.com'
 
 export function getuserDetails(id) {
     return async function (dispach) {
         try {
-            const detail = await axios.get(`${REACT_APP_API}/user/${id}`)
+            const detail = await axios.get(`${herokuUrl}/user/${id}`)
 
       dispach({
         type: "GET_USER_DETAILS",
@@ -32,7 +32,7 @@ export function logout() {
 export function login ( email, password ){
     return async function(dispatch){
         try{
-            const json = await axios.get(`${REACT_APP_API}/user/login?email=${email}&&password=${password}`)
+            const json = await axios.get(`${herokuUrl}/user/login?email=${email}&&password=${password}`)
             window.localStorage.setItem("userLogged", JSON.stringify(json.data))      
             return dispatch({
                 type: 'LOGIN_USER_SUCCESS',
@@ -63,7 +63,7 @@ export function postUser(payload){
     //console.log(payload)
     return async function (dispatch){
         try{
-            const create = await axios.post(`${REACT_APP_API}/user`, payload);
+            const create = await axios.post(`${herokuUrl}/user`, payload);
             return dispatch({
                  type: 'POST_USER',
                 payload: create
@@ -78,7 +78,7 @@ export function postUser(payload){
 export function moviesDetail(id){
     return async function (dispach){
         try{
-            const detail = await axios.get(`${REACT_APP_API}/movies/id/${id}`)
+            const detail = await axios.get(`${herokuUrl}/movies/id/${id}`)
             console.log(detail)
             return dispach({
                 type:'MOVIES_DETAIL',
@@ -95,7 +95,7 @@ export function moviesDetail(id){
 
 export const allMovies = () => async (dispach) => {
   try {
-    const movies = await fetch(`${REACT_APP_API}/movies`);
+    const movies = await fetch(`${herokuUrl}/movies`);
     const data = await movies.json();
     dispach({
       type: "ALL_MOVIES",
@@ -108,7 +108,7 @@ export const allMovies = () => async (dispach) => {
 
 export const allGeners = () => async (dispach) => {
   try {
-    const geners = await fetch(`${REACT_APP_API}/categories`);
+    const geners = await fetch(`http://localhost:3001/categories`);
     const data = await geners.json();
     dispach({
       type: "ALL_MOVIE_GENRES",
@@ -123,7 +123,7 @@ export function moviesByName(name) {
   return async function (dispatch) {
     try {
       const movies = await axios.get(
-        `${REACT_APP_API}/movies/name/${name}`
+        `http://localhost:3001/movies/name/${name}`
       );
       return dispatch({
         type: "MOVIES_NAME",
@@ -138,7 +138,7 @@ export function moviesByName(name) {
 export function moviesByName(name){
     return async function(dispatch){
         try{
-            const movies = await axios.get(`${REACT_APP_API}/movies/name/${name}`)
+            const movies = await axios.get(`${herokuUrl}/movies/name/${name}`)
             return dispatch({
                 type: 'MOVIES_NAME',
                 payload: movies.data
