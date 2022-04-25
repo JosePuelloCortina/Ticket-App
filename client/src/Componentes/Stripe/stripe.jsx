@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import {
   CardElement,
@@ -78,6 +78,9 @@ const CheckoutForm = () => {
       <CardElement />
       <button disabled={!stripe}>Pagar</button>
       {message && <p>{message}</p>}
+    <div>
+      <Link to='/detail'>volver</Link>
+    </div>
     </form>
   );
 };

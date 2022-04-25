@@ -6,6 +6,7 @@ import { AccountCircle, More, Search } from '@material-ui/icons';
 import { InputBase, Menu, MenuItem, IconButton, Typography, Toolbar } from '@material-ui/core';
 import { logout, moviesByName } from '../../redux/actions';
 import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from "react-router-dom";
 
 const drawerWidth = 360;
 
@@ -101,13 +102,16 @@ function NavBar(props) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-  const [search, setSearch] = React.useState('');
-  
+
+  const [search, setSearch] = useState('')
+  const navigate = useNavigate();
+
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
+   
   };
 
   const handleMobileMenuClose = () => {
@@ -117,6 +121,7 @@ function NavBar(props) {
   const handleMenuClose = () => {
     setAnchorEl(null);
     handleMobileMenuClose();
+    navigate('/perfil')
   };
 
   const handleMobileMenuOpen = (event) => {
