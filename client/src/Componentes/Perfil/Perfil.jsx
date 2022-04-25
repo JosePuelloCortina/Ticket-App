@@ -1,7 +1,8 @@
-import { Button, Container, Grid, Paper, TextField, Typography } from "@material-ui/core";
-import { makeStyles } from "@material-ui/styles";
-import { Link } from "react-router-dom";
+import React from "react";
 import { useSelector } from "react-redux";
+import { Container, Grid, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
@@ -31,12 +32,10 @@ const Perfil = () => {
     const classes = useStyles();
     return (
         <div className={classes.root}>
-
             <Container className={classes.content}>
-
                 <Grid container spacing={1} >
                     <Grid item xs={12} sm={3}>
-                        <img className={classes.image} src='https://img2.freepng.es/20180612/ih/kisspng-computer-icons-avatar-user-profile-clip-art-5b1f69f0e68650.4078880515287853929442.jpg' />
+                        <img className={classes.image} src='https://img2.freepng.es/20180612/ih/kisspng-computer-icons-avatar-user-profile-clip-art-5b1f69f0e68650.4078880515287853929442.jpg' alt="" />
                     </Grid>
                     <Grid item xs={12} sm={3}>
                         <Typography component="h5" variant="h5" color="primary">
@@ -75,14 +74,10 @@ const Perfil = () => {
                                 </>
                             )
                         })}
-
                 </Grid>
-
             </Container>
         </div>
     )
-
-
 }
 
 export default Perfil;

@@ -1,10 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import {makeStyles} from '@material-ui/core/styles';
-import { AppBar, Toolbar, Button, CssBaseline } from '@material-ui/core';
-import Slide from '@material-ui/core/Slide';
-import useScrollTrigger from '@material-ui/core/useScrollTrigger';
+import { AppBar, Button, CssBaseline, Slide, Toolbar, useScrollTrigger } from '@material-ui/core';
+import { makeStyles } from "@material-ui/core/";
 
 const useStyles = makeStyles((theme)=>({
     appbar:{

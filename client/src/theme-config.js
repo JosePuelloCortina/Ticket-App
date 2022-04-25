@@ -1,5 +1,6 @@
 import { createTheme } from "@material-ui/core/styles";
 //import teal from "@material-ui/core/colors/teal";
+
 const theme = createTheme({
   palette: {
     primary: { main: "#5ED5A8", light: "#373E47" },

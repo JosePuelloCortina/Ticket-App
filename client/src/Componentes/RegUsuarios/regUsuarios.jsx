@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import { postUser } from '../../redux/actions/index';
 import { useDispatch } from 'react-redux';
-// import { useNavigate } from 'react-router-dom';
-import { Button, CssBaseline, FormControl, FormHelperText, Input, InputLabel, Typography } from '@material-ui/core';
-import ExitToAppSharpIcon from '@material-ui/icons/ExitToAppSharp';
 import Transition from '../image_transition/Transition';
+import { Button, CssBaseline, FormControl, FormHelperText, Input, InputLabel, Typography } from '@material-ui/core';
+import { ExitToAppSharp } from '@material-ui/icons';
+import { makeStyles } from "@material-ui/core/";
 
 export function validate(user) {
     let errors = {};
@@ -225,7 +224,7 @@ export default function CreateConductora() {
                             disabled = {(errors?.nombre || errors?.apellido || errors?.email || errors?.password) ? true : false}
                             >Registrarse</Button>
                             <Button variant='contained' color='secondary' href='/home' disableElevation
-                            startIcon={<ExitToAppSharpIcon />}>Regresar</Button>
+                            startIcon={<ExitToAppSharp />}>Regresar</Button>
                         </div>
                     </form>
                 </div>
