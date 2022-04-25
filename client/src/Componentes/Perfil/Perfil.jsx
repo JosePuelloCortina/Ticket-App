@@ -78,6 +78,9 @@ const Perfil = () => {
 
                 </Grid>
 
+            <div>
+                <Link to='/home'>volver</Link>
+            </div>
             </Container>
         </div>
     )
