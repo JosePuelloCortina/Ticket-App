@@ -76,10 +76,15 @@ const { Ticket, Pelicula, Categoria, Sucursal, User, Admin, SuperAdmin } =
 Pelicula.hasMany(Ticket);
 Sucursal.hasMany(Ticket);
 User.hasMany(Ticket);
-Pelicula.belongsToMany(Categoria, { through: "pelicula_categoria" });
+Pelicula.belongsToMany(Categoria, { through: "Pelicula_Categoria" });
+Categoria.belongsToMany(Pelicula, { through: "Pelicula_Categoria" });
 
 module.exports = {
-  ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
+  Pelicula,
+  Categoria,
+  User,
+  Ticket,
+  // ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize, // para importart la conexión { conn } = require('./db.js');
   Op,
 };

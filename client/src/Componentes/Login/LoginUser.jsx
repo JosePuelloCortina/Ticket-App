@@ -1,12 +1,12 @@
 import React, { useState} from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/actions/index';
 import { Link, useNavigate } from "react-router-dom";
 import GoogleLogin from "react-google-login";
 import { postUser } from '../../redux/actions/index';
-import { Button, Checkbox, CssBaseline, FormControlLabel, FormGroup, TextField, Typography } from '@material-ui/core';
 import Transition from '../image_transition/Transition';
+import { Button, Checkbox, CssBaseline, FormControlLabel, FormGroup, TextField, Typography } from '@material-ui/core';
+import { makeStyles } from "@material-ui/core";
 
 export function validate(input) {
   let error = {};
@@ -148,7 +148,7 @@ const useStyles = makeStyles((theme)=>({
           <Typography color='secondary' style={{fontSize:'30px'}}>Login</Typography>
           <br/>
           <p>Regístrate para ingresar a nuestra plataforma</p>
-              <form onSubmit={handleSubmit} className={classes.form} autoComplete='off' aria-autocomplete='off'>
+              <form onSubmit={handleSubmit} className={classes.form} autoComplete='off'>
                 <TextField
                   defaultValue={``}
                   name = 'email'

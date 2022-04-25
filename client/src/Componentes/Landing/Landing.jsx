@@ -1,8 +1,8 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import { Button, CardMedia, Container, CssBaseline, Typography } from "@material-ui/core";
-import NavBarLanding from "../NavBar/NavBarLanding";
 import { Link } from "react-router-dom";
+import { Button, CardMedia, Container, CssBaseline, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import NavBarLanding from "../NavBar/NavBarLanding";
 import imagen from '../../assets/img_landing.png';
 import img_bg from '../../assets/fondo.jpg';
 
@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme)=>({
         color: '#EEEFF4',
     }
 }));
-export default function(){
+export default function Landing(){
     const classes = useStyles();
     return (
         <div className={classes.root}>
