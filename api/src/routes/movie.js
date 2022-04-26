@@ -5,8 +5,8 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
 const { fieldValidators } = require('../middlewares/field-validators');
-const { addMovie, getAllMovies, updateMovie, removeMovie, getMoviesByName, getMovieById } = require('../controllers/movies');
-const { isDate } = require('../utils/isDate');
+const { addMovie, getAllMovies, removeMovie, getMoviesByName, getMovieById } = require('../controllers/movies');
+const {Pelicula} = require("../db")
 const router = Router();
 //Routes
 //Get all the movies that are in the database
@@ -29,18 +29,40 @@ router.post('/',
     addMovie
 );
 
-router.put('/:id',
-    [//middlewares
-        check('nombre', 'name is required').not().isEmpty(),
-        check('fecha', 'fecha is required').custom(isDate),
-        check('duracion', 'duracion is required').not().isEmpty(),
-        check('descripcion', 'descripcion is required').not().isEmpty(),
-        check('trailer', 'trailer is required').not().isEmpty(),
-        check('estreno', 'estreno is required').not().isEmpty(),
-        check('puntuacion', 'puntuacion is required').not().isEmpty(),
-        fieldValidators
-    ],
-    updateMovie);
+router.put('/', async (req, res) => {
+    const {id} = req.query;
+    const {
+        nombre,
+        fecha,
+        image,
+        duracion,
+        descripcion,
+        trailer,
+        estreno,
+        puntuacion
+    } = req.body;
+    try {
+        const movie = await Pelicula.findOne({
+            where: {
+                id
+            }
+        });
+
+        await movie.update({
+            nombre: nombre ? nombre : movie.nombre,
+            fecha: fecha ? fecha : movie.fecha,
+            image: image ? image : movie.image,
+            duracion: duracion ? duracion : movie.duracion,
+            descripcion: descripcion ? descripcion : movie.descripcion,
+            trailer: trailer ? trailer : movie.trailer,
+            estreno: estreno ? estreno : movie.estreno,
+            puntuacion: puntuacion ? puntuacion : movie.puntuacion
+        });
+        res.status(200).send(movie);
+    } catch (error) {
+        res.status(404).json('ocurrio un error: '+ error);
+    }
+})
 
 router.delete('/', removeMovie);
 

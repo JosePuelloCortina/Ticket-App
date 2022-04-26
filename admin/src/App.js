@@ -8,7 +8,6 @@ import Peliculas from './components/Peliculas/peliculas';
 import UserDetail from './components/Users/userDetail';
 import AdminDetail from './components/Admins/adminDetail';
 import MovieDetail from './components/Peliculas/MovieDetail';
-import CategoriaDetail from './components/Categorias/categoryDetail';
 import AddMovie from './components/Peliculas/AddMovie';
 import AddCategoria from './components/Categorias/AddCategoria';
 import Login from './components/Login/Login';
@@ -26,7 +25,6 @@ function App() {
     if(admin === null) return false;
     if(admin !== null) return true;
   });
-  console.log(isLogged)
 
   useEffect(() => {
     dispatch(fillUserAdmin());
@@ -50,7 +48,6 @@ function App() {
         <Route path='/movies/add' element={(isLogged === true) ? <AddMovie/> : <Navigate to="/"/>}/>
 
         <Route path='/categorias' element={(isLogged === true) ? <Categorias/> : <Navigate to="/"/>}/>
-        <Route path='/categoria/:id' element={(isLogged === true) ? <CategoriaDetail/> : <Navigate to="/"/>}/>
         <Route path='/categoria/add' element={(isLogged === true) ? <AddCategoria/> : <Navigate to="/"/>}/>
       </Routes>
     </BrowserRouter>

@@ -11,7 +11,7 @@ export default function UserDetail(){
 
     const dispatch = useDispatch();
 
-    const user = useSelector(state => state.detail);
+    const user = useSelector(state => state.userDetail);
 
     useEffect(() => {
         dispatch(getUserDetail(id));
@@ -53,16 +53,22 @@ export default function UserDetail(){
 
     function handleSubmit(e){
         e.preventDefault();
-        dispatch(editUser(id, input))
+        dispatch(editUser(id, input));
+        setInput({
+            nombre: '',
+            apellido: '',
+            email: '',
+            estado: true
+        })
     }
     return(
         <form onSubmit={handleSubmit}>
             <label>Nombre</label>
-            <input onChange={handleChangeInput} name="nombre" placeholder={user.nombre}/>
+            <input value={input.nombre} onChange={handleChangeInput} name="nombre" placeholder={user.nombre}/>
             <label>Apellido</label>
-            <input onChange={handleChangeInput} name="apellido" placeholder={user.apellido}/>
+            <input value={input.apellido} onChange={handleChangeInput} name="apellido" placeholder={user.apellido}/>
             <label>Email</label>
-            <input onChange={handleChangeInput} name="email" placeholder={user.email}/>
+            <input value={input.email} onChange={handleChangeInput} name="email" placeholder={user.email}/>
             <label>Estado</label>
             {
                 (user?.estado === true) ? 

@@ -11,7 +11,7 @@ export default function UserDetail(){
 
     const dispatch = useDispatch();
 
-    const movie = useSelector(state => state.detail);
+    const movie = useSelector(state => state.movieDetail);
 
     useEffect(() => {
         dispatch(getMovieDetail(id));
@@ -55,7 +55,15 @@ export default function UserDetail(){
             <textarea onChange={handleChangeInput} name="trailer" placeholder={movie.trailer}/>
             <label>Estreno</label>
             <input onChange={handleChangeInput} name="estreno" placeholder={movie.estreno}/>
-            
+            <label>Categorías</label>
+            {
+                movie?.Categoria.map(c => {
+                    return(
+                        <h3>{c.nombre}</h3>
+                    )
+                })
+            }
+
             <button type={"submit"}>Subir Cambios</button>
         </form>
     )

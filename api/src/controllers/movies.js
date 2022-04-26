@@ -25,10 +25,9 @@ const getMovieById = async (req, res = response) => {
   const { id } = req.params;
   try {
     const movie = await Pelicula.findByPk(id, {
-      raw: true,
       include: [
         {
-          model: Ticket,
+          model: Categoria,
         },
       ],
     });
@@ -83,7 +82,7 @@ const addMovie = async (req, res = response) => {
     trailer,
     estreno,
     puntuacion,
-    generos,
+    categorias
   } = req.body;
   try {
     const savedMovie = await Pelicula.create({
@@ -97,6 +96,15 @@ const addMovie = async (req, res = response) => {
       estreno,
       puntuacion,
     });
+
+    categorias.forEach(async (categoria) => {
+      let catMovie = await Categoria.findOne({
+        where: {
+          nombre: categoria
+        }
+      })
+      await savedMovie.addCategoria(catMovie);
+    })
     // await movie.addCategoria(categoria);
     //await savedMovie.setCategorias(generos);
     res.status(201).json({
@@ -112,32 +120,6 @@ const addMovie = async (req, res = response) => {
   }
 };
 
-const updateMovie = async (req, res = response) => {
-  const { id } = req.params;
-  try {
-    const movie = await Pelicula.findByPk(id);
-    if (!movie) {
-      return res.status(404).json({
-        success: false,
-        message: "movie does not exist with that id",
-      });
-    }
-    const newMovie = {
-      ...req.body,
-    };
-    const updateMovie = await movie.update(newMovie);
-    res.json({
-      success: true,
-      data: updateMovie,
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({
-      success: false,
-      message: "Talk to the admin",
-    });
-  }
-};
 const removeMovie = async (req, res = response) => {
   const { id } = req.query;
   try {
@@ -167,6 +149,5 @@ module.exports = {
   getAllMovies,
   getMoviesByName,
   getMovieById,
-  updateMovie,
   removeMovie,
 };

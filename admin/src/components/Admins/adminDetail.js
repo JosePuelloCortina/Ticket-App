@@ -11,7 +11,7 @@ export default function UserDetail(){
 
     const dispatch = useDispatch();
 
-    const admin = useSelector(state => state.detail);
+    const admin = useSelector(state => state.adminDetail);
 
     useEffect(() => {
         dispatch(getAdminDetail(id));

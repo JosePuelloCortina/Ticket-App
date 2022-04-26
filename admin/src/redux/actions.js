@@ -19,7 +19,7 @@ export function getUsers(){
         try {
             const json = await axios.get("http://localhost:3001/user");
             dispatch({
-                type: "ALL_ELEMENTS",
+                type: "GET_USERS",
                 payload: json.data
             });
         } catch (error) {
@@ -33,7 +33,7 @@ export function getUserDetail(id){
         try {
             const json = await axios.get(`http://localhost:3001/user?id=${id}`);
             dispatch({
-                type: "ELEMENT_DETAIL",
+                type: "GET_USER_DETAIL",
                 payload: json.data
             });
         } catch (error) {
@@ -47,7 +47,7 @@ export function getAdmins(){
         try {
             const json = await axios.get("http://localhost:3001/admin");
            dispatch({
-               type: "ALL_ELEMENTS",
+               type: "GET_ADMINS",
                payload: json.data
            });
         } catch (error) {
@@ -61,7 +61,7 @@ export function getAdminDetail(id){
         try {
             const json = await axios.get(`http://localhost:3001/admin?id=${id}`);
             dispatch({
-                type: "ELEMENT_DETAIL",
+                type: "GET_ADMIN_DETAIL",
                 payload: json.data
             });
         } catch (error) {
@@ -75,7 +75,7 @@ export function getMovies(){
         try {
             const json = await axios.get("http://localhost:3001/movies");
            dispatch({
-               type: "ALL_ELEMENTS",
+               type: "GET_MOVIES",
                payload: json.data.data
            });
         } catch (error) {
@@ -89,23 +89,9 @@ export function getMovieDetail(id){
         try {
             const json = await axios.get(`http://localhost:3001/movies/id/${id}`);
             dispatch({
-                type: "ELEMENT_DETAIL",
+                type: "GET_MOVIE_DETAIL",
                 payload: json.data.data
             });
-        } catch (error) {
-            console.log(error);
-        }
-    }
-}
-
-export function getCategorias(){
-    return async function(dispatch){
-        try {
-            const json = await axios.get("http://localhost:3001/categorias");
-           dispatch({
-               type: "ALL_ELEMENTS",
-               payload: json.data
-           });
         } catch (error) {
             console.log(error);
         }
@@ -157,7 +143,7 @@ export function editAdmin(id, edit){
 export function editMovie(id, edit){
     return async function(dispatch){
         try {
-            await axios.put(`http://localhost:3001/movies/${id}`, edit);
+            await axios.put(`http://localhost:3001/movies?id=${id}`, edit);
            dispatch({
                type: "EDIT_ELEMENT"
            });
@@ -172,6 +158,34 @@ export function newMovie(input){
     return async function(dispatch){
         try {
             await axios.post("http://localhost:3001/movies", input);
+           dispatch({
+               type: "POST_ELEMENT"
+           });
+           alert("Elemento guardado")
+        } catch (error) {
+            alert(error);
+        }
+    }
+}
+
+export function getCategories(){
+    return async function(dispatch){
+        try {
+            const json = await axios.get("http://localhost:3001/categories");
+           dispatch({
+               type: "GET_CATEGORIES",
+               payload: json.data.data
+           });
+        } catch (error) {
+            alert(error);
+        }
+    }
+}
+
+export function newCategorie(input){
+    return async function(dispatch){
+        try {
+            await axios.post("http://localhost:3001/categories", input);
            dispatch({
                type: "POST_ELEMENT"
            });
