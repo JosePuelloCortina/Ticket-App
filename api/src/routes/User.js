@@ -6,6 +6,48 @@ const {Op} = require('sequelize');
 const user = Router();
 
 
+user.post("/googlelogin", async (req, res) => {
+    const {
+        nombre,
+        apellido,
+        email,
+        password,
+        estado,
+        imagen
+    } = req.body;
+
+    try {
+
+        let findedUser = await User.findOne({
+            where: {
+                email,
+                password
+            }
+        });
+        if(!findedUser){
+            await User.create({
+                nombre,
+                apellido,
+                email,
+                password,
+                estado,
+                imagen: imagen || ""
+            });
+            findedUser = await User.findOne({
+                where: {
+                    email,
+                    password
+                }
+            });
+        }
+
+        res.status(200).send(findedUser);
+        
+    } catch (error) {
+        res.status(400).json('ocurrio un error: '+ error);
+    }
+})
+
 user.get("/login", async (req, res) => {
     const { email, password } = req.query;
     try {

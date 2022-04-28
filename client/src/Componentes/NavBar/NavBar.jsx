@@ -103,7 +103,7 @@ function NavBar(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
-  const [search, setSearch] = useState('')
+  const [search, setSearch] = React.useState('')
   const navigate = useNavigate();
 
   const isMenuOpen = Boolean(anchorEl);

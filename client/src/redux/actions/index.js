@@ -44,6 +44,21 @@ export function login ( email, password ){
     }    
 }
 
+export function loginGoogle ( user ){
+    return async function(dispatch){
+        try{
+            const json = await axios.post(`${herokuUrl}/user/googlelogin`, user);
+            window.localStorage.setItem("userLogged", JSON.stringify(json.data));      
+            return dispatch({
+                type: 'LOGIN_USER_SUCCESS',
+                payload: json.data
+            })   
+        } catch (error) {
+            console.log(error)
+        }
+    }    
+}
+
 export function loginFillState() {
   return async function (dispatch) {
     try {
