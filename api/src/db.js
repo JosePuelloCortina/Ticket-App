@@ -72,9 +72,10 @@ const { Ticket, Pelicula, Categoria, Sucursal, User, Admin } = sequelize.models;
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 
-Pelicula.hasMany(Ticket);
+
 Sucursal.hasMany(Ticket);
 User.hasMany(Ticket);
+Ticket.belongsTo(User);
 Pelicula.belongsToMany(Categoria, { through: "Pelicula_Categoria" });
 Categoria.belongsToMany(Pelicula, { through: "Pelicula_Categoria" });
 

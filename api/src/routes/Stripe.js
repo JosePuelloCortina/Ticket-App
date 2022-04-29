@@ -16,7 +16,7 @@ stripeRute.get("/", async (req, res) => {
 
 stripeRute.post("/pago", async (req, res) => {
   try {
-    const { id, amount } = req.body;
+    const { id, amount, userId, idTickets } = req.body;
 
     const payment = await stripe.paymentIntents.create({
       amount,
@@ -25,7 +25,17 @@ stripeRute.post("/pago", async (req, res) => {
       payment_method: id,
       confirm: true,
     });
-    console.log(payment);
+    
+    idTickets.forEach(ticket => {
+      const ticketFinded = await ticket.findOne({
+        where: {
+          id: ticket
+        }
+      });
+      await ticketFinded.update({
+        userId
+      })
+    });
     res.send({ message: "pago recibido" });
   } catch (error) {
     console.log(error);
