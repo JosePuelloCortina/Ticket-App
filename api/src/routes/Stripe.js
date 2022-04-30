@@ -2,6 +2,7 @@
 const express = require("express");
 const stripe = require("stripe")(process.env.STRIPE_KEY);
 const cors = require("cors");
+const { Ticket } = require("../db");
 
 const app = express();
 const stripeRute = express.Router();
@@ -26,8 +27,8 @@ stripeRute.post("/pago", async (req, res) => {
       confirm: true,
     });
     
-    idTickets.forEach(ticket => {
-      const ticketFinded = await ticket.findOne({
+    idTickets.forEach(async ticket => {
+      const ticketFinded = await Ticket.findOne({
         where: {
           id: ticket
         }
