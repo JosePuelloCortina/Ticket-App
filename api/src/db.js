@@ -28,10 +28,10 @@ let sequelize =
         },
         ssl: true,
       })
-    : new Sequelize(
-      `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/ticket`,
-        { logging: false, native: false }
-      );
+    : new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/ticket`, {
+        logging: false,
+        native: false,
+      });
 
 // const sequelize = new Sequelize(
 //   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/ticket`,
@@ -71,7 +71,6 @@ const { Ticket, Pelicula, Categoria, Sucursal, User, Admin } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
-
 
 Sucursal.hasMany(Ticket);
 User.hasMany(Ticket);
