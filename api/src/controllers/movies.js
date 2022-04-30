@@ -9,6 +9,9 @@ const getAllMovies = async (req, res = response) => {
         {
           model: Categoria,
         },
+        {
+          model: Ticket
+        }
       ],
     });
     res.json({ success: true, data: movies });
@@ -29,6 +32,9 @@ const getMovieById = async (req, res = response) => {
         {
           model: Categoria,
         },
+        {
+          model: Ticket
+        }
       ],
     });
     if (!movie) {
@@ -57,7 +63,14 @@ const getMoviesByName = async (req, res = response) => {
       where: {
         nombre: { [Op.iLike]: `%${name}%` },
       },
-      include: Categoria,
+      include: [
+        {
+          model: Categoria
+        },
+        {
+          model: Ticket
+        }
+      ]
     });
     res.json({
       succes: true,

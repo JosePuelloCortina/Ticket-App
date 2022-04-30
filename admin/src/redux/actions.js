@@ -168,6 +168,21 @@ export function newMovie(input){
     }
 }
 
+export function newTicket(input){
+    return async function(dispatch){
+        try {
+            await axios.post("http://localhost:3001/ticket", input);
+           dispatch({
+               type: "POST_ELEMENT"
+           });
+           alert("Elemento guardado")
+        } catch (error) {
+            alert(error);
+        }
+    }
+}
+
+
 export function getCategories(){
     return async function(dispatch){
         try {
