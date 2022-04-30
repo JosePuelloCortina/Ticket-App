@@ -72,11 +72,6 @@ const { Ticket, Pelicula, Categoria, Sucursal, User, Admin, Review } = sequelize
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 
-//  Relacion Reviews clientes peliculas
-Pelicula.hasMany(Review); // la peli puede tener muchas review
-User.belongsToMany(Pelicula, {through: Review}) // 
-Pelicula.belongsToMany(User, {through: Review}) //  tiene reviews de muchos usuarios
-
 
 Sucursal.hasMany(Ticket);
 User.hasMany(Ticket);

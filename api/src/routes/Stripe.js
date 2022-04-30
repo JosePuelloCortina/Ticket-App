@@ -2,6 +2,7 @@ const express = require("express");
 //const stripe = require("stripe")(process.env.STRIPE_KEY);
 const stripe = require('stripe')('sk_test_51KqHrdFIWQ9P9UeS7vSiszaCmgiP8ANklgurJaZXDwy8lDDiMF8rznKRafbOXOZEXWU9kjykYOfMrwkKigtJ97Ck00SHpCO8bv');
 const cors = require("cors");
+const { Ticket } = require("../db");
 
 const app = express();
 const stripeRute = express.Router();
@@ -16,9 +17,7 @@ stripeRute.get("/", async (req, res) => {
 
 stripeRute.post("/pago", async (req, res) => {
   try {
-    
-    const { id, amount, idTickets, idUser } = req.body;
-    const parcer = 10000;
+    const { id, amount, userId, idTickets } = req.body;
 
     const payment = await stripe.paymentIntents.create({
       amount: parcer,
@@ -27,7 +26,17 @@ stripeRute.post("/pago", async (req, res) => {
       payment_method: id,
       confirm: true,
     });
-    console.log(payment);
+    
+    idTickets.forEach(async ticket => {
+      const ticketFinded = await Ticket.findOne({
+        where: {
+          id: ticket
+        }
+      });
+      await ticketFinded.update({
+        userId
+      })
+    });
     res.send({ message: "pago recibido" });
   } catch (error) {
     console.log(error);

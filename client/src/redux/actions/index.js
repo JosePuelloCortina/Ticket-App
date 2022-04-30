@@ -5,7 +5,7 @@ const herokuUrl = 'http://localhost:3001'
 export function getuserDetails(id) {
     return async function (dispach) {
         try {
-            const detail = await axios.get(`${herokuUrl}/user/${id}`)
+            const detail = await axios.get(`http://localhost:3001/user/${id}`)
 
       dispach({
         type: "GET_USER_DETAILS",
@@ -33,7 +33,7 @@ export function logout() {
 export function login ( email, password ){
     return async function(dispatch){
         try{
-            const json = await axios.get(`${herokuUrl}/user/login?email=${email}&&password=${password}`)
+            const json = await axios.get(`http://localhost:3001/user/login?email=${email}&&password=${password}`)
             window.localStorage.setItem("userLogged", JSON.stringify(json.data))      
             return dispatch({
                 type: 'LOGIN_USER_SUCCESS',
@@ -41,6 +41,21 @@ export function login ( email, password ){
             })   
         } catch (error) {
             alert(error)
+        }
+    }    
+}
+
+export function loginGoogle ( user ){
+    return async function(dispatch){
+        try{
+            const json = await axios.post(`http://localhost:3001/user/googlelogin`, user);
+            window.localStorage.setItem("userLogged", JSON.stringify(json.data));      
+            return dispatch({
+                type: 'LOGIN_USER_SUCCESS',
+                payload: json.data
+            })   
+        } catch (error) {
+            console.log(error)
         }
     }    
 }
@@ -64,7 +79,7 @@ export function postUser(payload){
     //console.log(payload)
     return async function (dispatch){
         try{
-            const create = await axios.post(`${herokuUrl}/user`, payload);
+            const create = await axios.post(`http://localhost:3001/user`, payload);
             return dispatch({
                  type: 'POST_USER',
                 payload: create
@@ -79,7 +94,7 @@ export function postUser(payload){
 export function moviesDetail(id){
     return async function (dispach){
         try{
-            const detail = await axios.get(`${herokuUrl}/movies/id/${id}`)
+            const detail = await axios.get(`http://localhost:3001/movies/id/${id}`)
             console.log(detail)
             return dispach({
                 type:'MOVIES_DETAIL',
@@ -96,7 +111,7 @@ export function moviesDetail(id){
 
 export const allMovies = () => async (dispach) => {
   try {
-    const movies = await fetch(`${herokuUrl}/movies`);
+    const movies = await fetch(`http://localhost:3001/movies`);
     const data = await movies.json();
     dispach({
       type: "ALL_MOVIES",
@@ -125,7 +140,7 @@ export const allGeners = () => async (dispach) => {
 export function moviesByName(name){
     return async function(dispatch){
         try{
-            const movies = await axios.get(`${herokuUrl}/movies/name/${name}`)
+            const movies = await axios.get(`http://localhost:3001/movies/name/${name}`)
             return dispatch({
                 type: 'MOVIES_NAME',
                 payload: movies.data
