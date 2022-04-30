@@ -1,53 +1,104 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from 'react-router';
-import { useDispatch, useSelector } from 'react-redux';
-import { editAdmin, getAdminDetail } from './../../redux/actions';
+import { useParams } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { editAdmin, getAdminDetail } from "./../../redux/actions";
+import { Button, Grid, Paper, TextField } from "@mui/material";
+import { Link } from "react-router-dom";
+import { ExitToAppOutlined, UpdateOutlined } from "@mui/icons-material";
 
+export default function UserDetail() {
+  const { id } = useParams();
 
+  const dispatch = useDispatch();
 
-export default function UserDetail(){
+  const admin = useSelector((state) => state.adminDetail);
 
-    const { id }= useParams();
+  useEffect(() => {
+    dispatch(getAdminDetail(id));
+  }, []);
 
-    const dispatch = useDispatch();
+  const [input, setInput] = useState({
+    nombre: "",
+    apellido: "",
+    email: "",
+  });
 
-    const admin = useSelector(state => state.adminDetail);
-
-    useEffect(() => {
-        dispatch(getAdminDetail(id));
-    }, []);
-
-
-    const [input, setInput] = useState({
-        nombre: '',
-        apellido: '',
-        email: ''
+  function handleChangeInput(e) {
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
     });
+    console.log(input);
+  }
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    dispatch(editAdmin(id, input));
+  }
 
-    function handleChangeInput(e){
-        setInput({
-            ...input,
-            [e.target.name]: e.target.value
-        })
-        console.log(input)
-    }
+  const stylePaper = {
+    border: "1px solid gray",
+    padding: "20px",
+    height: "auto",
+    width: 600,
+    margin: "0px auto",
+  };
 
-    function handleSubmit(e){
-        e.preventDefault();
-        dispatch(editAdmin(id, input))
-    }
-    return(
-        <form onSubmit={handleSubmit}>
-            <label>Nombre</label>
-            <input onChange={handleChangeInput} name="nombre" placeholder={admin.nombre}/>
-            <label>Apellido</label>
-            <input onChange={handleChangeInput} name="apellido" placeholder={admin.apellido}/>
-            <label>Email</label>
-            <input onChange={handleChangeInput} name="email" placeholder={admin.email}/>
-            
-            <button type={"submit"}>Subir Cambios</button>
-        </form>
-    )
+  return (
+    <div style={{ backgroundColor: "#f3f3f3" }}>
+      <Grid>
+        <h2 style={{ width: "100%", textAlign: "center", color: "gray" }}>
+          Datos del Administrador
+        </h2>
+        <Paper style={stylePaper}>
+          <Link to="/admins" style={{ textDecoration: "none" }}>
+            <Button
+              startIcon={<ExitToAppOutlined />}
+              variant="outlined"
+              color="secondary"
+            >{`Cancelar & Regresar`}</Button>
+          </Link>
+          <form onSubmit={handleSubmit} style={{ marginTop: 16 }}>
+            <TextField
+              label="Nombre(s)"
+              size="small"
+              placeholder={admin.nombre}
+              onChange={handleChangeInput}
+              name="nombre"
+              autoFocus
+              sx={{ width: "49%" }}
+              style={{ marginBottom: 16, marginRight: 10 }}
+            />
+            <TextField
+              label="Apellido(s)"
+              size="small"
+              onChange={handleChangeInput}
+              name="apellido"
+              sx={{ width: "49%" }}
+              placeholder={admin.apellido}
+            />
+            <TextField
+              type={`email`}
+              label="Dirección email"
+              size="small"
+              onChange={handleChangeInput}
+              name="email"
+              fullWidth
+              placeholder={admin.email}
+              style={{ marginBottom: 16, marginRight: 10 }}
+            />
+            <Button
+              startIcon={<UpdateOutlined />}
+              variant="contained"
+              color="primary"
+              disableElevation
+              type={"submit"}
+            >
+              Subir Cambios
+            </Button>
+          </form>
+        </Paper>
+      </Grid>
+    </div>
+  );
 }
-
