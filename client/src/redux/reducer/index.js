@@ -7,6 +7,8 @@ const initialState = {
   genres: [],
   detail: [],
   filtered: [],
+  allReview: [],
+  reviewInfo: []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -59,6 +61,23 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         genres: action.payload,
       };
+      //---reviews---
+      case 'CREAR_REVIEW':
+        return{
+          ...state,
+          allReview: action.payload
+        }
+      case ' GET_ALL_REVIEW':
+        return{
+          ...state,
+          allReview: action.payload,
+          reviewInfo: action.paload
+        }
+      case 'EDITAR_REVIEW':
+        return{
+          ...state,
+          allReview: action.payload,
+        }
     default:
       return state;
   }

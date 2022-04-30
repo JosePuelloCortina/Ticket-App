@@ -17,20 +17,29 @@ const CheckoutForm = () => {
   const [film, setFilm] = useState({});
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState(null);
-  const { id } = useParams();
+  const { id: idParamns } = useParams();
   const stripe = useStripe();
   const elements = useElements();
+  const [idTickets, setIdTickets]=useState([]);
+  const [tickets, setTickets] = useState([])
 
   useEffect(() => {
     async function fetchData() {
-      const result = await axios.get(`http://localhost:3001/movies/id/${id}`);
+      const result = await axios.get(`http://localhost:3001/movies/id/${idParamns}`);
+      const allTickets = await axios.get(`http://localhost:3001/ticket`);
       const movieId = result.data.data;
+      setTickets([allTickets.data]);
       setFilm(movieId);
     }
 
     fetchData();
-  }, [id]);
+  }, [idParamns]);
+console.log(tickets)
 
+const handleChecked = (e)=>{
+  e.preventDefault();
+  setIdTickets([...idTickets, e.target.value])
+}
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -50,6 +59,7 @@ const CheckoutForm = () => {
           id,
           amount: film["tickets.precio"] * 100,
         });
+        console.log(paymentMethod)
         setMessage(data.message);
         setTimeout(() => setMessage(null), 5000);
         elements.getElement(CardElement).clear();
@@ -80,6 +90,23 @@ const CheckoutForm = () => {
       {message && <p>{message}</p>}
     <div>
       <Link to='/detail'>volver</Link>
+      </div>
+
+      <div>
+      <label>
+      {tickets.map((e)=>{
+         return(
+          <div>
+            <input type='checkbox' 
+            value={e.id}
+            className="checkbox"
+            onChange={handleChecked} >
+            </input>
+            <span>{e.numero}</span>
+          </div> 
+         )
+      })}
+      </label>
     </div>
     </form>
   );

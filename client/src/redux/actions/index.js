@@ -1,5 +1,6 @@
 import axios from "axios";
-const herokuUrl = 'https://ticket-app-cine.herokuapp.com'
+//const herokuUrl = 'https://ticket-app-cine.herokuapp.com'
+const herokuUrl = 'http://localhost:3001'
 
 export function getuserDetails(id) {
     return async function (dispach) {
@@ -149,3 +150,58 @@ export function moviesSort(movies, propiedad, order) {
   return { type: "MOVIES_FILTERED", payload: movieSort };
 }
 
+export function postReview(body){
+  return async function (dispatch){
+    try {
+      const crearReview = await axios.post(`${herokuUrl}/review/create/${body}`)
+      return dispatch({
+        type: 'CREAR_REVIEW',
+        payload: crearReview,
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
+export function getAllReview(){
+  return async function (dispatch){
+    try {
+      const allReview = await axios.get(`${herokuUrl}/review`)
+      return dispatch({
+        type: ' GET_ALL_REVIEW',
+        payload: allReview.data,
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
+export function getReview(id){
+  return async function (dispatch){
+    try {
+      const allReviewId = await axios.get(`${herokuUrl}/review/${id}`)
+      return dispatch({
+        type: 'GET_REVIEW_ID',
+        payload: allReviewId.data,
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
+export function putReview(payload){
+  return async function (dispatch){
+    try {
+      const editReview = await axios.put(`${herokuUrl}/review/update/${payload}`)
+      return dispatch({
+        type: 'EDITAR_REVIEW',
+        payload: editReview.data,
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}

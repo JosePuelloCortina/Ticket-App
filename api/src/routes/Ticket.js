@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { Ticket, Pelicula } = require("../db");
+const { Ticket, Pelicula, User } = require("../db");
 const { v4: uuidv4 } = require('uuid');
 
 const ticket = Router();
@@ -9,7 +9,7 @@ ticket.get("/", async (req, res) => {
     const { id } = req.query;
     if(id){
         try {
-            const ticket = await Ticket.findByPk(id);
+            const ticket = await Ticket.findByPk(id, {raw: true});
             res.status(200).send(ticket);
         } catch (error) {
             res.status(404).json('ocurrio un error: '+ error);
@@ -32,14 +32,9 @@ ticket.post("/", async (req, res) => {
             precio,
             descuento,
             numero_sala,
-            pelicula    
+            userId  
         } = req.body;
 
-        const peli = await Pelicula.findOne({
-            where: {
-                nombre: pelicula
-            }
-        });
         const newTicket = await Ticket.create({
             id: uuidv4(),
             numero,
@@ -47,7 +42,7 @@ ticket.post("/", async (req, res) => {
             precio,
             descuento,
             numero_sala,
-            peliculaId: peli.id
+            userId
         });
         res.send(newTicket);
         
@@ -63,7 +58,8 @@ ticket.put("/", async (req, res) => {
         fecha_hora,
         precio,
         descuento,
-        numero_sala
+        numero_sala,
+        userId
     } = req.body;
     try {
         const ticket = await Ticket.findByPk(id);
@@ -72,7 +68,8 @@ ticket.put("/", async (req, res) => {
             fecha_hora: fecha_hora ? fecha_hora : ticket.fecha_hora,
             precio: precio ? precio : ticket.precio,
             descuento: descuento ? descuento : ticket.descuento,
-            numero_sala: numero_sala ? numero_sala : ticket.numero_sala
+            numero_sala: numero_sala ? numero_sala : ticket.numero_sala,
+            userId: userId ? userId : ticket.userId
         })
         res.status(200).send(ticket);
     } catch (error) {

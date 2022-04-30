@@ -8,6 +8,7 @@ import LoginUser from './Componentes/Login/LoginUser';
 import RegUsuarios from './Componentes/RegUsuarios/regUsuarios';
 import { useDispatch } from 'react-redux';
 import Stripe from './Componentes/Stripe/stripe';
+import Review from './Componentes/Review/review'
 
 import theme from './theme-config';
 import Perfil from './Componentes/Perfil/Perfil';
@@ -26,7 +27,7 @@ function App() {
 
   useEffect(() => {
     dispatch(loginFillState());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>
@@ -69,6 +70,7 @@ function App() {
             <Route path="/stripe/:id" element={<Stripe />} />
 
             <Route path="/perfil" element={<Perfil />} />
+            <Route path="/review" element={<Review />} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>
