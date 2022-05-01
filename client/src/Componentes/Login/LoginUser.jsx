@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { login, loginGoogle } from '../../redux/actions/index';
 import { Link, useNavigate } from "react-router-dom";
 import GoogleLogin from "react-google-login";
-import { postUser } from '../../redux/actions/index';
 import Transition from '../image_transition/Transition';
 import { Button, Checkbox, CssBaseline, FormControlLabel, FormGroup, TextField, Typography } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core";
