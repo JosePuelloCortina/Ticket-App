@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "./NavBar/navbar";
 import { useDispatch, useSelector } from 'react-redux';
-import { getMovies } from "../redux/actions";
+import { getMovies, newTicket } from "../redux/actions";
 
 
 export default function AddTickets(){
@@ -19,7 +19,7 @@ export default function AddTickets(){
 
     useEffect(() => {
         dispatch(getMovies());
-    });
+    }, []);
 
     const handleChangeInput = async (e) => {
         e.preventDefault();
@@ -41,7 +41,7 @@ export default function AddTickets(){
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        dispatch();
+        dispatch(newTicket(input));
     }
 
     return(

@@ -13,7 +13,7 @@ module.exports = (sequelize) => {
             allowNull: false
         }, 
         amount: {
-            type: DataTypes.STRING,
+            type: DataTypes.FLOAT,
             allowNull: false
         },
         cantidad_tickets: {

@@ -8,6 +8,7 @@ const sucursales = require("./sucursales");
 const ticket = require("./Ticket");
 const routeCatg = require("./Categoria");
 const PagoStripe = require("./Stripe");
+const compra = require("./Compra")
 
 router.use("/user", user);
 router.use("/movies", movies);
@@ -17,5 +18,6 @@ router.use("/sucursales", sucursales);
 router.use("/ticket", ticket);
 router.use("/categories", routeCatg);
 router.use("/stripe", PagoStripe);
+router.use("/compra", compra)
 
 module.exports = router;
