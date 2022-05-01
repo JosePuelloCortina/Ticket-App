@@ -52,25 +52,28 @@ export default function Login() {
           <br />
           <form onSubmit={handleSubmit}>
             <TextField
+              type={`email`}
               style={{ marginBottom: "16px" }}
               label={`Correo Electrónico`}
               placeholder={`Introduzca su correo electrónico`}
               fullWidth
               size="small"
-              required
-              onChange={handleChange}
               name="email"
+              onChange={handleChange}
+              value={input.email}
+              required
             />
             <TextField
               style={{ marginBottom: "16px" }}
               type={`password`}
               label={`Contraseña`}
+              name="password"
               placeholder={`Introduzca su contraseña`}
               fullWidth
               size="small"
-              required
               onChange={handleChange}
-              name="password"
+              value={input.password}
+              required
             />
             <Button
               style={{ margin: "16px 0px" }}
