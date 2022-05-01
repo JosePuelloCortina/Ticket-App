@@ -239,6 +239,35 @@ export function makeAdmin(input){
     }
 }
 
+export function getSucursales(){
+    return async function(dispatch){
+        try {
+            const json = await axios.get("http://localhost:3001/sucursales");
+           dispatch({
+               type: "GET_SUCURSALES",
+               payload: json.data
+           });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+
+export function newSucursal(input){
+    return async function(dispatch){
+        try {
+            const json = await axios.post("http://localhost:3001/sucursales/add", input);
+           dispatch({
+               type: "POST_ELEMENT"
+           });
+           alert("Elemento guardado");
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+
+
 export function login(email, password){
     return async function(dispatch){
         try {

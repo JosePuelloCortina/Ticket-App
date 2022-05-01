@@ -74,6 +74,7 @@ const { Ticket, Pelicula, Categoria, Compra, Sucursal, User, Admin } = sequelize
 
 Pelicula.hasMany(Ticket);
 User.hasMany(Ticket);
+Sucursal.hasMany(Ticket);
 Ticket.belongsTo(User);
 Pelicula.belongsToMany(Categoria, { through: "Pelicula_Categoria" });
 Categoria.belongsToMany(Pelicula, { through: "Pelicula_Categoria" });

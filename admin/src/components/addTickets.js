@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "./NavBar/navbar";
 import { useDispatch, useSelector } from 'react-redux';
-import { getMovies, newTicket } from "../redux/actions";
+import { getMovies, getSucursales, newTicket } from "../redux/actions";
 
 
 export default function AddTickets(){
@@ -13,12 +13,15 @@ export default function AddTickets(){
         precio: 0,
         descuento: 0,
         numero_sala: "" ,
-        peliculaId: ""
+        peliculaId: "",
+        sucursalId: ""
     });
     const movies = useSelector(state => state.movies);
+    const sucursales = useSelector(state => state.sucursales);
 
     useEffect(() => {
         dispatch(getMovies());
+        dispatch(getSucursales());
     }, []);
 
     const handleChangeInput = async (e) => {
@@ -30,11 +33,20 @@ export default function AddTickets(){
         console.log(input);
     }
 
-    const handleChangeMovie = (e) => {
+    const handleChangeMovie = async (e) => {
         e.preventDefault();
         setInput({
             ...input,
             peliculaId: e.target.value 
+        });
+        console.log(input);
+    }
+
+    const handleChangeSucursal = async (e) => {
+        e.preventDefault();
+        setInput({
+            ...input,
+            sucursalId: e.target.value 
         });
         console.log(input);
     }
@@ -69,6 +81,17 @@ export default function AddTickets(){
                         movies?.map(m => {
                             return(
                                 <option value={m.id}>{m.nombre}</option>
+                            )
+                        })
+                    }
+                </select>
+
+                <select onChange={handleChangeSucursal}>
+                    <option defaultValue>Sucursal</option>
+                    {
+                        sucursales?.map(s => {
+                            return(
+                                <option value={s.id}>{s.pais}, {s.provincia}, {s.ciudad}</option>
                             )
                         })
                     }

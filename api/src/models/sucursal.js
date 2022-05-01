@@ -8,15 +8,15 @@ module.exports = (sequelize) => {
             primaryKey: true,
             allowNull: false
         },
-        nombre: {
+        pais: {
             type: DataTypes.STRING,
             allowNull: false
         }, 
-        ciudad: {
+        provincia: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        contacto: {
+        ciudad: {
             type: DataTypes.STRING,
             allowNull: false
         },

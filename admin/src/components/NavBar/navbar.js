@@ -51,6 +51,9 @@ export default function NavBar() {
             <Link to="/ventas" style={styleText}>
               VENTAS
             </Link>
+            <Link to="/sucursales" style={styleText}>
+              SUCURSALES
+            </Link>
           </Box>
           <Avatar sx={{ marginLeft: "auto" }}>
             <LockOutlined
