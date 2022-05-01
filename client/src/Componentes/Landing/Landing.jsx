@@ -56,15 +56,15 @@ export default function Landing(){
             <div className={classes.body}>
                 <div className={classes.bodyLeft}>
                     <Container>
-                        <Typography className={classes.title}>
-                            <h1>Bienvenido a Cinem<span style={{'color':'black'}}>App</span></h1>
-                        </Typography>
-                        <Typography component='p' className={classes.parrafo}>
+                        <h1 className={classes.title}>
+                            <span>Bienvenido a Cinem<span style={{'color':'black'}}>App</span></span>
+                        </h1>
+                        <Typography className={classes.parrafo}>
                         Encuentra tus peliculas favoritas. compra tus entradas y disfrata de los mejores momentos con familia y amigos.
                         </Typography>
                         <br/><br/>
-                        <Link to={`/home`} style={{'textDecoration':'none'}}>
-                            <Button variant="contained" color="primary">Ingresa Ya!</Button>
+                        <Link to={`/register`} style={{'textDecoration':'none'}}>
+                            <Button variant="contained" color="primary">Registrate Ahora!</Button>
                         </Link>
                     </Container>
                 </div>

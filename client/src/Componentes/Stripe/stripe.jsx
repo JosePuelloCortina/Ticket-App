@@ -9,7 +9,7 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 import axios from "axios";
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 
 const stripePromise = loadStripe(
   "pk_test_51KqHrdFIWQ9P9UeS0BNcqq35rXRsXE6uQT0s3qWLIWI1eIvffpupJ781Cflga6GjiGcsYJZQRaLGo1AHrmR4nZF000iEqZdKf7"
@@ -23,7 +23,7 @@ const CheckoutForm = () => {
   const elements = useElements();
   const [idTickets, setIdTickets] = useState([]);
   const [allTickets, setAllTickets] = useState([]);
-  const user = useSelector(state => state.userInfo);
+  const user = useSelector((state) => state.userInfo);
   const [totalPrice, setTotalPrice] = useState(0);
   const [selectedTickets, setSelectedTickets] = useState([]);
 
@@ -80,47 +80,46 @@ const CheckoutForm = () => {
     setIdTickets([...idTickets, e.target.value]);
     setTotalPrice(totalPrice + Number(e.target.id));
     setSelectedTickets([...selectedTickets, e.target.name]);
-  }
-
+  };
 
   return (
-
-      <div>
-        <form onSubmit={handleSubmit}>
-          <img src={film.image} alt={film.nombre} />
-          <p>Correo Electrónico</p>
-          <input
-            id="email"
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter email address"
-          />
-          <h3>Precioa pagar: {totalPrice}</h3>
-          {
-            allTickets && allTickets?.map(t => {
-              return(
-                <button onClick={handleChecked} name={t.numero} id={t.precio} value={t.id}>{t.numero}</button>
-              )
-            })
-          }
-          <CardElement />
-          <button disabled={!stripe}>Pagar</button>
-          {message && <p>{message}</p>}
-          <div>
-            <Link to='/detail'>volver</Link>
-          </div>
-        </form>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <img src={film.image} alt={film.nombre} />
+        <p>Correo Electrónico</p>
+        <input
+          id="email"
+          type="text"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Enter email address"
+        />
+        <h3>Precioa pagar: {totalPrice}</h3>
+        {allTickets &&
+          allTickets?.map((t) => {
+            return (
+              <button
+                onClick={handleChecked}
+                name={t.numero}
+                id={t.precio}
+                value={t.id}
+              >
+                {t.numero}
+              </button>
+            );
+          })}
+        <CardElement />
+        <button disabled={!stripe}>Pagar</button>
+        {message && <p>{message}</p>}
+        <div>
+          <Link to="/detail">volver</Link>
+        </div>
+      </form>
       <h3>Tickets seleccionados</h3>
-      {
-        selectedTickets?.map(t => {
-          return(
-              <h3>{t}</h3>
-          )
-        })
-      }
-      </div>
-
+      {selectedTickets?.map((t) => {
+        return <h3>{t}</h3>;
+      })}
+    </div>
   );
 };
 

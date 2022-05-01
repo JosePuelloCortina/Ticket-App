@@ -6,6 +6,14 @@ import { Button, Grid, Paper, TextField } from "@mui/material";
 import { Link } from "react-router-dom";
 import { ExitToAppOutlined, UpdateOutlined } from "@mui/icons-material";
 
+const stylePaper = {
+  border: "1px solid gray",
+  padding: "20px",
+  height: "auto",
+  width: 600,
+  margin: "0px auto",
+};
+
 export default function UserDetail() {
   const { id } = useParams();
 
@@ -18,31 +26,23 @@ export default function UserDetail() {
   }, []);
 
   const [input, setInput] = useState({
-    nombre: "",
-    apellido: "",
-    email: "",
+    nombre: admin?.nombre,
+    apellido: admin?.apellido,
+    email: admin?.email,
   });
 
-  function handleChangeInput(e) {
+  const handleChangeInput = (e) => {
     setInput({
       ...input,
       [e.target.name]: e.target.value,
     });
     console.log(input);
-  }
+  };
 
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(editAdmin(id, input));
   }
-
-  const stylePaper = {
-    border: "1px solid gray",
-    padding: "20px",
-    height: "auto",
-    width: 600,
-    margin: "0px auto",
-  };
 
   return (
     <div style={{ backgroundColor: "#f3f3f3" }}>
@@ -61,30 +61,33 @@ export default function UserDetail() {
           <form onSubmit={handleSubmit} style={{ marginTop: 16 }}>
             <TextField
               label="Nombre(s)"
-              size="small"
-              placeholder={admin.nombre}
-              onChange={handleChangeInput}
               name="nombre"
+              size="small"
               autoFocus
+              onChange={handleChangeInput}
+              value={input.nombre}
+              placeholder={input.nombre}
               sx={{ width: "49%" }}
               style={{ marginBottom: 16, marginRight: 10 }}
             />
             <TextField
               label="Apellido(s)"
               size="small"
-              onChange={handleChangeInput}
               name="apellido"
+              onChange={handleChangeInput}
+              value={input.apellido}
+              placeholder={input.apellido}
               sx={{ width: "49%" }}
-              placeholder={admin.apellido}
             />
             <TextField
               type={`email`}
               label="Dirección email"
               size="small"
-              onChange={handleChangeInput}
               name="email"
               fullWidth
-              placeholder={admin.email}
+              onChange={handleChangeInput}
+              value={input.email}
+              placeholder={input.email}
               style={{ marginBottom: 16, marginRight: 10 }}
             />
             <Button

@@ -6,46 +6,48 @@ import { Button, Grid, Paper, TextField } from "@mui/material";
 import { Link } from "react-router-dom";
 import { ExitToAppOutlined, UpdateOutlined } from "@mui/icons-material";
 
+const stylePaper = {
+  border: "1px solid gray",
+  padding: "20px",
+  height: "auto",
+  width: 600,
+  margin: "0px auto",
+};
+
 export default function UserDetail() {
   const { id } = useParams();
 
   const dispatch = useDispatch();
 
-  const movie = useSelector((state) => state.movieDetail);
-
   useEffect(() => {
     dispatch(getMovieDetail(id));
   }, []);
 
-  const [input, setInput] = useState({
-    nombre: "",
-    fecha: "",
-    duracion: "",
-    descripcion: "",
-    trailer: "",
-    estreno: "",
-  });
+  const movie = useSelector((state) => state.movieDetail);
 
-  function handleChangeInput(e) {
+  const [input, setInput] = useState({
+    nombre: movie?.nombre,
+    fecha: movie?.fecha,
+    duracion: movie?.duracion,
+    descripcion: movie?.descripcion,
+    trailer: movie?.trailer,
+    estreno: movie?.estreno,
+  });
+  console.log("hooks", input);
+
+  const handleChangeInput = (e) => {
+    const { name, value } = e.target;
     setInput({
       ...input,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
     console.log(input);
-  }
+  };
 
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(editMovie(id, input));
   }
-
-  const stylePaper = {
-    border: "1px solid gray",
-    padding: "20px",
-    height: "auto",
-    width: 600,
-    margin: "0px auto",
-  };
 
   return (
     <div style={{ backgroundColor: "#f3f3f3" }}>
@@ -65,11 +67,11 @@ export default function UserDetail() {
             <TextField
               label="Pelicula"
               size="small"
-              fullWidth
-              onChange={handleChangeInput}
               name="nombre"
+              fullWidth
               autoFocus
-              placeholder={movie.nombre}
+              onChange={handleChangeInput}
+              value={input.nombre}
               style={{ marginBottom: "16px" }}
             />
             <div
@@ -92,12 +94,12 @@ export default function UserDetail() {
                 <TextField
                   label="Descripción"
                   size="small"
+                  name="descripcion"
                   fullWidth
                   multiline
                   rows={10}
-                  value={movie?.descripcion}
                   onChange={handleChangeInput}
-                  name="descripcion"
+                  value={input.descripcion}
                 />
               </div>
             </div>
@@ -105,38 +107,35 @@ export default function UserDetail() {
               type={`date`}
               label="Fecha lanzamiento"
               size="small"
-              value={movie.fecha}
-              onChange={handleChangeInput}
               name="fecha"
-              placeholder={movie.fecha}
+              onChange={handleChangeInput}
+              value={input.fecha}
               style={{ marginBottom: 16, marginRight: 10 }}
             />
             <TextField
               type={`number`}
               label="Duración"
               size="small"
-              value={movie.duracion}
-              onChange={handleChangeInput}
               name="duracion"
-              placeholder={movie.duracion}
+              onChange={handleChangeInput}
+              value={input.duracion}
             />
             <TextField
               label="Link trailer"
               size="small"
-              fullWidth
-              value={movie.trailer}
-              onChange={handleChangeInput}
               name="trailer"
-              placeholder={movie.trailer}
+              fullWidth
+              onChange={handleChangeInput}
+              value={input.trailer}
               style={{ marginBottom: 16 }}
             />
             <TextField
               type={`date`}
               label="Estreno"
               size="small"
-              value={movie.estreno}
-              onChange={handleChangeInput}
               name="estreno"
+              onChange={handleChangeInput}
+              value={input.estreno}
               style={{ marginRight: 10 }}
             />
             <label>

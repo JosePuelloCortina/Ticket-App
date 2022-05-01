@@ -52,9 +52,6 @@ export default function NavBarLanding(props){
                     <h2 className={classes.appbarTitle}>
                         Cinem<span className={classes.colorText}>App</span>
                     </h2>
-                    <Button variant='contained' color='secondary' disableElevation>
-                        Suscríbete Ahora
-                    </Button>
                     <Link to='/login' style={{'textDecoration':'none'}}>
                         <Button className={classes.appbarBtn} variant='contained' color='primary' disableElevation>
                             Iniciar Sesión

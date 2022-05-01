@@ -101,7 +101,6 @@ export default function CardTicket({
         </CardActionArea>
       </Link>
     </Card>
-      {/* <iframe width="420" height="345" src={trailer}></iframe> */}
     </div>
   );
 }
