@@ -1,6 +1,5 @@
 const server = require('express').Router();
 const { Sucursal, Op } = require('../db');
-const axios = require('axios');
 
 server.get("/", async function(req, res){
     try {

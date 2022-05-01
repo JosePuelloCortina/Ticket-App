@@ -32,7 +32,8 @@ ticket.post("/", async (req, res) => {
             precio,
             descuento,
             numero_sala,
-            userId  
+            userId,
+            peliculaId  
         } = req.body;
 
         const newTicket = await Ticket.create({
@@ -42,7 +43,8 @@ ticket.post("/", async (req, res) => {
             precio,
             descuento,
             numero_sala,
-            userId
+            userId,
+            peliculaId
         });
         res.send(newTicket);
         
@@ -59,7 +61,8 @@ ticket.put("/", async (req, res) => {
         precio,
         descuento,
         numero_sala,
-        userId
+        userId,
+        peliculaId
     } = req.body;
     try {
         const ticket = await Ticket.findByPk(id);
@@ -69,7 +72,8 @@ ticket.put("/", async (req, res) => {
             precio: precio ? precio : ticket.precio,
             descuento: descuento ? descuento : ticket.descuento,
             numero_sala: numero_sala ? numero_sala : ticket.numero_sala,
-            userId: userId ? userId : ticket.userId
+            userId: userId ? userId : ticket.userId,
+            peliculaId: peliculaId ? peliculaId : ticket.peliculaId
         })
         res.status(200).send(ticket);
     } catch (error) {

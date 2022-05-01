@@ -14,6 +14,8 @@ import Login from './components/Login/Login';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useMemo } from 'react';
 import { fillUserAdmin } from './redux/actions';
+import AddTickets from './components/addTickets';
+import Ventas from './components/Ventas';
 
 function App() {
 
@@ -49,6 +51,10 @@ function App() {
 
         <Route path='/categorias' element={(isLogged === true) ? <Categorias/> : <Navigate to="/"/>}/>
         <Route path='/categoria/add' element={(isLogged === true) ? <AddCategoria/> : <Navigate to="/"/>}/>
+
+        <Route path='/addTickets' element={(isLogged === true) ? <AddTickets/> : <Navigate to="/"/>}/>
+
+        <Route path='/ventas' element={(isLogged === true) ? <Ventas/> : <Navigate to="/"/>}/>
       </Routes>
     </BrowserRouter>
   );

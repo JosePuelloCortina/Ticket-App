@@ -45,6 +45,12 @@ export default function NavBar() {
             <Link to="/categorias" style={styleText}>
               CATEGORIAS
             </Link>
+            <Link to="/addTickets" style={styleText}>
+              TICKETS
+            </Link>
+            <Link to="/ventas" style={styleText}>
+              VENTAS
+            </Link>
           </Box>
           <Avatar sx={{ marginLeft: "auto" }}>
             <LockOutlined

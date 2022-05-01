@@ -6,6 +6,7 @@ const initialState = {
     adminInfo: null,
     movies: null,
     movieDetail: [],
+    ventas: null,
     categories: [] 
 };
 
@@ -45,6 +46,12 @@ export default function rootReducer(state = initialState, action){
         return{
             ...state,
             movieDetail: action.payload
+        }
+    }
+    if(action.type === "GET_VENTAS"){
+        return{
+            ...state,
+            ventas: action.payload
         }
     }
     if(action.type === "GET_CATEGORIES"){

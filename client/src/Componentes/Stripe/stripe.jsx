@@ -31,8 +31,7 @@ const CheckoutForm = () => {
     async function fetchData() {
       const result = await axios.get(`http://localhost:3001/movies/id/${id}`);
       const movieId = result.data.data;
-      const jsonTickets = await axios.get(`http://localhost:3001/ticket`);
-      setAllTickets([...jsonTickets.data]);
+      setAllTickets([...result.data.data.tickets]);
       setFilm(movieId);
     }
 
@@ -59,6 +58,7 @@ const CheckoutForm = () => {
           amount: totalPrice * 100,
           userId: user.id,
           idTickets: idTickets,
+          comprador_email: user.email
         });
         setIdTickets([]);
         setTotalPrice(0);
