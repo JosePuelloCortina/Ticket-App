@@ -33,7 +33,8 @@ ticket.post("/", async (req, res) => {
             descuento,
             numero_sala,
             userId,
-            peliculaId  
+            peliculaId,
+            sucursalId 
         } = req.body;
 
         const newTicket = await Ticket.create({
@@ -44,7 +45,8 @@ ticket.post("/", async (req, res) => {
             descuento,
             numero_sala,
             userId,
-            peliculaId
+            peliculaId,
+            sucursalId
         });
         res.send(newTicket);
         

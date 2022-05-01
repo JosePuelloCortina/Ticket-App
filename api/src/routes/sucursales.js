@@ -1,10 +1,14 @@
 const server = require('express').Router();
-const { Sucursal, Op } = require('../db');
+const { Sucursal, Ticket, Op } = require('../db');
 const { v4: uuidv4 } = require('uuid');
 
 server.get("/", async function(req, res){
     try {
-        const sucursales = await Sucursal.findAll();
+        const sucursales = await Sucursal.findAll({
+            include: {
+                model: Ticket
+            }
+        });
         res.status(200).send(sucursales);
     } catch (error) {
         console.log(error)
@@ -19,6 +23,9 @@ server.get("/id/:id", async function(req, res, next){
             sucursal = await Sucursal.findOne({
                 where:{
                     id: id
+                },
+                include: {
+                    model: Ticket
                 }
             })
         }
@@ -37,6 +44,9 @@ server.get('/search', async function(req, res, next){
                 pais:{
                     [Op.iLike]: `%${name}`
                 }
+            },
+            include: {
+                model: Ticket
             }
         })
         res.send(sucursal ? sucursal : 'No existe esta sucursal!!')
