@@ -3,22 +3,21 @@ import React from "react";
 import { useEffect, useState } from "react";
 import {postReview , getReview, getAllReview} from '../../redux/actions/index';
 import { useDispatch, useSelector } from "react-redux";
-//import s from './CrearReviews.module.css'
+import s from './Review.module.css'
 import { useNavigate, useParams } from "react-router-dom";
-//import login_mujer from '../../image/login_mujer.png'
 //import ReactStars from "react-rating-stars-component";
 
 
 
 
 export default function Reviews () {
-    let { idUser, idMovies} = useParams()
+    let { id } = useParams()
     const dispatch = useDispatch()
     const navigate = useNavigate()
     
-    idUser='';
-     const user = idUser
-     console.log('idUser :>> ', idUser);
+    //idUser='41f5c363-cec8-4c4b-bfd1-b24b29b3a2b4';
+     //const user = idUser
+     //console.log('idUser :>> ', idUser);
 
     const users= useSelector((state) => state.userInfo)
     const reviews = useSelector((state) => state.allReview)
@@ -31,8 +30,8 @@ export default function Reviews () {
     })
 
     useEffect(() => {
-      dispatch(getReview());     
-    }, []);  
+      dispatch(getReview(id));     
+    }, [id]);  
 
  
     const handleSubmit = (e) => {
@@ -60,7 +59,7 @@ export default function Reviews () {
 console.log('input :>> ', input);
     return(
     <>
-    <div className=''>
+    <div className={s.container}>
       <div className="row">
         <div className="col-6 mx-auto">
           <div>
@@ -99,7 +98,7 @@ console.log('input :>> ', input);
           <div>
             {reviews.length > 0 ?
               reviews.map((re) => (
-                <div key={re.user} >
+                <div key={re.users} >
                   <div className="be-img-comment" >	
                       <img src={re.imagen } alt="" className="be-ava-comment"/>
                   </div>

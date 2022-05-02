@@ -1,6 +1,6 @@
 const express = require("express");
-//const stripe = require("stripe")(process.env.STRIPE_KEY);
-const stripe = require('stripe')('sk_test_51KqHrdFIWQ9P9UeS7vSiszaCmgiP8ANklgurJaZXDwy8lDDiMF8rznKRafbOXOZEXWU9kjykYOfMrwkKigtJ97Ck00SHpCO8bv');
+const stripe = require("stripe")(process.env.STRIPE_KEY);
+//const stripe = require('stripe')('sk_test_51KqHrdFIWQ9P9UeS7vSiszaCmgiP8ANklgurJaZXDwy8lDDiMF8rznKRafbOXOZEXWU9kjykYOfMrwkKigtJ97Ck00SHpCO8bv');
 const cors = require("cors");
 const { Ticket } = require("../db");
 
@@ -20,7 +20,7 @@ stripeRute.post("/pago", async (req, res) => {
     const { id, amount, userId, idTickets } = req.body;
 
     const payment = await stripe.paymentIntents.create({
-      amount: parcer,
+      amount,
       currency: "USD",
       description: "ticket cinema",
       payment_method: id,
@@ -37,6 +37,7 @@ stripeRute.post("/pago", async (req, res) => {
         userId
       })
     });
+    console.log(payment)
     res.send({ message: "pago recibido" });
   } catch (error) {
     console.log(error);
