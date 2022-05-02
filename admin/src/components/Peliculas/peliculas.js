@@ -5,9 +5,17 @@ import { getMovies } from "./../../redux/actions";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { deleteElement } from "./../../redux/actions";
-import { Button, Grid, List, Paper } from "@mui/material";
+import { Button, Divider, Grid, List, Paper, Typography } from "@mui/material";
 import CardMovie from "./CardMovie";
 import { AddCardOutlined } from "@mui/icons-material";
+
+const stylePaper = {
+  border: "1px solid gray",
+  padding: 20,
+  height: "auto",
+  width: 800,
+  margin: "20px auto",
+};
 
 export default function Peliculas() {
   const dispatch = useDispatch();
@@ -23,21 +31,21 @@ export default function Peliculas() {
     dispatch(deleteElement("movies", id));
   }
 
-  const stylePaper = {
-    border: "1px solid gray",
-    padding: 20,
-    height: "auto",
-    width: 800,
-    margin: "20px auto",
-  };
-
   return (
     <div style={{ backgroundColor: "#f3f3f3" }}>
       <NavBar />
       <Grid>
-        <h2 style={{ width: "100%", textAlign: "center", color: "gray" }}>
+        <Typography
+          fontSize={40}
+          style={{
+            width: "100%",
+            textAlign: "center",
+            color: "gray",
+            marginTop: 10,
+          }}
+        >
           Administrar Películas
-        </h2>
+        </Typography>
         <Paper style={stylePaper}>
           <Link
             to="/movies/add"
@@ -52,6 +60,7 @@ export default function Peliculas() {
               Agregar Película
             </Button>
           </Link>
+          <Divider style={{ marginTop: 10 }} />
           <List sx={{ width: "100%" }}>
             {elementos?.map((el) => (
               <CardMovie

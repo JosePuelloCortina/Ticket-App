@@ -182,19 +182,17 @@ export default function Detail() {
                     </span>
                   </h2>
                   <div>
-                    <h4>{`Generos:  `}
+                    <Typography>{`Generos:  `}
                       {detalle?.Categoria?.map(c=>{
                         return (<span key={c.id} style={{marginRight:8}}>{c.nombre}</span>)
                       })}
-                    </h4>
-                    <span>{`Duracion: ${Math.floor(detalle?.duracion/60)}h : ${detalle?.duracion % 60}min`}</span>
+                    </Typography>
+                    <Typography>{`Duracion: ${Math.floor(detalle?.duracion/60)}h : ${detalle?.duracion % 60}min`}</Typography>
                   </div>
                 </div>
-                <div className={classes.header_info}>
+                <div>
                   <h3 style={{marginTop:'10px', width:'100%', fontWeight:600, fontSize:'1.3em'}}>Sinopsis</h3>
-                  <div>
-                    <Typography component={`p`}>{detalle?.descripcion}</Typography>
-                  </div>
+                  <Typography variant="inherit">{detalle?.descripcion}</Typography>
                   <ol className={classes.botones}>
                       <li className={classes.style_botones}>
                         <Link to="/home" style={{ textDecoration: "none" }}>

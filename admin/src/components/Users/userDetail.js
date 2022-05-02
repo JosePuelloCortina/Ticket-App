@@ -2,8 +2,15 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { editUser, getUserDetail } from "./../../redux/actions";
-import { Button, Grid, Paper, TextField } from "@mui/material";
-import { ExitToAppOutlined } from "@mui/icons-material";
+import {
+  Button,
+  Divider,
+  Grid,
+  Paper,
+  TextField,
+  Typography,
+} from "@mui/material";
+import { ExitToAppOutlined, Update } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
 const stylePaper = {
@@ -72,9 +79,17 @@ export default function UserDetail() {
   return (
     <div style={{ backgroundColor: "#f3f3f3" }}>
       <Grid>
-        <h2 style={{ width: "100%", textAlign: "center", color: "gray" }}>
+        <Typography
+          fontSize={40}
+          style={{
+            width: "100%",
+            textAlign: "center",
+            color: "gray",
+            padding: "10px 0px",
+          }}
+        >
           Datos del Usuario
-        </h2>
+        </Typography>
         <Paper style={stylePaper}>
           <Link to="/users" style={{ textDecoration: "none" }}>
             <Button
@@ -83,6 +98,7 @@ export default function UserDetail() {
               color="secondary"
             >{`Cancelar & Regresar`}</Button>
           </Link>
+          <Divider style={{ marginTop: 10, marginBottom: 10 }} />
           <form onSubmit={handleSubmit}>
             <TextField
               label="Nombre(s)"
@@ -115,9 +131,16 @@ export default function UserDetail() {
               placeholder={user?.email}
               style={{ marginBottom: 16 }}
             />
-            <label>Estado</label>
-            {input?.estado === true ? <h2>True</h2> : <h2>False</h2>}
-            <Button variant="outlined" onClick={handleChangeEstadoFalse}>
+            {input?.estado === true ? (
+              <h3>{`Estado: True`}</h3>
+            ) : (
+              <h3>{`Estado: False`}</h3>
+            )}
+            <Button
+              style={{ marginRight: 10 }}
+              variant="outlined"
+              onClick={handleChangeEstadoFalse}
+            >
               set Estado to False
             </Button>
             <Button variant="outlined" onClick={handleChangeEstadoTrue}>
@@ -126,7 +149,7 @@ export default function UserDetail() {
             {user?.tickets?.map((t, i) => {
               return <h2 key={i}>{t.precio}</h2>;
             })}
-            <Button variant="outlined" type={"submit"}>
+            <Button startIcon={<Update />} variant="contained" type={"submit"}>
               Subir Cambios
             </Button>
           </form>

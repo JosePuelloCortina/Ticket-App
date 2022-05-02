@@ -3,7 +3,14 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logOut } from "./../../redux/actions";
 import { AppBar, Avatar, Box, Toolbar, Typography } from "@mui/material";
-import { LockOutlined } from "@mui/icons-material";
+import { LogoutOutlined } from "@mui/icons-material";
+
+const styleText = {
+  textDecoration: "none",
+  color: "inherit",
+  marginRight: "1rem",
+  textAlign: "center",
+};
 
 export default function NavBar() {
   const dispatch = useDispatch();
@@ -11,13 +18,6 @@ export default function NavBar() {
   function handleLogOut() {
     dispatch(logOut());
   }
-
-  const styleText = {
-    textDecoration: "none",
-    color: "inherit",
-    marginRight: "1rem",
-    textAlign: "center",
-  };
 
   return (
     <React.Fragment>
@@ -56,7 +56,7 @@ export default function NavBar() {
             </Link>
           </Box>
           <Avatar sx={{ marginLeft: "auto" }}>
-            <LockOutlined
+            <LogoutOutlined
               onClick={handleLogOut}
               style={{ cursor: "pointer" }}
             />

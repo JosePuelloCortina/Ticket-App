@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Divider, ListItem, ListItemText } from "@mui/material";
+import { Button, Divider, ListItem, ListItemText, Typography } from "@mui/material";
 import { DeleteOutline, Edit } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
@@ -11,10 +11,10 @@ function CardMovie({ id, image, nombre, estreno, descripcion, handleDelete }) {
           <img src={image} width="170px" height="250px" alt="" />
         </div>
         <ListItemText
-          primary={<h3>{nombre}</h3>}
+          primary={<Typography variant="h5" style={{marginBottom:10}}>{nombre}</Typography>}
           secondary={
             <React.Fragment>
-              <b>{`Estreno : ${estreno}`}</b>
+              <span style={{color:'rgb(23,54,78)'}}>{`Estreno : ${estreno}`}</span>
               <br />
               {descripcion}
               <br />

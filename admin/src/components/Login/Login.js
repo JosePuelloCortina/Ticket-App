@@ -2,8 +2,32 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/actions";
 import { useNavigate } from "react-router-dom";
-import { Avatar, Button, Grid, Paper, TextField } from "@mui/material";
-import { LockOutlined } from "@mui/icons-material";
+import {
+  Avatar,
+  Button,
+  FormControl,
+  Grid,
+  IconButton,
+  InputAdornment,
+  InputLabel,
+  OutlinedInput,
+  Paper,
+  Typography,
+} from "@mui/material";
+import {
+  LockOutlined,
+  LoginOutlined,
+  Visibility,
+  VisibilityOff,
+} from "@mui/icons-material";
+
+const paperStyle = {
+  padding: 20,
+  height: "70vh",
+  width: 280,
+  margin: "20px auto",
+  backgroundColor: "#f1f1f1",
+};
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -13,28 +37,32 @@ export default function Login() {
   const [input, setInput] = useState({
     email: "",
     password: "",
+    showPassword: false,
   });
 
-  function handleChange(e) {
-    e.preventDefault();
+  const handleChange = (prop) => (event) => {
     setInput({
       ...input,
-      [e.target.name]: e.target.value,
+      [prop]: event.target.value,
     });
-  }
+  };
+
+  const handleClickShowPassword = () => {
+    setInput({
+      ...input,
+      showPassword: !input.showPassword,
+    });
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
 
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(login(input.email, input.password));
     navigate("/home");
   }
-
-  const paperStyle = {
-    padding: 20,
-    height: "70vh",
-    width: 280,
-    margin: "20px auto",
-  };
 
   return (
     <Grid>
@@ -43,44 +71,80 @@ export default function Login() {
           <Avatar style={{ backgroundColor: "#5ED5A8", marginTop: "1rem" }}>
             <LockOutlined />
           </Avatar>
-          <br />
-          <h2 style={{ margin: "20px 0px" }}>
+          <Typography
+            sx={{ marginBottom: "2rem", marginTop: "1.5rem", fontSize: 25 }}
+          >
             Admin
             <br />
             Iniciar Sesión
-          </h2>
-          <br />
+          </Typography>
           <form onSubmit={handleSubmit}>
-            <TextField
-              type={`email`}
-              style={{ marginBottom: "16px" }}
-              label={`Correo Electrónico`}
-              placeholder={`Introduzca su correo electrónico`}
-              fullWidth
-              size="small"
-              name="email"
-              onChange={handleChange}
-              value={input.email}
-              required
-            />
-            <TextField
-              style={{ marginBottom: "16px" }}
-              type={`password`}
-              label={`Contraseña`}
-              name="password"
-              placeholder={`Introduzca su contraseña`}
-              fullWidth
-              size="small"
-              onChange={handleChange}
-              value={input.password}
-              required
-            />
+            <FormControl
+              variant="outlined"
+              sx={{
+                width: "100%",
+                marginBottom: "1.5rem",
+                marginLeft: 0,
+                marginRight: 0,
+              }}
+            >
+              <InputLabel htmlFor="outlined-adornment-email">
+                Correo electrónico
+              </InputLabel>
+              <OutlinedInput
+                id="outlined-adornment-email"
+                type="email"
+                value={input.email}
+                placeholder={`Introduzca su correo electrónico`}
+                onChange={handleChange("email")}
+                fullWidth
+                name="email"
+                label="Correo electrónico"
+                required
+              />
+            </FormControl>
+            <FormControl
+              variant="outlined"
+              sx={{
+                width: "100%",
+                marginBottom: "1.5rem",
+                marginLeft: 0,
+                marginRight: 0,
+              }}
+            >
+              <InputLabel htmlFor="outlined-adornment-password">
+                Contraseña
+              </InputLabel>
+              <OutlinedInput
+                id="outlined-adornment-password"
+                type={input.showPassword ? "text" : "password"}
+                value={input.password}
+                onChange={handleChange("password")}
+                fullWidth
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                    >
+                      {input.showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+                label="Contraseña"
+                required
+              />
+            </FormControl>
             <Button
-              style={{ margin: "16px 0px" }}
+              sx={{ marginBottom: "1.5rem" }}
               fullWidth
+              size="large"
               variant="contained"
               disableElevation
               type="submit"
+              endIcon={<LoginOutlined />}
             >
               Ingresar
             </Button>
