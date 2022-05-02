@@ -1,9 +1,17 @@
-import { ExitToAppOutlined, Save, SaveAltOutlined } from "@mui/icons-material";
-import { Button, Grid, Paper, TextField } from "@mui/material";
+import { ExitToAppOutlined, Save } from "@mui/icons-material";
+import { Button, Grid, Paper, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { newCategorie } from "../../redux/actions";
+
+const stylePaper = {
+  border: "1px solid gray",
+  padding: 20,
+  height: "auto",
+  width: 600,
+  margin: "20px auto",
+};
 
 export default function AddCategoria() {
   const dispatch = useDispatch();
@@ -28,20 +36,20 @@ export default function AddCategoria() {
     });
   }
 
-  const stylePaper = {
-    border: "1px solid gray",
-    padding: 20,
-    height: "auto",
-    width: 600,
-    margin: "20px auto",
-  };
-
   return (
     <div style={{ backgroundColor: "#f3f3f3" }}>
       <Grid>
-        <h2 style={{ width: "100%", textAlign: "center", color: "gray" }}>
+        <Typography
+          fontSize={40}
+          style={{
+            width: "100%",
+            textAlign: "center",
+            color: "gray",
+            paddingTop: "10px",
+          }}
+        >
           Registrar Categoría
-        </h2>
+        </Typography>
         <Paper style={stylePaper}>
           <TextField
             style={{ margin: 10 }}
