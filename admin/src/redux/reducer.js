@@ -6,7 +6,9 @@ const initialState = {
     adminInfo: null,
     movies: null,
     movieDetail: [],
-    categories: [] 
+    ventas: null,
+    categories: [],
+    sucursales: null 
 };
 
 
@@ -47,10 +49,22 @@ export default function rootReducer(state = initialState, action){
             movieDetail: action.payload
         }
     }
+    if(action.type === "GET_VENTAS"){
+        return{
+            ...state,
+            ventas: action.payload
+        }
+    }
     if(action.type === "GET_CATEGORIES"){
         return{
             ...state,
             categories: action.payload
+        }
+    }
+    if(action.type === "GET_SUCURSALES"){
+        return{
+            ...state,
+            sucursales: action.payload
         }
     }
     if(action.type === "LOGIN_ADMIN"){

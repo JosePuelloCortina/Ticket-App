@@ -28,10 +28,10 @@ let sequelize =
         },
         ssl: true,
       })
-    : new Sequelize(
-      `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/ticket`,
-        { logging: false, native: false }
-      );
+    : new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/ticket`, {
+        logging: false,
+        native: false,
+      });
 
 // const sequelize = new Sequelize(
 //   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/ticket`,
@@ -72,9 +72,9 @@ const { Ticket, Pelicula, Categoria, Sucursal, User, Admin, Review } = sequelize
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 
-
-Sucursal.hasMany(Ticket);
+Pelicula.hasMany(Ticket);
 User.hasMany(Ticket);
+Sucursal.hasMany(Ticket);
 Ticket.belongsTo(User);
 Pelicula.belongsToMany(Categoria, { through: "Pelicula_Categoria" });
 Categoria.belongsToMany(Pelicula, { through: "Pelicula_Categoria" });

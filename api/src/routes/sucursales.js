@@ -1,13 +1,15 @@
 const server = require('express').Router();
-const { Sucursal, Op } = require('../db');
-const axios = require('axios');
+const { Sucursal, Ticket, Op } = require('../db');
+const { v4: uuidv4 } = require('uuid');
 
 server.get("/", async function(req, res){
     try {
-        Sucursal.findAll()
-        .then(sucursal =>{ 
-            res.json(sucursal)
-        })
+        const sucursales = await Sucursal.findAll({
+            include: {
+                model: Ticket
+            }
+        });
+        res.status(200).send(sucursales);
     } catch (error) {
         console.log(error)
     }
@@ -21,6 +23,9 @@ server.get("/id/:id", async function(req, res, next){
             sucursal = await Sucursal.findOne({
                 where:{
                     id: id
+                },
+                include: {
+                    model: Ticket
                 }
             })
         }
@@ -36,9 +41,12 @@ server.get('/search', async function(req, res, next){
         const {name} = req.query;
         let sucursal = await Sucursal.findAll({
             where:{
-                name:{
+                pais:{
                     [Op.iLike]: `%${name}`
                 }
+            },
+            include: {
+                model: Ticket
             }
         })
         res.send(sucursal ? sucursal : 'No existe esta sucursal!!')
@@ -47,36 +55,34 @@ server.get('/search', async function(req, res, next){
     }
 })
 
-server.post("/add", function(req, res, next){
-    const { nombre, ciudad, contacto, direccion } = req.body;
-    if(!nombre || !ciudad || !contacto || !direccion){
+server.post("/add", async function(req, res, next){
+    const { pais, provincia, ciudad, direccion } = req.body;
+    if(!pais || !provincia || !ciudad || !direccion){
         return res.status(422).json({error: " No se enviaron todos los datos!"})
     }
-    Sucursal.create({
-        nombre: nombre,
-        ciudad: ciudad,
-        contacto: contacto, 
-        direccion: direccion
+    await Sucursal.create({
+        id: uuidv4(),
+        pais,
+        provincia,
+        ciudad,
+        direccion,
     })
-    .then(sucursal =>{
-        res.json(sucursal)
-        console.log('Sucursal creada exitosamente!!');
-    })
+    res.status(200).send("sucursal creada")
 })
 
-server.put("/:id", function(req, res, next){
+server.put("/:id", async function(req, res, next){
     const { id } = req.params;
-    const { nombre, ciudad, contacto, direccion } = req.body;
-    if(!nombre || !ciudad || !contacto || !direccion){
+    const { pais, provincia, ciudad, direccion } = req.body;
+    if(!pais || !provincia || !ciudad || !direccion){
         return res.status(422).json({error: " No se enviaron todos los datos!"})
     }
-    Sucursal.findByPk(id)
+    await Sucursal.findByPk(id)
     .then((sucursal) =>{
         res.send(sucursal.update({
-            nombre: nombre,
-            ciudad: ciudad,
-            contacto: contacto, 
-            direccion: direccion
+            pais,
+            provincia,
+            ciudad,
+            direccion,
             
         }))  
     }).catch(next)

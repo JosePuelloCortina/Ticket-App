@@ -1,27 +1,23 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-    sequelize.define('sucursal', {
+    sequelize.define('compra', {
         id: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV1,
             primaryKey: true,
             allowNull: false
         },
-        pais: {
+        comprador_email: {
             type: DataTypes.STRING,
             allowNull: false
         }, 
-        provincia: {
-            type: DataTypes.STRING,
+        amount: {
+            type: DataTypes.FLOAT,
             allowNull: false
         },
-        ciudad: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        direccion: {
-            type: DataTypes.STRING,
+        cantidad_tickets: {
+            type: DataTypes.FLOAT,
             allowNull: false
         }
     })

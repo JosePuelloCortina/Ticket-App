@@ -8,7 +8,11 @@ const sucursales = require("./sucursales");
 const ticket = require("./Ticket");
 const routeCatg = require("./Categoria");
 const PagoStripe = require("./Stripe");
+<<<<<<< HEAD
 const review = require('./review');
+=======
+const compra = require("./Compra")
+>>>>>>> main
 
 router.use("/user", user);
 router.use("/movies", movies);
@@ -18,6 +22,10 @@ router.use("/sucursales", sucursales);
 router.use("/ticket", ticket);
 router.use("/categories", routeCatg);
 router.use("/stripe", PagoStripe);
+<<<<<<< HEAD
 router.use('/review', review);
+=======
+router.use("/compra", compra)
+>>>>>>> main
 
 module.exports = router;
