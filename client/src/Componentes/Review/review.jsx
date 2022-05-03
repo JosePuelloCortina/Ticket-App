@@ -1,65 +1,109 @@
 import React from "react";
 //import Swal from 'sweetalert2';
 import { useEffect, useState } from "react";
-import {postReview , getReview, getAllReview} from '../../redux/actions/index';
+import {postReview , getReview, getAllReview,  putReview} from '../../redux/actions/index';
 import { useDispatch, useSelector } from "react-redux";
-import s from './Review.module.css'
+import  './Review.module.css'
 import { useNavigate, useParams } from "react-router-dom";
-//import ReactStars from "react-rating-stars-component";
+import ReactStars from "react-rating-stars-component";
 
 
 
 
-export default function Reviews () {
-    let { id } = useParams()
+export default function Reviews ({idMovies}) {
+   // let { id } = useParams()
     const dispatch = useDispatch()
     const navigate = useNavigate()
     
-    //idUser='41f5c363-cec8-4c4b-bfd1-b24b29b3a2b4';
-     //const user = idUser
-     //console.log('idUser :>> ', idUser);
+    //const  id="'41f5c363-cec8-4c4b-bfd1-b24b29b3a2b4'";
+     // const user = id
+    //  console.log('idUser :>> ', idUser);
 
-    const users= useSelector((state) => state.userInfo)
+    const movies= useSelector((state) => state.movies)
     const reviews = useSelector((state) => state.allReview)
-    
+    const user =useSelector((state)=> state.userInfo)
     
     const [input, setInput] = useState({
-        idMovies:'',
-        comentary:'',
+      // idUser:'',
+      //   idMovies:'',
+        commentary:'',
         calification:''
     })
-
+    //const user = JSON.parse(window.localStorage.getItem( 'usuario'))
     useEffect(() => {
-      dispatch(getReview(id));     
-    }, [id]);  
+      dispatch(getReview(idMovies));
+     // dispatch(getAllReview())    
+    }, [dispatch]);  
 
  
+    // const handleSubmit = (e) => {
+    //   e.preventDefault()
+    //   if(input){
+    //   dispatch(postReview(input))
+    //         setInput({
+    //           // idUser:'',
+    //           //   idMovies:'',
+    //             comentary:'',
+    //             calification:''
+    //         })
+    //         // Swal.fire({
+    //         //   icon: 'success',
+    //         //   title: 'Su Comentario se ha creado correctamente',
+    //         // })
+    //       }else{
+    //         // Swal.fire({
+    //         //   icon: 'error',
+    //         //   title: 'ups..su comentario no se ha procesado correctamente',
+    //         // })
+    //       }
+    //     }
     const handleSubmit = (e) => {
       e.preventDefault()
-      if(input){
-      dispatch(postReview(input))
-            setInput({
-                idMovies:'',
-                comentary:'',
-                calification:''
-            })
-            // Swal.fire({
-            //   icon: 'success',
-            //   title: 'Su Comentario se ha creado correctamente',
-            // })
-          }else{
-            // Swal.fire({
+        if (reviews) {
+          if ( !user.nombre ) {
+            e.preventDefault()
+            // swal("Necesitas tener una cuenta para dejar comentarios", {
+            //   buttons: false,
             //   icon: 'error',
-            //   title: 'ups..su comentario no se ha procesado correctamente',
+            //   timer: 1500,
             // })
+            setInput({
+              calification: '',
+              commentary: '',
+            })
           }
-        }
+          else if ( reviews.filter(e => e.nombre.toLowerCase() === user.nombre.toLowerCase()).length > 0) {
+            e.preventDefault()
+            dispatch(putReview(movies && movies.idMovies, user.id, input));
+            setInput({
+              calification: '',
+              commentary: '',
+            })
+          } else if ( !user.admin ) {
+            e.preventDefault()
+            dispatch(postReview(movies && movies.idMovies, user.id , input))
+            setInput({
+              calification: '',
+              commentary: '',
+            })
+          
+          } else if ( user.admin ) {
+          e.preventDefault()
+          // swal("Los usuarios administradores no pueden dejar comentarios a los productos", {
+          //   buttons: false,
+          //   icon: 'error',
+          //   timer: 3500,
+          // })
+          }
+        } 
+        
+      } 
 
 
 console.log('input :>> ', input);
     return(
     <>
-    <div className={s.container}>
+    <div className="container">
       <div className="row">
         <div className="col-6 mx-auto">
           <div>
@@ -73,8 +117,8 @@ console.log('input :>> ', input);
                     type='text' 
                     placeholder="comentario..." 
                     rows="3"  
-                    value={input.comentary} 
-                    onChange={e => setInput({ ...input, comentary: e.target.value })}>
+                    value={input.commentary} 
+                    onChange={e => setInput({ ...input, commentary: e.target.value })}>
               </textarea>
               <div style={{marginBottom:20}} className="btn-group col-3" >{/*agrupa los botones*/}
                 <label style={{marginRight:20}}>Calificación</label>
@@ -98,7 +142,7 @@ console.log('input :>> ', input);
           <div>
             {reviews.length > 0 ?
               reviews.map((re) => (
-                <div key={re.users} >
+                <div key={re.user} >
                   <div className="be-img-comment" >	
                       <img src={re.imagen } alt="" className="be-ava-comment"/>
                   </div>
@@ -107,21 +151,21 @@ console.log('input :>> ', input);
                       <h5 href="blog-detail-2.html">Nombre de usuario: {re.nombre ? re.nombre : "Juana 123"}</h5>
                     </span>
                     <div>
-                      {/* <h6>Puntaje: { 
+                      <h6>Puntaje: { 
                       <ReactStars
                             count={5}
                             value={re.calification}
                             size={28}
                             // activeColor="#ffd700"
                             activeColor="rgb(250, 200, 0)"
-                      />}</h6> */}
+                      />}</h6>
                       </div>
                     </div> 
-                    <p className="be-comment-text"><b>Comentario:</b> {re.comentary}</p>
+                    <p className="be-comment-text"><b>Comentario:</b> {re.commentary}</p>
                   </div>
               )) 
             :  null 
-            }{/*<h2>No hay comentarios</h2>*/}
+            }<h2>No hay comentarios</h2>
             </div>  
             <button className="btn btn-primary" onClick={() => navigate('/home')}>Inicio</button>
         </div>

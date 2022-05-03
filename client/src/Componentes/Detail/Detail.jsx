@@ -6,6 +6,7 @@ import { moviesDetail } from "./../../redux/actions/index";
 import { Button, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Reproductor from "../Reproductor/Reproductor";
+import Review from '../Review/review';
 
 const useStyles = makeStyles((theme) => ({
   poster: {
@@ -148,7 +149,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Detail() {
   const classes = useStyles();
-  const { id } = useParams();
+  const { id, idMovies } = useParams();
   const dispatch = useDispatch();
   const detalle = useSelector((state) => state.detail.data);
 
@@ -216,6 +217,9 @@ export default function Detail() {
             <Reproductor videoURL = {detalle?.trailer} />
           </section>
         </div>
+      </div>
+      <div>
+        <Review idMovies={idMovies} />
       </div>
     </div>
   );

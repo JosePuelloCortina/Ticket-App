@@ -166,41 +166,44 @@ export function moviesSort(movies, propiedad, order) {
   return { type: "MOVIES_FILTERED", payload: movieSort };
 }
 
-export function postReview(body){
+export function postReview(idMovies, idUser, payload){
   return async function (dispatch){
     try {
-      const crearReview = await axios.post(`${herokuUrl}/review/create/${body}`)
+      await axios.post(`http://localhost:3001/review/movies/${idMovies}/user/${idUser}`, payload )
+      let {data} = await axios.get(`http://localhost:3001/review/movies/${idMovies}`)
       return dispatch({
         type: 'CREAR_REVIEW',
-        payload: crearReview,
+        //payload: crearReview,
+        payload: data,
       })
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
 }
 
-export function getAllReview(){
-  return async function (dispatch){
-    try {
-      const allReview = await axios.get(`${herokuUrl}/review`)
-      return dispatch({
-        type: ' GET_ALL_REVIEW',
-        payload: allReview.data,
-      })
-    } catch (error) {
-      console.log(error)
-    }
-  }
-}
+// export function getAllReview(){
+//   return async function (dispatch){
+//     try {
+//       const {data} = await axios.get(`http://localhost:3001/review`)
+//       return dispatch({
+//         type: ' GET_ALL_REVIEW',
+//         payload: data,
+//       })
+//     } catch (error) {
+//       console.log(error)
+//     }
+//   }
+// }
 
 export function getReview(id){
   return async function (dispatch){
     try {
-      const allReviewId = await axios.get(`${herokuUrl}/review/${id}`)
+      const {data} = await axios.get(`http://localhost:3001/review/movies${id}`)
+      console.log(data)
       return dispatch({
         type: 'GET_REVIEW_ID',
-        payload: allReviewId.data,
+        payload: data,
       })
     } catch (error) {
       console.log(error)
