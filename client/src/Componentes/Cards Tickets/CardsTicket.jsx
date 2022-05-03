@@ -88,13 +88,10 @@ export default function CardTicket({
               <Typography gutterBottom variant="h6" component="div">
                 {original_title}
               </Typography>
-              <Typography variant="body2" color="secondary">
-                Genero:{" "}
-                {/* {categoria.map((c, i) => (
-                  <span key={i} >{c} </span>
-                ))} */}
+              <Typography style={{fontSize:'14px'}}>
+                {categoria.map((c) => <span key={c.id}>{` ${c.nombre} -`}</span>)}
               </Typography>
-              <Typography variant="body2" color="secondary" component="p">
+              <Typography style={{fontSize:'14px'}}>
                 Estreno: {release_date}
               </Typography>
             </CardContent>

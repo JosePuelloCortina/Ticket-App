@@ -15,6 +15,7 @@ import {
   Paper,
   Select,
   TextField,
+  Typography,
 } from "@mui/material";
 import { Save } from "@mui/icons-material";
 import { Link } from "react-router-dom";
@@ -39,6 +40,14 @@ function getStyles(categ, categName, theme) {
         : theme.typography.fontWeightMedium,
   };
 }
+
+const stylePaper = {
+  border: "1px solid gray",
+  padding: 20,
+  height: "auto",
+  width: 600,
+  margin: "20px auto",
+};
 
 export default function AddMovie() {
   const theme = useTheme();
@@ -90,26 +99,26 @@ export default function AddMovie() {
     setInput(inicialForm);
   }
 
-  const stylePaper = {
-    border: "1px solid gray",
-    padding: 20,
-    height: "auto",
-    width: 500,
-    margin: "20px auto",
-  };
-
   return (
     <div style={{ backgroundColor: "#f3f3f3" }}>
       <Grid>
-        <h2 style={{ width: "100%", textAlign: "center", color: "gray" }}>
+        <Typography
+          fontSize={40}
+          style={{
+            width: "100%",
+            textAlign: "center",
+            color: "gray",
+            paddingTop: "10px",
+          }}
+        >
           Registrar Película
-        </h2>
+        </Typography>
         <Paper style={stylePaper}>
           <form onSubmit={handleSubmit}>
             <section style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
               <TextField
-                label={`Película`}
-                placeholder={`Nombre de la película`}
+                label="Película"
+                placeholder="Nombre de la película"
                 size="small"
                 fullWidth
                 value={input.nombre}

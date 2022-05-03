@@ -21,7 +21,7 @@ const Cards = () => {
           poster_path={m.image}
           original_title={m.nombre}
           release_date={m.fecha}
-          categoria={m.estreno}
+          categoria={m.Categoria}
           trailer={m.trailer}
           id={m.id}
         />

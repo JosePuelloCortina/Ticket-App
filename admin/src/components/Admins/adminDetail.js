@@ -2,7 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { editAdmin, getAdminDetail } from "./../../redux/actions";
-import { Button, Grid, Paper, TextField } from "@mui/material";
+import {
+  Button,
+  Divider,
+  Grid,
+  Paper,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { Link } from "react-router-dom";
 import { ExitToAppOutlined, UpdateOutlined } from "@mui/icons-material";
 
@@ -47,9 +54,17 @@ export default function UserDetail() {
   return (
     <div style={{ backgroundColor: "#f3f3f3" }}>
       <Grid>
-        <h2 style={{ width: "100%", textAlign: "center", color: "gray" }}>
+        <Typography
+          fontSize={40}
+          style={{
+            width: "100%",
+            textAlign: "center",
+            color: "gray",
+            padding: "10px 0px",
+          }}
+        >
           Datos del Administrador
-        </h2>
+        </Typography>
         <Paper style={stylePaper}>
           <Link to="/admins" style={{ textDecoration: "none" }}>
             <Button
@@ -58,6 +73,7 @@ export default function UserDetail() {
               color="secondary"
             >{`Cancelar & Regresar`}</Button>
           </Link>
+          <Divider style={{ marginTop: 10 }} />
           <form onSubmit={handleSubmit} style={{ marginTop: 16 }}>
             <TextField
               label="Nombre(s)"

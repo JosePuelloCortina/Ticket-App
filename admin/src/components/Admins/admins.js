@@ -5,8 +5,24 @@ import { getAdmins } from "./../../redux/actions";
 import { useSelector } from "react-redux";
 import { deleteElement } from "./../../redux/actions";
 import { Link } from "react-router-dom";
-import { Avatar, Button, Grid, List, ListItem, Paper } from "@mui/material";
+import {
+  Avatar,
+  Button,
+  Grid,
+  List,
+  ListItem,
+  Paper,
+  Typography,
+} from "@mui/material";
 import { AccountCircle, Delete, Edit } from "@mui/icons-material";
+
+const stylePaper = {
+  border: "1px solid gray",
+  padding: 20,
+  height: "auto",
+  width: 800,
+  margin: "20px auto",
+};
 
 export default function Admins() {
   const dispatch = useDispatch();
@@ -22,21 +38,21 @@ export default function Admins() {
     dispatch(deleteElement("admin", id));
   }
 
-  const stylePaper = {
-    border: "1px solid gray",
-    padding: 20,
-    height: "auto",
-    width: 800,
-    margin: "20px auto",
-  };
-
   return (
     <div style={{ backgroundColor: "#f3f3f3" }}>
       <NavBar />
       <Grid>
-        <h2 style={{ width: "100%", textAlign: "center", color: "gray" }}>
+        <Typography
+          fontSize={40}
+          style={{
+            width: "100%",
+            textAlign: "center",
+            color: "gray",
+            marginTop: 10,
+          }}
+        >
           Gestionar Administradores
-        </h2>
+        </Typography>
         <Paper style={stylePaper}>
           <List>
             {elementos?.map((el) => {

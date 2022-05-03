@@ -2,7 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { editMovie, getMovieDetail } from "./../../redux/actions";
-import { Button, Grid, Paper, TextField } from "@mui/material";
+import {
+  Button,
+  Divider,
+  Grid,
+  Paper,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { Link } from "react-router-dom";
 import { ExitToAppOutlined, UpdateOutlined } from "@mui/icons-material";
 
@@ -33,7 +40,6 @@ export default function UserDetail() {
     trailer: movie?.trailer,
     estreno: movie?.estreno,
   });
-  console.log("hooks", input);
 
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
@@ -41,7 +47,6 @@ export default function UserDetail() {
       ...input,
       [name]: value,
     });
-    console.log(input);
   };
 
   function handleSubmit(e) {
@@ -52,9 +57,17 @@ export default function UserDetail() {
   return (
     <div style={{ backgroundColor: "#f3f3f3" }}>
       <Grid>
-        <h2 style={{ width: "100%", textAlign: "center", color: "gray" }}>
+        <Typography
+          fontSize={40}
+          style={{
+            width: "100%",
+            textAlign: "center",
+            color: "gray",
+            padding: "10px 0px",
+          }}
+        >
           Detalle de la Película
-        </h2>
+        </Typography>
         <Paper style={stylePaper}>
           <Link to="/peliculas" style={{ textDecoration: "none" }}>
             <Button
@@ -63,6 +76,7 @@ export default function UserDetail() {
               color="secondary"
             >{`Cancelar & Regresar`}</Button>
           </Link>
+          <Divider style={{ marginTop: 16 }} />
           <form onSubmit={handleSubmit} style={{ marginTop: "16px" }}>
             <TextField
               label="Pelicula"
@@ -111,6 +125,7 @@ export default function UserDetail() {
               onChange={handleChangeInput}
               value={input.fecha}
               style={{ marginBottom: 16, marginRight: 10 }}
+              sx={{ width: "32%" }}
             />
             <TextField
               type={`number`}
@@ -119,6 +134,17 @@ export default function UserDetail() {
               name="duracion"
               onChange={handleChangeInput}
               value={input.duracion}
+              style={{ marginRight: 10 }}
+              sx={{ width: "32%" }}
+            />
+            <TextField
+              type={`date`}
+              label="Estreno"
+              size="small"
+              name="estreno"
+              onChange={handleChangeInput}
+              value={input.estreno}
+              sx={{ width: "32%" }}
             />
             <TextField
               label="Link trailer"
@@ -129,21 +155,12 @@ export default function UserDetail() {
               value={input.trailer}
               style={{ marginBottom: 16 }}
             />
-            <TextField
-              type={`date`}
-              label="Estreno"
-              size="small"
-              name="estreno"
-              onChange={handleChangeInput}
-              value={input.estreno}
-              style={{ marginRight: 10 }}
-            />
-            <label>
+            <Typography>
               Categorías :
               {movie.Categoria?.map((c, i) => (
                 <b key={i}>{` ${c.nombre} `}</b>
               ))}
-            </label>
+            </Typography>
             <div style={{ width: "100%" }}>
               <Button
                 startIcon={<UpdateOutlined />}
