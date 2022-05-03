@@ -149,7 +149,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Detail() {
   const classes = useStyles();
-  const { id, idMovies } = useParams();
+  const { id } = useParams();
   const dispatch = useDispatch();
   const detalle = useSelector((state) => state.detail.data);
 
@@ -217,7 +217,7 @@ export default function Detail() {
         </div>
       </div>
       <div>
-        <Review idMovies={idMovies} />
+        <Review id={id} />
       </div>
     </div>
   );
