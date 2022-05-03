@@ -19,7 +19,7 @@ const CheckoutForm = () => {
   const [film, setFilm] = useState({});
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState(null);
-  const { id } = useParams();
+  const { id: idParams} = useParams();
   const stripe = useStripe();
   const elements = useElements();
   const [idTickets, setIdTickets] = useState([]);
@@ -30,14 +30,14 @@ const CheckoutForm = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const result = await axios.get(`http://localhost:3001/movies/id/${id}`);
+      const result = await axios.get(`http://localhost:3001/movies/id/${idParams}`);
       const movieId = result.data.data;
       setAllTickets([...result.data.data.tickets]);
       setFilm(movieId);
     }
 
     fetchData();
-  }, [id]);
+  }, [idParams]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

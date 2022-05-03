@@ -1,5 +1,6 @@
 import axios from "axios";
-const herokuUrl = "https://ticket-app-cine.herokuapp.com";
+//const herokuUrl = 'https://ticket-app-cine.herokuapp.com'
+const herokuUrl = 'http://localhost:3001'
 
 export function getuserDetails(id) {
   return async function (dispach) {
@@ -163,4 +164,63 @@ export function moviesSort(movies, propiedad, order) {
     else return A < B ? 1 : A > B ? -1 : 0;
   });
   return { type: "MOVIES_FILTERED", payload: movieSort };
+}
+
+export function postReview(idMovies, idUser, payload){
+  return async function (dispatch){
+    try {
+      await axios.post(`http://localhost:3001/review/movies/${idMovies}/user/${idUser}`, payload )
+      let {data} = await axios.get(`http://localhost:3001/review/movies/${idMovies}`)
+      return dispatch({
+        type: 'CREAR_REVIEW',
+        //payload: crearReview,
+        payload: data,
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+
+// export function getAllReview(){
+//   return async function (dispatch){
+//     try {
+//       const {data} = await axios.get(`http://localhost:3001/review`)
+//       return dispatch({
+//         type: ' GET_ALL_REVIEW',
+//         payload: data,
+//       })
+//     } catch (error) {
+//       console.log(error)
+//     }
+//   }
+// }
+
+export function getReview(id){
+  return async function (dispatch){
+    try {
+      const {data} = await axios.get(`http://localhost:3001/review/movies${id}`)
+      console.log(data)
+      return dispatch({
+        type: 'GET_REVIEW_ID',
+        payload: data,
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
+export function putReview(payload){
+  return async function (dispatch){
+    try {
+      const editReview = await axios.put(`${herokuUrl}/review/update/${payload}`)
+      return dispatch({
+        type: 'EDITAR_REVIEW',
+        payload: editReview.data,
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
 }
