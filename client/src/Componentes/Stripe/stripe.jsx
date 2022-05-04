@@ -66,6 +66,7 @@ console.log(allTickets)
         setMessage(data.message);
         setTimeout(() => setMessage(null), 5000);
         elements.getElement(CardElement).clear();
+        setEmail("".data);
       } catch (error) {
         console.log(error);
         setMessage(error.message);
@@ -73,7 +74,6 @@ console.log(allTickets)
       }
     }
 
-    setEmail("");
   };
 
   const handleChecked = (e) => {
