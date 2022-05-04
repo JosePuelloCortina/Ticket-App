@@ -214,10 +214,10 @@ export default function Detail() {
             <h3 style={{color:'#fff', marginTop:'1.5rem', width:'100%'}}>Trailer oficial</h3>
             <Reproductor videoURL = {detalle?.trailer} />
           </section>
-        </div>
-      </div>
       <div>
         <Review id={id} />
+      </div>
+        </div>
       </div>
     </div>
   );

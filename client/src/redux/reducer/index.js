@@ -6,6 +6,7 @@ const initialState = {
   movies: [],
   genres: [],
   detail: [],
+  detailUser:[],
   filtered: [],
   allReview: [],
   reviewInfo: []
@@ -77,6 +78,12 @@ export default function rootReducer(state = initialState, action) {
         return{
           ...state,
           allReview: action.payload,
+        }
+      case "GET_USER_DETAILS":
+        return{
+          ...state,
+          detailUser: action.payload,
+          
         }
     default:
       return state;

@@ -1,5 +1,5 @@
 const { response } = require("express");
-const { Pelicula, Categoria, Ticket, Op } = require("../db");
+const { Pelicula, Categoria, Ticket, Review, Op } = require("../db");
 const { v4 } = require("uuid");
 
 const getAllMovies = async (req, res = response) => {
@@ -11,6 +11,9 @@ const getAllMovies = async (req, res = response) => {
         },
         {
           model: Ticket
+        },
+        {
+          model: Review
         }
       ],
     });
@@ -34,6 +37,9 @@ const getMovieById = async (req, res = response) => {
         },
         {
           model: Ticket
+        },
+        {
+          model: Review
         }
       ],
     });
