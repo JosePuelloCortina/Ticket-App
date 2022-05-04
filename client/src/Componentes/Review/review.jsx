@@ -16,7 +16,7 @@ export default function Reviews ({id}) {
     const movies= useSelector((state) => state.movies.data)
     const reviews = useSelector((state) => state.allReview)
     const user =useSelector((state)=> state.userInfo)
-console.log(movies)
+
    
     const [input, setInput] = useState({
       // idUser:'',
@@ -24,11 +24,11 @@ console.log(movies)
         commentary:'',
         calification:''
     })
-    //const user = JSON.parse(window.localStorage.getItem( 'usuario'))
+    //const users = JSON.parse(window.localStorage.getItem( 'usuario'))
     useEffect(() => {
       dispatch(getReview(id));
-      dispatch(getAllReview())    
-    }, [dispatch]);  
+      dispatch(getAllReview(id))    
+    }, [dispatch, id]);  
 
  
     const handleSubmit = (e) => {
@@ -60,7 +60,7 @@ console.log('input :>> ', input);
     <>
     <div className="container">
       <div className="row">
-        <div className="col-6 mx-auto">
+        <div className="col-8 mx-auto">
           <div>
             <form 
                 className="row" 
@@ -103,7 +103,7 @@ console.log('input :>> ', input);
                   </div>
                   <div className="review-colomn" >
                   <span className="be-comment-name">
-                      <h5 href="blog-detail-2.html">Nombre de usuario: {re.nombre ? re.nombre : "Juana 123"}</h5>
+                      <h5 href="blog-detail-2.html">Nombre de usuario: {re.nombre ? re.nombre : "Cinema-App"}</h5>
                     </span>
                     <div>
                       <h6>Puntaje: { 

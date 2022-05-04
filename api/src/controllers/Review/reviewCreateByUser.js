@@ -7,7 +7,7 @@ const reviewCreateByUser = async (req, res) => {
       const { idMovies, idUser } = req.params;
     const { commentary, calification } = req.body;
    try {
-    const response = await Review.create({
+    const response = await Review.update({
       calification, 
       commentary,
       peliculaId: idMovies,
@@ -18,9 +18,10 @@ const reviewCreateByUser = async (req, res) => {
             peliculaId: idMovies , 
             userId: idUser
         }
-    })
+    }
+    )
     console.log(response)
-    res.status(200).json(response)
+    res.status(200).json({res: "se a creado una nueva Review"})
     
        } 
      catch (error) {
