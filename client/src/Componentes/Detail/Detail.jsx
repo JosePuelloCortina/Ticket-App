@@ -149,7 +149,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Detail() {
   const classes = useStyles();
-  const { id, idMovies } = useParams();
+  const { id } = useParams();
   const dispatch = useDispatch();
   const detalle = useSelector((state) => state.detail.data);
 
@@ -214,10 +214,10 @@ export default function Detail() {
             <h3 style={{color:'#fff', marginTop:'1.5rem', width:'100%'}}>Trailer oficial</h3>
             <Reproductor videoURL = {detalle?.trailer} />
           </section>
-        </div>
-      </div>
       <div>
-        <Review idMovies={idMovies} />
+        <Review id={id} />
+      </div>
+        </div>
       </div>
     </div>
   );

@@ -1,6 +1,8 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Link} from 'react-router-dom';
-import { useSelector } from "react-redux";
+import { useParams } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { getuserDetails} from '../../redux/actions/index';
 import { Container, Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -30,6 +32,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 const Perfil = () => {
     const user = useSelector(state => state.userInfo);
+    const tickets = useSelector((state)=>state.allTickets)
+    const dispatch = useDispatch();
+    const {id}=useParams;
+
+    useEffect(() => {
+        dispatch(getuserDetails(id))
+    }, [dispatch, id])
+    
     console.log(user)
     const classes = useStyles();
     return (
@@ -58,10 +68,10 @@ const Perfil = () => {
                         <Typography component='h4' color="primary">Estado</Typography>
                     </Grid>
                     <Grid item xs={12} >
-                        <Typography component='h4' color="primary">Tikets</Typography>
+                        <Typography component='h4' color="primary">Tickets</Typography>
                     </Grid>
                     {
-                        user?.tikets?.map(tiket => {
+                        user?.tickets?.map(tiket => {
                             return (
                                 <>
                                     <Grid item xs={12} sm={4} >
