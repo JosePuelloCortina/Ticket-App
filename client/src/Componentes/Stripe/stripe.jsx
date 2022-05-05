@@ -19,7 +19,7 @@ const CheckoutForm = () => {
   const [film, setFilm] = useState({});
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState(null);
-  const { id: idParams} = useParams();
+  const { id: idParams } = useParams();
   const stripe = useStripe();
   const elements = useElements();
   const [idTickets, setIdTickets] = useState([]);
@@ -27,10 +27,12 @@ const CheckoutForm = () => {
   const user = useSelector((state) => state.userInfo);
   const [totalPrice, setTotalPrice] = useState(0);
   const [selectedTickets, setSelectedTickets] = useState([]);
-console.log(allTickets)
+  console.log(allTickets);
   useEffect(() => {
     async function fetchData() {
-      const result = await axios.get(`http://localhost:3001/movies/id/${idParams}`);
+      const result = await axios.get(
+        `http://localhost:3001/movies/id/${idParams}`
+      );
       const movieId = result.data.data;
       setAllTickets([...result.data.data.tickets]);
       setFilm(movieId);
@@ -95,10 +97,19 @@ console.log(allTickets)
         }}
       >
         <img src={film.image} alt={film.nombre} width={300} height={450} />
-        
-        <form onSubmit={handleSubmit} style={{backgroundColor:'#f3f3f3', padding:'10px 20px 10px 20px', borderRadius:6}}>
+
+        <form
+          onSubmit={handleSubmit}
+          style={{
+            backgroundColor: "#f3f3f3",
+            padding: "10px 20px 10px 20px",
+            borderRadius: 6,
+          }}
+        >
           <div>
-            <Typography style={{fontSize:20, paddingBottom:10}}>Pago con tarjeta</Typography>
+            <Typography style={{ fontSize: 20, paddingBottom: 10 }}>
+              Pago con tarjeta
+            </Typography>
             <TextField
               label="Correo electronico"
               variant="outlined"
@@ -108,10 +119,10 @@ console.log(allTickets)
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter email address"
-              style={{width:400}}
+              style={{ width: 400 }}
             />
           </div>
-          <h3>Precioa pagar: {totalPrice}</h3>
+          <h3>Precioa pagar: {totalPrice} </h3>
           {allTickets &&
             allTickets?.map((t) => {
               return (
@@ -137,8 +148,16 @@ console.log(allTickets)
             <Link to="/detail">volver</Link>
           </div>
         </form>
-        <div style={{backgroundColor:'#f3f3f3', padding:'10px 20px 10px 20px', borderRadius:6}}>
-          <Typography style={{fontSize:20}}>Tickets seleccionados</Typography>
+        <div
+          style={{
+            backgroundColor: "#f3f3f3",
+            padding: "10px 20px 10px 20px",
+            borderRadius: 6,
+          }}
+        >
+          <Typography style={{ fontSize: 20 }}>
+            Tickets seleccionados
+          </Typography>
           {selectedTickets?.map((t, i) => {
             return <h3 key={i}>{t}</h3>;
           })}
