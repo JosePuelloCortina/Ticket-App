@@ -144,6 +144,7 @@ const classes = useStyles();
             <button className="btn btn-primary" onClick={() => navigate('/home')}>Inicio</button>
         </div>
       </div>
+    </div>
     </>
   );
 }
