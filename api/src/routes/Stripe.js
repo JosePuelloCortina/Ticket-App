@@ -1,8 +1,10 @@
-
 const express = require("express");
-const stripe = require("stripe")(process.env.STRIPE_KEY);
+//const stripe = require("stripe")(process.env.STRIPE_KEY);
+const stripe = require("stripe")(
+  "sk_test_51KqHrdFIWQ9P9UeS7vSiszaCmgiP8ANklgurJaZXDwy8lDDiMF8rznKRafbOXOZEXWU9kjykYOfMrwkKigtJ97Ck00SHpCO8bv"
+);
 const cors = require("cors");
-const { v4: uuidv4 } = require('uuid');
+const { v4: uuidv4 } = require("uuid");
 const { Ticket, Compra } = require("../db");
 
 const app = express();
@@ -31,20 +33,21 @@ stripeRute.post("/pago", async (req, res) => {
     const compra = await Compra.create({
       id: uuidv4(),
       comprador_email,
-      amount: (amount / 100),
-      cantidad_tickets: idTickets.length
-    }); 
-    
-    idTickets.forEach(async ticket => {
+      amount: amount / 100,
+      cantidad_tickets: idTickets.length,
+    });
+
+    idTickets.forEach(async (ticket) => {
       const ticketFinded = await Ticket.findOne({
         where: {
-          id: ticket
-        }
+          id: ticket,
+        },
       });
       await ticketFinded.update({
-        userId
-      })
+        userId,
+      });
     });
+    console.log(payment);
     res.send({ message: "pago recibido" });
   } catch (error) {
     console.log(error);

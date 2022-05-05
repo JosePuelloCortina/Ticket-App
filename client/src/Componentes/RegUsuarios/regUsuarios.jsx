@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { postUser } from '../../redux/actions/index';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import Transition from '../image_transition/Transition';
 import { Button, CssBaseline, FormControl, FormHelperText, Input, InputLabel, Typography } from '@material-ui/core';
 import { ExitToAppSharp } from '@material-ui/icons';
@@ -85,7 +86,7 @@ const useStyles = makeStyles((theme)=>({
 
 export default function CreateConductora() {
     const classes = useStyles();
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
     const dispatch = useDispatch();
     const [user, setUser] = useState({   //este es mi input
         nombre: "",
@@ -120,7 +121,7 @@ export default function CreateConductora() {
         } else {
             alert('rellenar los campos correctamente')
         }
-        //navigate('/home') 
+        navigate('/login') 
     }
 
 

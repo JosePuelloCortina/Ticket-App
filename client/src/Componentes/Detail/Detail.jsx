@@ -6,6 +6,7 @@ import { moviesDetail } from "./../../redux/actions/index";
 import { Button, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Reproductor from "../Reproductor/Reproductor";
+import Review from '../Review/review';
 
 const useStyles = makeStyles((theme) => ({
   poster: {
@@ -213,6 +214,9 @@ export default function Detail() {
             <Typography variant="h5" style={{color:'#fff', marginTop:'1.5rem', width:'100%'}}>Trailer oficial</Typography>
             <Reproductor videoURL = {detalle?.trailer} />
           </section>
+      <div>
+        <Review id={id} />
+      </div>
         </div>
       </div>
     </div>
