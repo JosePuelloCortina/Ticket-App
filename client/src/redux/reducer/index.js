@@ -9,7 +9,8 @@ const initialState = {
   detailUser:[],
   filtered: [],
   allReview: [],
-  reviewInfo: []
+  reviewInfo: [],
+  tickets:[]
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -84,6 +85,11 @@ export default function rootReducer(state = initialState, action) {
           ...state,
           detailUser: action.payload,
           
+        }
+      case "GET_TICKETS":
+        return{
+          ...state,
+          tickets: action.payload
         }
     default:
       return state;

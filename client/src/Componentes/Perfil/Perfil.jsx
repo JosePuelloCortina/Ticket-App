@@ -2,10 +2,11 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { getuserDetails } from "../../redux/actions/index";
+import { getuserDetails, getTickets } from "../../redux/actions/index";
 import { Container, Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { ContactUs } from "../ContactForm/ContactForm";
+import { ContactUs }  from "../ContactForm/ContactForm";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,12 +32,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 const Perfil = () => {
   const user = useSelector((state) => state.userInfo);
-  const tickets = useSelector((state) => state.allTickets);
+  const tickets = useSelector((state) => state.tickets);
   const dispatch = useDispatch();
   const { id } = useParams;
 
   useEffect(() => {
     dispatch(getuserDetails(id));
+    dispatch(getTickets());
   }, [dispatch, id]);
 
   console.log(user);

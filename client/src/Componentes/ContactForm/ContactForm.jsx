@@ -24,7 +24,7 @@ export const ContactUs = () => {
       );
 
     e.target.reset();
-  };
+   };
 
   return (
     <form ref={form} onSubmit={sendEmail}>
