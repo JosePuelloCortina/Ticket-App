@@ -1,16 +1,25 @@
 import React from "react";
 //import Swal from 'sweetalert2';
 import { useEffect, useState } from "react";
-import {postReview , getReview, getAllReview,  putReview} from '../../redux/actions/index';
+import {
+  postReview,
+  getReview,
+  getAllReview,
+  putReview,
+} from "../../redux/actions/index";
 import { useDispatch, useSelector } from "react-redux";
-import  './Review.module.css'
+import "./Review.module.css";
 import { useNavigate, useParams } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 import imagenlog from '../../assets/imagenlog.jpg';
 import { Container, Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-
+export default function Reviews({ id }) {
+  // let { id } = useParams()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  
 const useStyles = makeStyles((theme) => ({
   image: {
       width: '80px',
@@ -64,7 +73,6 @@ export default function Reviews ({id}) {
           }
         }
 
-
 console.log(reviews);
 console.log('input :>> ', input);
 const classes = useStyles();
@@ -104,7 +112,6 @@ const classes = useStyles();
               </div>
             </form>
           </div>
-
           <hr className="featurette-divider"/>
           <div>
             {reviews.length > 0 ?
@@ -137,7 +144,6 @@ const classes = useStyles();
             <button className="btn btn-primary" onClick={() => navigate('/home')}>Inicio</button>
         </div>
       </div>
-    </div>
     </>
-    )
+  );
 }
