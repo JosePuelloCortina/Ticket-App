@@ -23,23 +23,19 @@ const stylePaper = {
 
 export default function UserDetail() {
   const { id } = useParams();
+  const movie = useSelector((state) => state.movieDetail);
 
   const dispatch = useDispatch();
+
+  const [input, setInput] = useState({});
+
+  useEffect(() => {
+    setInput(movie);
+  }, [movie]);
 
   useEffect(() => {
     dispatch(getMovieDetail(id));
   }, []);
-
-  const movie = useSelector((state) => state.movieDetail);
-
-  const [input, setInput] = useState({
-    nombre: movie?.nombre,
-    fecha: movie?.fecha,
-    duracion: movie?.duracion,
-    descripcion: movie?.descripcion,
-    trailer: movie?.trailer,
-    estreno: movie?.estreno,
-  });
 
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
@@ -85,7 +81,7 @@ export default function UserDetail() {
               fullWidth
               autoFocus
               onChange={handleChangeInput}
-              value={input.nombre}
+              value={input.nombre || ""}
               style={{ marginBottom: "16px" }}
             />
             <div

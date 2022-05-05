@@ -59,6 +59,7 @@ export default function Sucursales() {
                   {s.pais}, {s.provincia}, {s.ciudad}
                 </h3>
                 <h4>{s.direccion}</h4>
+                <Divider />
               </div>
             );
           })}

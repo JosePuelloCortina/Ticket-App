@@ -25,18 +25,16 @@ export default function UserDetail() {
   const { id } = useParams();
 
   const dispatch = useDispatch();
-
   const admin = useSelector((state) => state.adminDetail);
+  const [input, setInput] = useState({});
 
   useEffect(() => {
     dispatch(getAdminDetail(id));
   }, []);
 
-  const [input, setInput] = useState({
-    nombre: admin?.nombre,
-    apellido: admin?.apellido,
-    email: admin?.email,
-  });
+  useEffect(() => {
+    setInput(admin);
+  }, [admin]);
 
   const handleChangeInput = (e) => {
     setInput({
