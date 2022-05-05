@@ -7,7 +7,7 @@ import { AccountCircle, More, Search } from '@material-ui/icons';
 import { InputBase, Menu, MenuItem, IconButton, Typography, Toolbar } from '@material-ui/core';
 import { logout, moviesByName } from '../../redux/actions';
 import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const drawerWidth = 360;
 

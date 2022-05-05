@@ -9,20 +9,20 @@ const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const images = [
   {
-    label: 'San Francisco – Oakland Bay Bridge, United States',
-    imgPath:'https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60',
+    label: 'The Batman (2022)',
+    imgPath:'https://www.themoviedb.org/t/p/original/j2zyoYrWjWyraHMdkqAkSG1MISJ.jpg',
   },
   {
-    label: 'Bird',
-    imgPath:'https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60',
+    label: 'Spider-Man: No Way Home (2021)',
+    imgPath:'https://www.themoviedb.org/t/p/original/1Rr5SrvHxMXHu5RjKpaMba8VTzi.jpg',
   },
   {
-    label: 'Bali, Indonesia',
-    imgPath:'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250&q=80',
+    label: 'Moonfall (2022)',
+    imgPath:'https://www.themoviedb.org/t/p/original/hKkPFAO4AY1r49QQO9DsPIgHGtr.jpg',
   },
   {
-    label: 'Goč, Serbia',
-    imgPath: 'https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60',
+    label: 'Godzilla vs. Kong (2021)',
+    imgPath: 'https://www.themoviedb.org/t/p/original/iopYFB1b6Bh7FWZh3onQhph1sih.jpg',
   },
 ]
 
