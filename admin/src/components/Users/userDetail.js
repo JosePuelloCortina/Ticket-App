@@ -25,19 +25,16 @@ export default function UserDetail() {
   const { id } = useParams();
 
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.userDetail);
+  const [input, setInput] = useState({});
 
   useEffect(() => {
     dispatch(getUserDetail(id));
   }, []);
 
-  const user = useSelector((state) => state.userDetail);
-
-  const [input, setInput] = useState({
-    nombre: user?.nombre,
-    apellido: user?.apellido,
-    email: user?.email,
-    estado: user?.estado,
-  });
+  useEffect(() => {
+    setInput(user);
+  }, [user]);
 
   function handleChangeEstadoFalse(e) {
     e.preventDefault();

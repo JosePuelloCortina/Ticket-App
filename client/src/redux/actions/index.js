@@ -1,5 +1,5 @@
 import axios from "axios";
-const herokuUrl = "https://ticket-app-cine.herokuapp.com";
+// const herokuUrl = "https://ticket-app-cine.herokuapp.com";
 
 export function getuserDetails(id) {
   return async function (dispach) {
@@ -151,7 +151,6 @@ export function moviesByName(name) {
   };
 }
 export function moviesSort(movies, propiedad, order) {
-  // console.log(movies);
   const movieSort = movies.sort((a, b) => {
     let A = a[propiedad];
     let B = b[propiedad];

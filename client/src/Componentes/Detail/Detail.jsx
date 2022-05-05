@@ -210,7 +210,7 @@ export default function Detail() {
             </div>
           </section>
           <section>
-            <h3 style={{color:'#fff', marginTop:'1.5rem', width:'100%'}}>Trailer oficial</h3>
+            <Typography variant="h5" style={{color:'#fff', marginTop:'1.5rem', width:'100%'}}>Trailer oficial</Typography>
             <Reproductor videoURL = {detalle?.trailer} />
           </section>
         </div>

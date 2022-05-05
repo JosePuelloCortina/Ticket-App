@@ -89,7 +89,7 @@ export default function CardTicket({
                 {original_title}
               </Typography>
               <Typography style={{fontSize:'14px'}}>
-                {categoria.map((c) => <span key={c.id}>{` ${c.nombre} -`}</span>)}
+                {categoria.map((c) => <span key={c.id}>{` ${c.nombre} |`}</span>)}
               </Typography>
               <Typography style={{fontSize:'14px'}}>
                 Estreno: {release_date}
