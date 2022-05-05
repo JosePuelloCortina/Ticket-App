@@ -27,6 +27,7 @@ const CheckoutForm = () => {
   const user = useSelector((state) => state.userInfo);
   const [totalPrice, setTotalPrice] = useState(0);
   const [selectedTickets, setSelectedTickets] = useState([]);
+  
 console.log(allTickets)
   useEffect(() => {
     async function fetchData() {
@@ -66,6 +67,7 @@ console.log(allTickets)
         setMessage(data.message);
         setTimeout(() => setMessage(null), 5000);
         elements.getElement(CardElement).clear();
+        setEmail("".data);
       } catch (error) {
         console.log(error);
         setMessage(error.message);
@@ -73,7 +75,6 @@ console.log(allTickets)
       }
     }
 
-    setEmail("");
   };
 
   const handleChecked = (e) => {

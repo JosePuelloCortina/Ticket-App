@@ -6,8 +6,19 @@ import { useDispatch, useSelector } from "react-redux";
 import  './Review.module.css'
 import { useNavigate, useParams } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
+import imagenlog from '../../assets/imagenlog.jpg';
+import { Container, Grid, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
 
+const useStyles = makeStyles((theme) => ({
+  image: {
+      width: '80px',
+      height: '100px',
+      borderRadius: '25px',
+  }
+
+}));
 export default function Reviews ({id}) {
    // let { id } = useParams()
     const dispatch = useDispatch()
@@ -16,7 +27,7 @@ export default function Reviews ({id}) {
     const movies= useSelector((state) => state.movies.data)
     const reviews = useSelector((state) => state.allReview)
     const user =useSelector((state)=> state.userInfo)
-console.log(movies)
+
    
     const [input, setInput] = useState({
       // idUser:'',
@@ -24,17 +35,17 @@ console.log(movies)
         commentary:'',
         calification:''
     })
-    //const user = JSON.parse(window.localStorage.getItem( 'usuario'))
+    const users = JSON.parse(window.localStorage.getItem( "userLogged"))
     useEffect(() => {
       dispatch(getReview(id));
-      dispatch(getAllReview())    
-    }, [dispatch]);  
+      //dispatch(getAllReview(id))    
+    }, [dispatch]); 
 
- 
+   
     const handleSubmit = (e) => {
       e.preventDefault()
-      if(input){
-      dispatch(postReview(movies && movies[0].id, user.id, input))
+      if(reviews.filter(e=>e.nombre === users.nombre)){
+      dispatch(postReview(movies && movies[0].id, users.id, input))
             setInput({
               // idUser:'',
               //   idMovies:'',
@@ -56,11 +67,12 @@ console.log(movies)
 
 console.log(reviews);
 console.log('input :>> ', input);
+const classes = useStyles();
     return(
     <>
     <div className="container">
       <div className="row">
-        <div className="col-6 mx-auto">
+        <div className="col-8 mx-auto">
           <div>
             <form 
                 className="row" 
@@ -97,13 +109,13 @@ console.log('input :>> ', input);
           <div>
             {reviews.length > 0 ?
               reviews.map((re) => (
-                <div key={re.user} >
-                  <div className="be-img-comment" >	
-                      <img src={re.imagen } alt="" className="be-ava-comment"/>
-                  </div>
+                <div key={re.nombre} >
+                <Grid item xs={12} sm={3}>
+                      <img className={classes.image} src={re.imagen ? re.imagen: imagenlog} alt="" />
+                  </Grid>
                   <div className="review-colomn" >
                   <span className="be-comment-name">
-                      <h5 href="blog-detail-2.html">Nombre de usuario: {re.nombre ? re.nombre : "Juana 123"}</h5>
+                      <h5 href="blog-detail-2.html">Nombre de usuario: {re.nombre ? re.nombre : "Cinema-App"}</h5>
                     </span>
                     <div>
                       <h6>Puntaje: { 
@@ -120,7 +132,7 @@ console.log('input :>> ', input);
                   </div>
               )) 
             :  null 
-            }<h2>No hay comentarios</h2>
+            }{/*<h2>No hay comentarios</h2>*/}
             </div> 
             <button className="btn btn-primary" onClick={() => navigate('/home')}>Inicio</button>
         </div>

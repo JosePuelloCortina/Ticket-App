@@ -168,7 +168,7 @@ export function moviesSort(movies, propiedad, order) {
 
 export function postReview(idMovies, idUser, payload){
   return async function (dispatch){
-    //console.log(idMovies)
+    console.log(idMovies)
     try {
       await axios.post(`http://localhost:3001/review/movies/${idMovies}/user/${idUser}`, payload )
       let {data} = await axios.get(`http://localhost:3001/review/movies/${idMovies}`)
