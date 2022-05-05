@@ -27,6 +27,7 @@ const CheckoutForm = () => {
   const user = useSelector((state) => state.userInfo);
   const [totalPrice, setTotalPrice] = useState(0);
   const [selectedTickets, setSelectedTickets] = useState([]);
+  
 console.log(allTickets)
   useEffect(() => {
     async function fetchData() {
