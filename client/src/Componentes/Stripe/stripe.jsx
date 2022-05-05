@@ -67,14 +67,14 @@ console.log(allTickets)
         setMessage(data.message);
         setTimeout(() => setMessage(null), 5000);
         elements.getElement(CardElement).clear();
-        setEmail("".data);
       } catch (error) {
         console.log(error);
         setMessage(error.message);
         setTimeout(() => setMessage(null), 5000);
       }
     }
-
+    
+    setEmail("".data);
   };
 
   const handleChecked = (e) => {
@@ -156,3 +156,4 @@ export default function Stripe() {
     </Elements>
   );
 }
+
