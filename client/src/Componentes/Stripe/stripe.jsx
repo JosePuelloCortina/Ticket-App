@@ -27,7 +27,9 @@ const CheckoutForm = () => {
   const user = useSelector((state) => state.userInfo);
   const [totalPrice, setTotalPrice] = useState(0);
   const [selectedTickets, setSelectedTickets] = useState([]);
+  
   console.log(allTickets);
+
   useEffect(() => {
     async function fetchData() {
       const result = await axios.get(
@@ -68,6 +70,7 @@ const CheckoutForm = () => {
         setMessage(data.message);
         setTimeout(() => setMessage(null), 5000);
         elements.getElement(CardElement).clear();
+        setEmail("".data);
       } catch (error) {
         console.log(error);
         setMessage(error.message);
@@ -75,7 +78,6 @@ const CheckoutForm = () => {
       }
     }
 
-    setEmail("");
   };
 
   const handleChecked = (e) => {
