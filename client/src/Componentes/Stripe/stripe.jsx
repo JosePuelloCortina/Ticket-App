@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { Divider, Grid, Typography } from "@material-ui/core";
 import styleStripe from './stripe.module.css';
 import butaca from '../../assets/butaca.png'
+//import Tickets from '../Tickets/tickets'
 
 const stripePromise = loadStripe(
   "pk_test_51KqHrdFIWQ9P9UeS0BNcqq35rXRsXE6uQT0s3qWLIWI1eIvffpupJ781Cflga6GjiGcsYJZQRaLGo1AHrmR4nZF000iEqZdKf7"
@@ -16,7 +17,7 @@ const CheckoutForm = () => {
   const [film, setFilm] = useState({});
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState(null);
-  const { id: idParams } = useParams();
+  const { id: idParams, id } = useParams();
   const stripe = useStripe();
   const elements = useElements();
   const [idTickets, setIdTickets] = useState([]);
@@ -26,7 +27,8 @@ const CheckoutForm = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [fondo, setFondo] = useState([]);
   const [salaCurrent, setSalaCurrent] = useState('');
-
+  //const tickets = useSelector((state)=>state.tickets)
+  
   useEffect(() => {
     async function fetchData() {
       const result = await axios.get(
@@ -83,14 +85,14 @@ const CheckoutForm = () => {
         setTimeout(() => setMessage(null), 5000);
         await getTickets();
         elements.getElement(CardElement).clear();
+        setEmail("".data);
       } catch (error) {
         console.log(error);
         setMessage(error.message);
         setTimeout(() => setMessage(null), 5000);
       }
     }
-    
-    setEmail("".data);
+
   };
 
   const handleChecked = (e) => {
@@ -178,6 +180,7 @@ const CheckoutForm = () => {
             <Link to="/detail" style={{border:'1px solid gray',borderRadius:4, padding:'5px 10px', textDecoration:'none'}}>Volver</Link>
           </div>
         </form>
+        {/* <Tickets id={id.data}/> */}
       </section>
     </Grid>
   );

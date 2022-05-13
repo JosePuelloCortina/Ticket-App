@@ -10,7 +10,8 @@ export default function () {
     const { id } = useParams();
     const dispatch = useDispatch();
     const tickets = useSelector((state) => state.tickets);
-  
+    const user = useSelector((state) => state.userInfo);
+
     useEffect(() => {
       dispatch(getTickets(id));
     }, [dispatch, id]);
@@ -18,7 +19,7 @@ export default function () {
     return(
         <div>
         {
-            tickets?(
+            user?.tickets?(
                 <div>
                 <h3>Numero  Tickets: {tickets.numero}</h3>
                 <h3>Fecha y Hora: {tickets.fecha_hora}</h3>

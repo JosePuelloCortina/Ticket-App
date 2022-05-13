@@ -226,10 +226,10 @@ export function putReview(payload){
 }
 
 
-export function getTickets(id) {
+export function getTickets() {
   return async function (dispach) {
     try {
-      const tickets = await axios.get(`http://localhost:3001/ticket/${id}`);
+      const tickets = await axios.get(`http://localhost:3001/ticket`);
       console.log(tickets);
       return dispach({
         type: "GET_TICKETS",

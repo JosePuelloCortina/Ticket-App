@@ -38,7 +38,7 @@ const Perfil = () => {
 
   useEffect(() => {
     dispatch(getuserDetails(id));
-    dispatch(getTickets());
+    dispatch(getTickets(id));
   }, [dispatch, id]);
 
   console.log(user);
