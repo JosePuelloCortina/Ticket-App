@@ -15,6 +15,7 @@ import Perfil from './Componentes/Perfil/Perfil';
 import { useSelector } from 'react-redux';
 import { loginFillState } from './redux/actions';
 import { ThemeProvider } from '@material-ui/core/styles';
+import Tickets from "./Componentes/Tickets/tickets";
 
 function App() {
   const dispatch = useDispatch();
@@ -68,7 +69,7 @@ function App() {
               }
             />
             <Route path="/stripe/:id" element={<Stripe />} />
-
+            <Route path="/ticket" element={<Tickets />} />
             <Route path="/perfil" element={<Perfil />} />
             <Route path="/review" element={<Review />} />
           </Routes>

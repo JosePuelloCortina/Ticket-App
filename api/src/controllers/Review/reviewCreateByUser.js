@@ -3,7 +3,6 @@ const { User, Review, Pelicula } = conn.models;
 const { v4: uuidv4 } = require('uuid');
 
 const reviewCreateByUser = async (req, res) => {  
-    //try {
       const { idMovies, idUser } = req.params;
     const { commentary, calification } = req.body;
    try {

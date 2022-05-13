@@ -167,7 +167,7 @@ export function moviesSort(movies, propiedad, order) {
 
 export function postReview(idMovies, idUser, payload){
   return async function (dispatch){
-    console.log(idMovies)
+    //console.log(idMovies)
     try {
       await axios.post(`http://localhost:3001/review/movies/${idMovies}/user/${idUser}`, payload )
       let {data} = await axios.get(`http://localhost:3001/review/movies/${idMovies}`)
@@ -223,4 +223,20 @@ export function putReview(payload){
       console.log(error)
     }
   }
+}
+
+
+export function getTickets() {
+  return async function (dispach) {
+    try {
+      const tickets = await axios.get(`http://localhost:3001/ticket`);
+      console.log(tickets);
+      return dispach({
+        type: "GET_TICKETS",
+        payload: tickets.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 }
