@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import emailjs from "@emailjs/browser";
+import { TextField } from "@material-ui/core";
 
 export const ContactUs = () => {
   const form = useRef();
@@ -28,13 +29,35 @@ export const ContactUs = () => {
 
   return (
     <form ref={form} onSubmit={sendEmail}>
-      <label>Name</label>
-      <input type="text" name="user_name" />
-      <label>Email</label>
-      <input type="email" name="user_email" />
-      <label>Message</label>
-      <textarea name="message" />
-      <input type="submit" value="Send" />
+      <div style={{display:'flex', gap:10, padding:10, backgroundColor:'#f3f3f3', borderRadius:'6px 6px 0px 0px'}}>  
+      <TextField 
+        label="Nombre"
+        variant="outlined"
+        size="small"
+        type="text" 
+        name="user_name"
+      />
+      <TextField 
+        label="Dirección email"
+        variant="outlined"
+        size="small"
+        type="email"
+        name="user_email"
+        // sx={{width:'auto'}}
+      />
+      </div>
+      <div style={{backgroundColor:'#f3f3f3', padding:'0px 10px 10px 10px', borderRadius:'0px 0px 6px 6px'}}>
+        <TextField 
+          label="Mensaje"
+          variant="outlined"
+          size="small"
+          multiline
+          fullWidth
+          minRows={4}
+          name="message"
+        />
+      <input type="submit" value="Enviar" style={{display:'flex', alignItems:'center', marginTop:10}} />
+      </div>
     </form>
   );
 };

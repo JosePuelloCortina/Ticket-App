@@ -1,23 +1,20 @@
 import React from "react";
-//import Swal from 'sweetalert2';
 import { useEffect, useState } from "react";
-import {postReview , getReview, getAllReview,  putReview} from '../../redux/actions/index';
+import {postReview , getReview } from '../../redux/actions/index';
 import { useDispatch, useSelector } from "react-redux";
 import  './Review.module.css'
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 import imagenlog from '../../assets/imagenlog.jpg';
-import { Container, Grid, Typography } from "@material-ui/core";
+import { Button, Divider, Grid, TextField, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-
 
 const useStyles = makeStyles((theme) => ({
   image: {
-      width: '80px',
+      width: '100px',
       height: '100px',
-      borderRadius: '25px',
+      borderRadius: '50%',
   }
-
 }));
 export default function Reviews ({id}) {
    // let { id } = useParams()
@@ -27,7 +24,6 @@ export default function Reviews ({id}) {
     const movies= useSelector((state) => state.movies.data)
     const reviews = useSelector((state) => state.allReview)
     const user =useSelector((state)=> state.userInfo)
-
    
     const [input, setInput] = useState({
       // idUser:'',
@@ -64,77 +60,74 @@ export default function Reviews ({id}) {
           }
         }
 
-
 console.log(reviews);
 console.log('input :>> ', input);
 const classes = useStyles();
     return(
     <>
-    <div className="container">
-      <div className="row">
-        <div className="col-8 mx-auto">
-          <div>
+    <div>
+      <div>
+        <div>
+          <div style={{ marginTop:10, padding:10, color:'white'}}>
             <form 
-                className="row" 
                 style={{justifyContent:"space-between"}} 
                 onSubmit={handleSubmit}>
-              <textarea  
-                    className="form-control" 
-                    style={{marginBottom:20}} 
-                    type='text' 
-                    placeholder="comentario..." 
-                    rows="3"  
-                    value={input.commentary} 
-                    onChange={e => setInput({ ...input, commentary: e.target.value })}>
-              </textarea>
-              <div style={{marginBottom:20}} className="btn-group col-3" >{/*agrupa los botones*/}
+              <TextField  
+                style={{marginBottom:20, width:'40%', backgroundColor:'#f3f3f3', borderRadius:6}} 
+                label="comentario..."
+                variant="outlined"
+                multiline
+                minRows={4}  
+                value={input.commentary} 
+                onChange={e => setInput({ ...input, commentary: e.target.value })}
+              />
+              <div style={{marginBottom:20, display:'flex', flexDirection:'row', alignItems:'center', gap:10}} >
                 <label style={{marginRight:20}}>Calificación</label>
-                <input 
-                    className="form-input" 
-                    type='number' 
-                    max={5} 
-                    min={1} 
-                    placeholder="0" 
-                    value={input.calification} 
-                    required={true} 
-                    onChange={e => setInput({ ...input, calification: e.target.value })} />
-              </div>
-              <div className="col-3 text-end" style={{marginLeft:50}} >
-              <button className="btn btn-primary">Comentar</button>
+                <TextField 
+                  style={{backgroundColor:'#f3f3f3', borderRadius:6, width:100}}
+                  variant="outlined"
+                  size="small"
+                  type="number"
+                  inputProps={{ min: 1, max: 5 }}
+                  placeholder="0"
+                  value={input.calification} 
+                  required 
+                  onChange={e => setInput({ ...input, calification: e.target.value })} 
+                />
+                <button >Comentar</button>
               </div>
             </form>
           </div>
-
-          <hr className="featurette-divider"/>
-          <div>
+          <Divider style={{backgroundColor:'gray', margin:'10px 0px'}}/>
+          <div >
             {reviews.length > 0 ?
-              reviews.map((re) => (
-                <div key={re.nombre} >
-                <Grid item xs={12} sm={3}>
-                      <img className={classes.image} src={re.imagen ? re.imagen: imagenlog} alt="" />
-                  </Grid>
-                  <div className="review-colomn" >
-                  <span className="be-comment-name">
-                      <h5 href="blog-detail-2.html">Nombre de usuario: {re.nombre ? re.nombre : "Cinema-App"}</h5>
-                    </span>
-                    <div>
-                      <h6>Puntaje: { 
+              reviews.map((re, i) => (
+                <div key={i} >
+                  <img className={classes.image} src={re.imagen ? re.imagen: imagenlog} alt="" />
+                  <div>
+                  <Typography color="secondary">
+                    Usuario: <span style={{color:'white'}}>{re.nombre ? re.nombre : "Cinema-App"}</span>
+                  </Typography>
+                  <div>
+                    <Typography color="secondary">
+                      Puntaje: { 
                       <ReactStars
                             count={5}
                             value={re.calification}
                             size={28}
                             // activeColor="#ffd700"
                             activeColor="rgb(250, 200, 0)"
-                      />}</h6>
-                      </div>
-                    </div> 
-                    <p className="be-comment-text"><b>Comentario:</b> {re.commentary}</p>
+                      />}
+                    </Typography>
                   </div>
+                </div> 
+                <Typography color="secondary" component="p"><b>Comentario:</b> {re.commentary}</Typography>
+              </div>
               )) 
             :  null 
             }{/*<h2>No hay comentarios</h2>*/}
             </div> 
-            <button className="btn btn-primary" onClick={() => navigate('/home')}>Inicio</button>
+            <Button variant="contained" color="primary" style={{margin:'10px 0px'}} onClick={() => navigate('/home')}>Regresar</Button>
         </div>
       </div>
     </div>
