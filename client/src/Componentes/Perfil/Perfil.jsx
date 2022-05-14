@@ -3,31 +3,30 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { getuserDetails, getTickets } from "../../redux/actions/index";
-import { Container, Grid, Typography } from "@material-ui/core";
+import { Button, Divider, Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { ContactUs }  from "../ContactForm/ContactForm";
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    padding: "3rem",
   },
   content: {
     display: "flex",
-    marginTop: "100px",
     flexDirection: "column",
     justifyContent: "center",
-    alignItems: "center",
     backgroundColor: "#22272E",
-    width: "80vh",
-    height: "50vh",
+    borderRadius: 6,
+    padding: 20,
+    gap:10,
   },
   image: {
-    width: "80px",
+    width: "100px",
     height: "100px",
-    borderRadius: "25px",
+    borderRadius: "50%",
   },
 }));
 const Perfil = () => {
@@ -45,67 +44,65 @@ const Perfil = () => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <Container className={classes.content}>
-        <Grid container spacing={1}>
-          <Grid item xs={12} sm={3}>
+      <div className={classes.content}>
+        <section style={{display:'flex', flexDirection:'row', border:'1px solid gray', padding:20, borderRadius:6}}>
+          <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', gap:10}}>
             <img
               className={classes.image}
-              src="https://img2.freepng.es/20180612/ih/kisspng-computer-icons-avatar-user-profile-clip-art-5b1f69f0e68650.4078880515287853929442.jpg"
+              src={user?.imagen || "https://img2.freepng.es/20180612/ih/kisspng-computer-icons-avatar-user-profile-clip-art-5b1f69f0e68650.4078880515287853929442.jpg"}
               alt=""
             />
-          </Grid>
-          <Grid item xs={12} sm={3}>
             <Typography component="h5" variant="h5" color="primary">
-              {user?.nombre}
+              {user?.nombre} <span style={{color:'gray'}}>{user?.apellido}</span>
             </Typography>
-          </Grid>
-          <Grid item xs={12} sm={3}>
-            <Typography component="h5" variant="subtitle1" color="secondary">
-              {user?.apellido}
-            </Typography>
-          </Grid>
-          <Grid item xs={12} sm={6}>
             <Typography component="h5" variant="subtitle1" color="secondary">
               {user?.email}
             </Typography>
-          </Grid>
-          <Grid item xs={12} sm={6}>
+          </div>
+          <div style={{display:'flex', flexDirection:'column', gap:10, marginLeft:20}}>
             <Typography component="h4" color="primary">
-              Estado
+              Contactanos para cualquier consulta
             </Typography>
+            <div>
+              <ContactUs />
+            </div>
+          </div>
+        </section>
+        <section style={{padding:20, border:'1px solid gray', borderRadius:6}}>
+          <Typography component="h4" color="primary">
+            Tickets comprados
+          </Typography>
+          <Divider style={{backgroundColor:'gray', margin:'10px 0px'}}/>
+          <Grid container spacing={1}>          
+            {user?.tickets?.map((tiket, ind) => {
+              return (
+                <React.Fragment key={tiket.id}>
+                  <Grid item xs={12} sm={4}>
+                    <Typography component="h4" color="primary">
+                      {tiket.numero}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12} sm={4}>
+                    <Typography component="h4" color="primary">
+                      {tiket.numero_sala}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12} sm={4}>
+                    <Typography component="h4" color="primary">
+                      {tiket.fecha_hora}
+                    </Typography>
+                  </Grid>
+                </React.Fragment>
+              );
+            })}
           </Grid>
-          <Grid item xs={12}>
-            <Typography component="h4" color="primary">
-              Tickets
-            </Typography>
-          </Grid>
-          {user?.tickets?.map((tiket) => {
-            return (
-              <>
-                <Grid item xs={12} sm={4}>
-                  <Typography component="h4" color="primary">
-                    {tiket.numero}
-                  </Typography>
-                </Grid>
-                <Grid item xs={12} sm={4}>
-                  <Typography component="h4" color="primary">
-                    {tiket.numero_sala}
-                  </Typography>
-                </Grid>
-                <Grid item xs={12} sm={4}>
-                  <Typography component="h4" color="primary">
-                    {tiket.fecha_hora}
-                  </Typography>
-                </Grid>
-              </>
-            );
-          })}
-        </Grid>
-        <ContactUs />
-        <div>
-          <Link to="/home">volver</Link>
+        </section>
+        <div style={{display:'flex', justifyContent:'center'}}>
+          <Link to="/home" style={{textDecoration:'none', color:'inherit'}}>
+            <Button variant="contained" color="secondary">volver</Button>
+          </Link>
         </div>
-      </Container>
+      </div>
     </div>
   );
 };
